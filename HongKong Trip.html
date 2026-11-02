@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>왕효 홍콩여행 🇭🇰</title>
+<meta name="description" content="왕효 홍콩여행 11/06–11/09 플래너">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇭🇰</text></svg>">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  :root{
+    --bg:#fbf7f4; --card:#ffffff; --ink:#1f1a17; --sub:#6f655e; --line:#ece4dd;
+    --red:#d7263d; --red-soft:#fde8ea; --blue:#2563eb; --gold:#c98a1b;
+    --d1:#8b5cf6; --d2:#e11d48; --d3:#0ea5e9; --d4:#16a34a; --etc:#9ca3af;
+    --radius:16px; --shadow:0 1px 2px rgba(0,0,0,.04),0 6px 20px rgba(60,30,10,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#141110; --card:#1e1a18; --ink:#f3ede8; --sub:#a89e96; --line:#2f2925;
+      --red-soft:#3a1a1f; --shadow:0 1px 2px rgba(0,0,0,.3);
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--bg);color:var(--ink);font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:880px;margin:0 auto;padding:0 16px}
+
+  /* converter bar */
+  .fx{position:sticky;top:0;z-index:1000;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .fx-in{display:flex;align-items:center;gap:8px;padding:10px 0;flex-wrap:wrap}
+  .fx-box{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 10px;flex:1 1 260px;min-width:0}
+  .fx-box input{border:0;outline:0;background:transparent;color:var(--ink);font:inherit;font-size:18px;font-weight:700;width:100%;min-width:0}
+  .fx-cur{font-size:13px;font-weight:700;color:var(--sub);white-space:nowrap}
+  .fx-eq{font-weight:800;color:var(--red);font-size:18px;white-space:nowrap}
+  .fx-swap{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;width:36px;height:36px;cursor:pointer;font-size:16px;flex:none}
+  .fx-rate{font-size:12px;color:var(--sub);display:flex;align-items:center;gap:4px;white-space:nowrap}
+  .fx-rate input{width:52px;border:1px solid var(--line);border-radius:8px;padding:3px 6px;background:var(--card);color:var(--ink);font:inherit;font-size:12px;text-align:right}
+  .chips{display:flex;gap:6px;padding:0 0 10px;overflow-x:auto;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:none;border:1px solid var(--line);background:var(--card);color:var(--sub);border-radius:999px;padding:4px 10px;font-size:12px;cursor:pointer;font-family:inherit}
+  .chip:hover{color:var(--ink)}
+
+  /* hero */
+  header.hero{padding:36px 0 8px}
+  .eyebrow{font-size:13px;color:var(--red);font-weight:700;letter-spacing:.04em}
+  h1{font-size:34px;line-height:1.2;margin:6px 0 10px;letter-spacing:-.02em}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;font-size:14px;color:var(--sub)}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+  .pill b{color:var(--red)}
+
+  section{margin:28px 0}
+  h2{font-size:20px;margin:0 0 12px;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:640px){.grid2{grid-template-columns:1fr} h1{font-size:28px}}
+
+  /* checklist */
+  .check{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--line);cursor:pointer}
+  .check:last-child{border-bottom:0}
+  .check input{margin-top:4px;accent-color:var(--red);width:18px;height:18px;flex:none}
+  .check.done .ck-t{text-decoration:line-through;color:var(--sub)}
+  .ck-t{font-weight:600}
+  .ck-d{font-size:13px;color:var(--sub)}
+  .tip{font-size:14px;padding:10px 12px;background:var(--red-soft);border-radius:12px;margin-top:10px}
+
+  /* flights */
+  .who{font-size:13px;font-weight:800;color:var(--sub);margin-bottom:8px}
+  .flight{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+  .flight:first-of-type{border-top:0}
+  .f-route{font-weight:800;font-size:17px}
+  .f-sub{font-size:13px;color:var(--sub)}
+  .f-time{text-align:right;font-weight:700;white-space:nowrap}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--red-soft);color:var(--red)}
+  .tag.blue{background:color-mix(in srgb,var(--blue) 14%,transparent);color:var(--blue)}
+  .tag.gray{background:color-mix(in srgb,var(--etc) 20%,transparent);color:var(--sub)}
+  .tag.gold{background:color-mix(in srgb,var(--gold) 16%,transparent);color:var(--gold)}
+
+  /* map + tabs */
+  .tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:10px;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:8px 12px;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;display:flex;align-items:center;gap:6px}
+  .tab .dot{width:8px;height:8px;border-radius:50%}
+  .tab.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  #map{height:420px;border-radius:var(--radius);border:1px solid var(--line);overflow:hidden;z-index:1}
+  @media (max-width:640px){#map{height:340px}}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--sub);margin-top:8px}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .lg-line{width:18px;height:0;border-top:3px solid var(--sub)}
+  .lg-dash{width:18px;height:0;border-top:3px dashed var(--sub)}
+
+  .pin{width:26px;height:26px;border-radius:50%;color:#fff;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+  .pin.cand{background:#fff!important;border:2px dashed currentColor}
+  .pin.etc{width:14px;height:14px;background:var(--etc);border:2px solid #fff}
+  .pin.home{font-size:14px}
+  .leaflet-popup-content{font-family:Pretendard,sans-serif;font-size:13px;margin:10px 12px}
+  .leaflet-popup-content b{font-size:14px}
+
+  /* timeline */
+  .day{margin-top:16px}
+  .day-h{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
+  .day-n{font-weight:900;font-size:13px;color:#fff;border-radius:8px;padding:2px 8px}
+  .day-t{font-weight:800;font-size:18px}
+  .day-s{font-size:13px;color:var(--sub)}
+  .tl{list-style:none;margin:0;padding:0;position:relative}
+  .tl li{display:grid;grid-template-columns:62px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line);cursor:default}
+  .tl li:first-child{border-top:0}
+  .tl li.clickable{cursor:pointer}
+  .tl li.clickable:hover .it{color:var(--red)}
+  .tm{font-size:13px;font-weight:700;color:var(--sub);padding-top:1px}
+  .it{font-weight:700}
+  .ds{font-size:13px;color:var(--sub);margin-top:2px}
+  .ds a{color:var(--blue);text-decoration:none}
+  .addr{font-size:12px;color:var(--sub);margin-top:3px}
+  .addr a{color:var(--blue);text-decoration:none}
+  .map-err{height:100%;display:flex;align-items:center;justify-content:center;color:var(--sub);font-size:14px;text-align:center;padding:20px}
+  .warn{font-size:12px;margin-top:6px;padding:6px 10px;border-radius:10px;background:color-mix(in srgb,var(--gold) 14%,transparent);color:var(--ink)}
+
+  /* spots */
+  .area{margin-top:14px}
+  .area h3{font-size:15px;margin:0 0 4px}
+  .area p{font-size:13px;color:var(--sub);margin:0 0 6px}
+  .spot{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:14px}
+  .spot:first-of-type{border-top:0}
+  .spot .nm{font-weight:700}
+  .spot .nt{font-size:12px;color:var(--sub)}
+  .spot .rt{text-align:right;font-size:12px;color:var(--sub);white-space:nowrap}
+  .spot a.go{font-size:12px;color:var(--blue);text-decoration:none}
+
+  footer{text-align:center;padding:40px 0 60px;color:var(--sub);font-size:14px}
+  .love{font-size:18px;color:var(--ink);font-weight:700}
+  /* ---- mobile compact ---- */
+  @media (max-width:640px){
+    body{font-size:14px;line-height:1.5}
+    .wrap{padding:0 12px}
+    .fx-in{gap:6px;padding:8px 0}
+    .fx-box{padding:4px 8px;flex-basis:100%;order:0}
+    .fx-box input{font-size:16px} /* iOS 확대 방지 위해 16px 유지 */
+    .fx-eq{font-size:15px}
+    .fx-cur{font-size:12px}
+    .fx-swap{width:30px;height:30px;font-size:14px}
+    .fx-rate{font-size:11px}
+    .fx-rate input{font-size:16px;width:56px;padding:1px 4px;transform:scale(.8);transform-origin:left center;margin-right:-10px}
+    .chips{padding-bottom:8px}
+    .chip{font-size:11px;padding:3px 8px}
+    header.hero{padding:18px 0 4px}
+    .eyebrow{font-size:11px}
+    h1{font-size:22px;margin:4px 0 8px}
+    .meta{font-size:12px;gap:6px}
+    .pill{padding:3px 10px}
+    section{margin:18px 0}
+    h2{font-size:16px;margin-bottom:8px}
+    .card{padding:12px;border-radius:12px}
+    .grid2{gap:8px}
+    .check{padding:6px 0;gap:8px}
+    .check input{width:16px;height:16px;margin-top:2px}
+    .ck-t{font-size:13px}
+    .ck-d{font-size:12px}
+    .tip{font-size:12px;padding:8px 10px}
+    .who{font-size:12px;margin-bottom:4px}
+    .flight{padding:8px 0}
+    .f-route{font-size:14px}
+    .f-sub{font-size:11px}
+    .f-time{font-size:13px}
+    .tag{font-size:10px;padding:1px 6px}
+    .tab{font-size:12px;padding:6px 10px;border-radius:10px}
+    #map{height:280px;border-radius:12px}
+    .legend{font-size:11px;gap:8px}
+    .pin{width:22px;height:22px;font-size:11px}
+    .day{margin-top:10px}
+    .day-h{gap:8px}
+    .day-n{font-size:11px;padding:1px 6px}
+    .day-t{font-size:15px}
+    .day-s{font-size:11px}
+    .tl li{grid-template-columns:44px 1fr;gap:8px;padding:8px 0}
+    .tm{font-size:11px}
+    .it{font-size:13px}
+    .ds{font-size:12px}
+    .addr{font-size:11px}
+    .warn{font-size:11px;padding:5px 8px}
+    .area h3{font-size:14px}
+    .area p{font-size:12px}
+    .spot{font-size:13px;padding:7px 0}
+    .spot .nt,.spot .rt{font-size:11px}
+    footer{padding:28px 0 40px;font-size:12px}
+    .love{font-size:15px}
+  }
+</style>
+</head>
+<body>
+
+<!-- 환율 계산기 (상단 고정) -->
+<div class="fx" role="region" aria-label="환율 계산기">
+  <div class="wrap">
+    <div class="fx-in">
+      <div class="fx-box">
+        <span class="fx-cur" id="fromCur">HK$</span>
+        <input id="amt" type="number" inputmode="decimal" placeholder="금액 입력" aria-label="금액">
+        <span class="fx-eq" id="out">= 0원</span>
+      </div>
+      <button class="fx-swap" id="swap" title="방향 바꾸기" aria-label="HKD/원 방향 바꾸기">⇄</button>
+      <label class="fx-rate">1 HKD =
+        <input id="rate" type="number" inputmode="decimal" value="171" aria-label="환율">원
+      </label>
+    </div>
+    <div class="chips" id="chips"></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">WANG ♥ HYO · HONG KONG</div>
+    <h1>왕효 홍콩여행 🇭🇰</h1>
+    <div class="meta">
+      <span class="pill">11/06 (금) – 11/09 (월) · 3박 4일</span>
+      <span class="pill" id="dday"></span>
+      <span class="pill">숙소 · 셩완</span>
+    </div>
+  </header>
+
+  <!-- 출발 전 준비 -->
+  <section>
+    <h2>🧳 출발 전 준비</h2>
+    <div class="card" id="checklist"></div>
+  </section>
+
+  <!-- 항공 -->
+  <section>
+    <h2>✈️ 항공편</h2>
+    <div class="grid2">
+      <div class="card">
+        <div class="who">💙 성준 · 인천 ↔ 홍콩</div>
+        <div class="flight">
+          <div><div class="f-route">ICN T1 → HKG T1</div><div class="f-sub">제주항공 7C6013 · 11/06 (금)</div></div>
+          <div class="f-time">20:25 → 23:25</div>
+        </div>
+        <div class="flight">
+          <div><div class="f-route">HKG → ICN T1</div><div class="f-sub">티웨이항공 TW638 · 11/09 (월)</div></div>
+          <div class="f-time">13:45 → 18:35</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="who">❤️ 효진 · 호찌민 ↔ 홍콩</div>
+        <div class="flight">
+          <div><div class="f-route">SGN → HKG T1</div><div class="f-sub">캐세이퍼시픽 CX0764 · 11/06 (금)</div></div>
+          <div class="f-time">19:45 → 23:25</div>
+        </div>
+        <div class="flight">
+          <div><div class="f-route">HKG → SGN</div><div class="f-sub">캐세이퍼시픽 CX0799 · 11/09 (월)</div></div>
+          <div class="f-time">16:45 → 18:35</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 숙소 -->
+  <section>
+    <h2>🏨 숙소</h2>
+    <div class="card">
+      <div style="font-weight:800;font-size:17px">28 Des Voeux Road West, Sheung Wan</div>
+      <div class="f-sub">셩완, 홍콩섬 · 3박 · 505,162원</div>
+      <div class="grid2" style="margin-top:12px">
+        <div><span class="tag blue">체크인</span> 11/06 (금) 14:00</div>
+        <div><span class="tag">체크아웃</span> 11/09 (월) 12:00</div>
+      </div>
+      <div class="ds" style="margin-top:10px">투숙객 SungJoon Wang · 예약번호 2609••••••FEES1 <span class="tag gray">공개 페이지라 일부 가림</span></div>
+      <div class="ds" style="margin-top:6px"><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=28+Des+Voeux+Road+West+Sheung+Wan+Hong+Kong">구글맵에서 열기 ↗</a></div>
+    </div>
+  </section>
+
+  <!-- 동선 지도 + 일정 -->
+  <section>
+    <h2>🗺️ 동선 & 일정</h2>
+    <div class="tabs" id="tabs"></div>
+    <div id="map"></div>
+    <div class="legend">
+      <span><i class="lg-line"></i>확정 동선</span>
+      <span><i class="lg-dash"></i>추천·후보</span>
+      <span>🏠 숙소</span>
+      <span><i class="pin etc" style="display:inline-block"></i>기타 관광지 (전체 보기)</span>
+    </div>
+    <div id="days"></div>
+  </section>
+
+  <!-- 구역별 장소 -->
+  <section>
+    <h2>📍 구역별 식당 · 관광지</h2>
+    <div class="card" id="spots"></div>
+  </section>
+
+  <footer>
+    <div class="love">사랑해❤️ㅎ</div>
+    <div class="love" style="margin-top:4px">오빠가 더💙</div>
+    <div style="margin-top:16px;font-size:12px">2026.11 · Hong Kong</div>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>window.L || document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"><script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"><\/script>');</script>
+<script>
+/* ---------- storage helpers ---------- */
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+
+/* ---------- 환율 계산기 ---------- */
+(function(){
+  const amt = document.getElementById('amt');
+  const rate = document.getElementById('rate');
+  const out = document.getElementById('out');
+  const fromCur = document.getElementById('fromCur');
+  let dir = 'hkd'; // hkd → krw
+  rate.value = store.get('hk_rate', 171);
+
+  const fmtKRW = n => Math.round(n).toLocaleString('ko-KR') + '원';
+  const fmtHKD = n => 'HK$ ' + n.toLocaleString('en-US', {maximumFractionDigits: 1});
+
+  function calc(){
+    const a = parseFloat(amt.value) || 0;
+    const r = parseFloat(rate.value) || 0;
+    if (dir === 'hkd') out.textContent = '= ' + fmtKRW(a * r);
+    else out.textContent = '= ' + fmtHKD(r ? a / r : 0);
+  }
+  amt.addEventListener('input', calc);
+  rate.addEventListener('input', () => { store.set('hk_rate', parseFloat(rate.value) || 171); calc(); });
+  document.getElementById('swap').addEventListener('click', () => {
+    dir = dir === 'hkd' ? 'krw' : 'hkd';
+    fromCur.textContent = dir === 'hkd' ? 'HK$' : '₩';
+    amt.value = '';
+    amt.placeholder = dir === 'hkd' ? '홍콩달러 입력' : '원화 입력';
+    renderChips(); calc(); amt.focus();
+  });
+
+  const chipData = [
+    {v:20, l:'알럽 티 HK$20'}, {v:41, l:'A11 버스 HK$41'}, {v:50, l:'HK$50'},
+    {v:100, l:'HK$100'}, {v:200, l:'HK$200'}, {v:500, l:'HK$500'}
+  ];
+  function renderChips(){
+    const box = document.getElementById('chips');
+    const list = dir === 'hkd' ? chipData
+      : [10000,30000,50000,100000].map(v => ({v, l: v.toLocaleString('ko-KR') + '원'}));
+    box.innerHTML = '';
+    list.forEach(c => {
+      const b = document.createElement('button');
+      b.className = 'chip'; b.textContent = c.l;
+      b.onclick = () => { amt.value = c.v; calc(); };
+      box.appendChild(b);
+    });
+  }
+  renderChips(); calc();
+})();
+
+/* ---------- D-day ---------- */
+(function(){
+  const now = new Date(new Date().toLocaleString('en-US', {timeZone:'Asia/Seoul'}));
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const start = new Date(2026, 10, 6), end = new Date(2026, 10, 9);
+  const diff = Math.round((start - today) / 86400000);
+  const el = document.getElementById('dday');
+  if (diff > 0) el.innerHTML = '출발까지 <b>D-' + diff + '</b>';
+  else if (today <= end) el.innerHTML = '<b>여행 ' + (1 - diff) + '일차</b> 🎉';
+  else el.innerHTML = '다녀왔어요 💕';
+})();
+
+/* ---------- 체크리스트 ---------- */
+(function(){
+  const items = [
+    {id:'octopus', t:'교통카드 (옥토퍼스)', d:'애플페이(지갑)에 등록 가능'},
+    {id:'esim', t:'이심 (eSIM)', d:'출국 전 설치·개통 확인'},
+    {id:'cash', t:'환전', d:'트래블월렛 카드 → HSBC ATM에서 수수료 없이 인출'},
+    {id:'peak', t:'빅토리아 피크 전망대 사전 예약', d:'예약 필수 · CCTV로 날씨 확인 가능'},
+    {id:'jacket', t:'겉옷 챙기기', d:'피크 올라가면 추움'},
+    {id:'yth', t:'Yat Tung Heen 예약', d:'일요일 점심 12:30 — 완료'}
+  ];
+  const state = store.get('hk_check', {yth:true});
+  const box = document.getElementById('checklist');
+  items.forEach(i => {
+    const row = document.createElement('label');
+    row.className = 'check' + (state[i.id] ? ' done' : '');
+    row.innerHTML = '<input type="checkbox"' + (state[i.id] ? ' checked' : '') + '><div><div class="ck-t">' + i.t + '</div><div class="ck-d">' + i.d + '</div></div>';
+    row.querySelector('input').addEventListener('change', e => {
+      state[i.id] = e.target.checked; store.set('hk_check', state);
+      row.classList.toggle('done', e.target.checked);
+    });
+    box.appendChild(row);
+  });
+  const tip = document.createElement('div');
+  tip.className = 'tip';
+  tip.innerHTML = '👕 <b>알럽 홍콩 티</b>는 HK$20면 적정가 (≈ 3,420원)';
+  box.appendChild(tip);
+})();
+
+/* ---------- 장소 데이터 (일정에 들어간 장소: 주소·영업시간 조사 반영) ---------- */
+const P = {
+  airport:   {n:'홍콩국제공항 T1 · 버스 터미널', lat:22.3159, lng:113.9365, q:'Hong Kong International Airport Terminal 1 bus terminus',
+              addr:'도착홀 → "To City" 표지 따라 버스 터미널', h:'A11 05:35~00:30 · 심야 N11'},
+  busstop:   {n:'Central (Macau Ferry) 버스 터미널', lat:22.2876, lng:114.1518, q:'Central (Macau Ferry) Bus Terminus',
+              addr:'Connaught Road Central · 셩완역 도보 1분', h:'A11 4번째 정류장'},
+  hotel:     {n:'숙소', lat:22.2871, lng:114.1478, q:'28 Des Voeux Road West Sheung Wan', home:true,
+              addr:'28 Des Voeux Road West, Sheung Wan', h:'체크인 14:00 · 체크아웃 12:00'},
+  harbour:   {n:'셩완 하버프론트 산책로', lat:22.2893, lng:114.1497, q:'Central and Western District Promenade Sheung Wan Section',
+              addr:'Central and Western District Promenade (Sheung Wan Section), Chung Kong Rd', h:'24시간 · 숙소에서 도보 약 5분'},
+  kaukee:    {n:'카우키 (九記牛腩)', lat:22.2847, lng:114.1525, q:'Kau Kee Restaurant 21 Gough Street',
+              addr:'21 Gough Street, Central', h:'월–토 12:30–22:30 · 일 휴무'},
+  escalator: {n:'미드레벨 에스컬레이터', lat:22.2830, lng:114.1547, q:'Central Mid-Levels Escalator',
+              addr:"시작점: Queen's Road Central × Cochrane St", h:'오전 10시 전엔 하행 운행'},
+  soho:      {n:'소호거리', lat:22.2817, lng:114.1520, q:'SoHo Central Hong Kong',
+              addr:'Staunton St · Elgin St 일대 (에스컬레이터 중간)'},
+  ladies:    {n:'레이디스마켓', lat:22.3190, lng:114.1715, q:"Ladies' Market Tung Choi Street Mong Kok",
+              addr:'Tung Choi Street, Mong Kok · 몽콕역 E2', h:'대략 정오~밤 11시 (노점별 상이)'},
+  onedimsum: {n:'원 딤섬 (一點心)', lat:22.3238, lng:114.1704, q:'One Dim Sum 15 Playing Field Road Prince Edward',
+              addr:'Shop 1-2, G/F, Kenwood Mansion, 15 Playing Field Rd, Prince Edward', h:'월–금 09:30–24:00 · 주말 08:30–24:00'},
+  winstons:  {n:'Winstons Coffee', lat:22.2858, lng:114.1430, q:"Winstons Coffee 213 Queen's Road West",
+              addr:"Shop 4, G/F, 213 Queen's Road West, Sai Ying Pun · 사이잉푼역 A1"},
+  yth:       {n:'Yat Tung Heen (逸東軒)', lat:22.3054, lng:114.1713, q:'Yat Tung Heen Eaton Hotel 380 Nathan Road',
+              addr:'B2F, Eaton Hotel, 380 Nathan Road, Jordan · ☎ +852 2710 1093', h:'주말 10:00–16:00 / 18:00–22:30'},
+  tck:       {n:'침차이키 (沾仔記)', lat:22.2836, lng:114.1543, q:'Tsim Chai Kee Noodle 98 Wellington Street',
+              addr:'98 Wellington Street, Central', h:'매일 11:00–21:30'},
+  chilli:    {n:'Chilli Fagara', lat:22.2816, lng:114.1531, q:'Chilli Fagara 7 Old Bailey Street',
+              addr:'7 Old Bailey Street, Central', h:'11:30–14:15 / 17:00–22:15'},
+  yungkee:   {n:'Yung Kee (鏞記)', lat:22.2822, lng:114.1557, q:'Yung Kee Restaurant 32-40 Wellington Street',
+              addr:'32-40 Wellington Street, Central', h:'11:00–22:30'},
+  avenue:    {n:'스타의 거리', lat:22.2934, lng:114.1745, q:'Avenue of Stars Hong Kong'},
+  clock:     {n:'시계탑 · 스타페리 침사추이', lat:22.2937, lng:114.1693, q:'Star Ferry Tsim Sha Tsui Pier'},
+  ferryC:    {n:'스타페리 센트럴 부두', lat:22.2873, lng:114.1612, q:'Star Ferry Central Pier 7'},
+  peaktram:  {n:'피크트램 정류장 (가든로드)', lat:22.2779, lng:114.1593, q:'Peak Tram Garden Road Terminus'},
+  peak:      {n:'빅토리아 피크', lat:22.2711, lng:114.1497, q:'Sky Terrace 428 Victoria Peak'},
+  bakehouse: {n:'Bakehouse (에그타르트)', lat:22.2822, lng:114.1520, q:'Bakehouse Staunton Street Hong Kong'},
+  temple:    {n:'템플스트리트 야시장', lat:22.3071, lng:114.1699, q:'Temple Street Night Market'},
+  choihung:  {n:'초이홍 아파트', lat:22.3352, lng:114.2087, q:'Choi Hung Estate'},
+  hopewell:  {n:'호프웰 센터', lat:22.2745, lng:114.1716, q:'Hopewell Centre Wan Chai'},
+  wheel:     {n:'홍콩 대관람차', lat:22.2853, lng:114.1617, q:'Hong Kong Observation Wheel'},
+  disney:    {n:'홍콩 디즈니랜드', lat:22.3129, lng:114.0413, q:'Hong Kong Disneyland'},
+  kt:        {n:'케네디타운', lat:22.2817, lng:114.1284, q:'Kennedy Town Hong Kong'}
+};
+const gmapQ = q => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
+const gmap = k => gmapQ(P[k].q);
+
+/* ---------- 일정 데이터 ---------- */
+const DAYS = [
+  { id:1, label:'11/06 금', title:'도착', hex:'#8b5cf6',
+    route:['airport','busstop','hotel'],
+    items:[
+      {t:'23:25', it:'홍콩 도착 (T1)', ds:'성준 7C6013 · 효진 CX0764 둘 다 23:25 도착 예정 — 도착 터미널 확인 필요', p:'airport'},
+      {t:'00:15', it:'만남 💑', ds:'입국 후 도착홀에서 합류'},
+      {t:'00:30', it:'공항버스 A11', ds:'약 HK$42 · 약 40분 · 옥토퍼스/컨택리스 결제', p:'airport',
+        warn:'A11 운행은 00:30경까지 — 놓치면 심야버스(N11) 이용. 현장 전광판 확인'},
+      {t:'01:10', it:'Central (Macau Ferry) 하차', ds:'A11 4번째 정류장 · 숙소까지 도보 약 450m', p:'busstop'},
+      {t:'01:20', it:'체크인 & 씻고 자기 😴', p:'hotel'}
+    ]},
+  { id:2, label:'11/07 토', title:'러닝 → 셩완 → 몽콕', hex:'#e11d48',
+    route:['hotel','harbour','hotel','kaukee','escalator','soho','ladies','onedimsum'],
+    cand:['onedimsum','clock','avenue','ferryC','hotel'],
+    items:[
+      {t:'10:00', it:'셩완 하버뷰 러닝 🏃', ds:'숙소 앞 바닷가 산책로 · 서쪽 사이잉푼 ↔ 동쪽 센트럴 부두까지 이어짐', p:'harbour'},
+      {t:'12:30', it:'카우키 — 육식맨 고기국수', ds:'안심 소육수 국수 · 도가니&안심 카레국수 (메뉴 4번, 14번)', p:'kaukee', warn:'12:30 오픈 · 일요일 휴무라 토요일 점심으로 배치'},
+      {t:'오후', it:'미드레벨 에스컬레이터 · 소호거리', ds:'벽화거리, 카페 많음 · 근처 Bakehouse 에그타르트도 가능', p:'escalator'},
+      {t:'오후', it:'레이디스마켓', ds:'알럽홍콩 티셔츠(HK$20 적정가), 마그넷', p:'ladies'},
+      {t:'저녁', it:'원딤섬 — 현지인 픽 딤섬', p:'onedimsum'},
+      {t:'야경', it:'스타의 거리 · 시계탑 → 스타페리', ds:'페리 타고 센트럴 복귀하며 야경', p:'avenue', cand:true}
+    ]},
+  { id:3, label:'11/08 일', title:'러닝 · 미슐랭 딤섬 · 피크', hex:'#0ea5e9',
+    route:['hotel','winstons','hotel','yth'],
+    cand:['yth','peaktram','peak'],
+    dinner:['tck','chilli','yungkee'],
+    items:[
+      {t:'오전', it:'러닝 🏃 & Winstons Coffee', ds:'숙소 근처', p:'winstons'},
+      {t:'12:30', it:'Yat Tung Heen — 미슐랭 딤섬', ds:'예약 완료 · 딤섬은 점심에만 판매', p:'yth'},
+      {t:'오후', it:'비어 있음', ds:'후보: 템플스트리트 야시장 · 호프웰 센터 · 대관람차 · 케네디타운'},
+      {t:'저녁', it:'같이 고민하기 🤔', ds:'침차이키 (새우완탕면) / Chilli Fagara (마파두부·탄탄면) / Yung Kee (거위·폭립) — 셋 다 센트럴', cand:true,
+        picks:['tck','chilli','yungkee'],
+        warn:'Chilli Fagara 저녁은 17:00부터 (점심·저녁 사이 휴식)'},
+      {t:'야경', it:'빅토리아 피크', ds:'트램 타고 산 위 야경 · 사전 예약 필수 · 겉옷!', p:'peak', cand:true}
+    ]},
+  { id:4, label:'11/09 월', title:'아침 · 출국', hex:'#16a34a',
+    route:['hotel','busstop','airport'],
+    items:[
+      {t:'아침', it:'Kwan Lok Restaurant — 차찬탱', ds:'07:00–18:00 · 완전 로컬 느낌',
+        addrHtml:'센트럴 소재 (OpenRice 등록) · <a target="_blank" rel="noopener" href="' + 'https://www.google.com/maps/search/?api=1&query=Kwan+Lok+Restaurant+Central+Hong+Kong' + '">구글맵 검색 ↗</a>',
+        warn:'일요일 휴무라 월요일 아침 배치 · 정확한 주소는 공개 자료에서 확인 불가 → 지도 미표시'},
+      {t:'~12:00', it:'체크아웃', p:'hotel'},
+      {t:'12:00', it:'공항 도착', ds:'성준 TW638 13:45 출발 · 효진 CX0799 16:45 출발', p:'airport'}
+    ]}
+];
+const ETC = ['bakehouse','temple','choihung','hopewell','wheel','disney','kt'];
+
+/* ---------- 지도 (Leaflet 로드 실패해도 나머지는 동작) ---------- */
+let map = null;
+const layers = {};
+let etcLayer = null;
+if (window.L) {
+  try {
+    map = L.map('map', {scrollWheelZoom:false}).setView([22.295, 114.16], 12);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution:'&copy; OpenStreetMap &copy; CARTO', subdomains:'abcd', maxZoom:19
+    }).addTo(map);
+
+    const pinIcon = (label, hex, opt) => {
+      opt = opt || {};
+      const cls = 'pin' + (opt.cand ? ' cand' : '') + (opt.home ? ' home' : '') + (opt.etc ? ' etc' : '');
+      const style = opt.etc ? '' : (opt.cand ? 'color:' + hex : 'background:' + hex);
+      const size = opt.etc ? 14 : 26;
+      return L.divIcon({className:'', html:'<div class="' + cls + '" style="' + style + '">' + (opt.etc ? '' : label) + '</div>', iconSize:[size,size], iconAnchor:[size/2,size/2]});
+    };
+    const popup = k => {
+      const p = P[k];
+      return '<b>' + p.n + '</b>' + (p.addr ? '<br>' + p.addr : '') + (p.h ? '<br>🕒 ' + p.h : '') +
+        '<br><a target="_blank" rel="noopener" href="' + gmap(k) + '">구글맵 ↗</a>';
+    };
+
+    DAYS.forEach(d => {
+      const g = L.layerGroup();
+      L.polyline(d.route.map(k => [P[k].lat, P[k].lng]), {color:d.hex, weight:4, opacity:.85}).addTo(g);
+      if (d.cand) L.polyline(d.cand.map(k => [P[k].lat, P[k].lng]), {color:d.hex, weight:3, opacity:.8, dashArray:'6 8'}).addTo(g);
+      let n = 0; const seen = new Set();
+      d.route.forEach(k => {
+        if (seen.has(k)) return; seen.add(k);
+        const home = !!P[k].home;
+        g['m_' + k] = L.marker([P[k].lat, P[k].lng], {icon: pinIcon(home ? '🏠' : ++n, d.hex, {home})}).bindPopup(popup(k)).addTo(g);
+      });
+      (d.cand || []).forEach(k => {
+        if (seen.has(k)) return; seen.add(k);
+        g['m_' + k] = L.marker([P[k].lat, P[k].lng], {icon: pinIcon('★', d.hex, {cand:true})}).bindPopup(popup(k)).addTo(g);
+      });
+      (d.dinner || []).forEach(k => {
+        g['m_' + k] = L.marker([P[k].lat, P[k].lng], {icon: pinIcon('🍜', d.hex, {cand:true})})
+          .bindPopup('<span class="tag gold">저녁 후보</span><br>' + popup(k)).addTo(g);
+      });
+      layers[d.id] = g;
+    });
+    etcLayer = L.layerGroup();
+    ETC.forEach(k => { etcLayer['m_' + k] = L.marker([P[k].lat, P[k].lng], {icon: pinIcon('', '', {etc:true})}).bindPopup(popup(k)).addTo(etcLayer); });
+  } catch (e) { map = null; }
+}
+if (!map) document.getElementById('map').innerHTML = '<div class="map-err">지도를 불러오지 못했어요 🥲<br>네트워크 확인 후 새로고침</div>';
+
+let current = 'all';
+function show(which){
+  current = which;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', String(t.dataset.k) === String(which)));
+  document.querySelectorAll('.day').forEach(el => {
+    el.style.display = (which === 'all' || String(el.dataset.k) === String(which)) ? '' : 'none';
+  });
+  if (!map) return;
+  Object.values(layers).forEach(l => map.removeLayer(l));
+  map.removeLayer(etcLayer);
+  const bounds = [];
+  const add = (l, keys) => { l.addTo(map); keys.forEach(k => bounds.push([P[k].lat, P[k].lng])); };
+  if (which === 'all'){
+    DAYS.forEach(d => add(layers[d.id], d.route.concat(d.cand || [])));
+    add(etcLayer, ETC.filter(k => k !== 'disney'));
+  } else {
+    const d = DAYS.find(x => x.id === which);
+    add(layers[which], d.route.concat(d.cand || [], d.dinner || []));
+  }
+  map.fitBounds(bounds, {padding:[30,30], maxZoom:15});
+}
+function focusPlace(dayId, k){
+  if (!map) { window.open(gmap(k), '_blank'); return; }
+  if (current !== 'all' && current !== dayId) show(dayId);
+  const m = layers[dayId] && layers[dayId]['m_' + k];
+  map.flyTo([P[k].lat, P[k].lng], 16, {duration:.6});
+  if (m) setTimeout(() => m.openPopup(), 650);
+  document.getElementById('map').scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+/* ---------- 탭 & 타임라인 렌더 ---------- */
+(function(){
+  const tabs = document.getElementById('tabs');
+  const mk = (k, html) => {
+    const b = document.createElement('button');
+    b.className = 'tab'; b.dataset.k = k; b.innerHTML = html;
+    b.onclick = () => show(k === 'all' ? 'all' : Number(k));
+    tabs.appendChild(b);
+  };
+  mk('all', '전체');
+  DAYS.forEach(d => mk(d.id, '<i class="dot" style="background:' + d.hex + '"></i>Day ' + d.id + ' · ' + d.label));
+
+  const box = document.getElementById('days');
+  DAYS.forEach(d => {
+    const wrap = document.createElement('div');
+    wrap.className = 'day card'; wrap.dataset.k = d.id;
+    wrap.innerHTML = '<div class="day-h"><span class="day-n" style="background:' + d.hex + '">DAY ' + d.id + '</span><span class="day-t">' + d.title + '</span><span class="day-s">' + d.label + '</span></div>';
+    const ul = document.createElement('ul'); ul.className = 'tl';
+    d.items.forEach(i => {
+      const li = document.createElement('li');
+      if (i.p) li.className = 'clickable';
+      const pl = i.p ? P[i.p] : null;
+      let addr = '';
+      if (pl && pl.addr) addr = '<div class="addr">📍 ' + pl.addr + (pl.h ? ' · 🕒 ' + pl.h : '') + '</div>';
+      if (i.addrHtml) addr = '<div class="addr">📍 ' + i.addrHtml + '</div>';
+      if (i.picks) addr = i.picks.map(k => '<div class="addr">📍 <a href="#" data-k="' + k + '">' + P[k].n + '</a> · ' + P[k].addr + ' · 🕒 ' + P[k].h + '</div>').join('');
+      li.innerHTML = '<div class="tm">' + i.t + '</div><div><div class="it">' + i.it +
+        (i.cand ? ' <span class="tag gold">추천·후보</span>' : '') + '</div>' +
+        (i.ds ? '<div class="ds">' + i.ds + '</div>' : '') + addr +
+        (i.warn ? '<div class="warn">⚠️ ' + i.warn + '</div>' : '') + '</div>';
+      li.querySelectorAll('a[data-k]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); focusPlace(d.id, a.dataset.k); }));
+      if (i.p) li.addEventListener('click', e => { if (e.target.tagName !== 'A') focusPlace(d.id, i.p); });
+      ul.appendChild(li);
+    });
+    wrap.appendChild(ul);
+    box.appendChild(wrap);
+  });
+  show('all');
+})();
+
+/* ---------- 구역별 장소 ---------- */
+(function(){
+  const AREAS = [
+    {h:'1. 몽콕 / 침사추이', p:'저녁 홍등가, 홍콩 로컬 느낌 물씬', list:[
+      ['ladies','레이디스마켓','기념품 · 알럽홍콩',''],
+      ['temple','템플스트리트 야시장','기념품 · 알럽홍콩',''],
+      ['avenue','스타의 거리 / 시계탑','페리 타고 야경',''],
+      ['yth','Yat Tung Heen','딤섬 미슐랭 · 예약 필수','주말 10:00–16:00 / 18:00–22:30'],
+      ['onedimsum','원 딤섬','로컬 딤섬 1등','평일 09:30– · 주말 08:30– (~24:00)']
+    ]},
+    {h:'2. 셩완', p:'관광지 · 맛집 위주, 숙소 근처', list:[
+      ['escalator','미드레벨 에스컬레이터','제일 유명 · 근처 카페 많음',''],
+      ['soho','소호거리','벽화거리 · 맛집 · 카페',''],
+      ['peak','빅토리아 피크','트램 타고 산에서 야경 · 예약 필수 · 추움',''],
+      ['kaukee','카우키','안심 소육수 국수, 도가니&안심 카레국수 (4, 14번)','월–토 12:30–22:30 · <b>일 휴무</b>'],
+      ['tck','침차이키','새우완탕면','11:00–21:30'],
+      [null,'Kwan Lok Restaurant','차찬탱 · 완전 로컬 · 센트럴','07:00–18:00 · <b>일 휴무</b>','Kwan Lok Restaurant Central Hong Kong'],
+      ['chilli','Chilli Fagara','마파두부, 탄탄면 (사천요리)','11:30–14:15 / 17:00–22:15'],
+      ['yungkee','Yung Kee','거위, 바베큐 폭립','11:00–22:30'],
+      ['bakehouse','Bakehouse','에그타르트','']
+    ]},
+    {h:'3. 그 외 관광지', p:'', list:[
+      ['choihung','초이홍 아파트','숙소 기준 지하철 환승 2번, 약 50분',''],
+      ['hopewell','호프웰 센터','숙소 기준 지하철 직행, 약 20분',''],
+      ['wheel','홍콩 대관람차','',''],
+      ['disney','디즈니랜드','반나절이면 충분',''],
+      ['kt','케네디타운','요즘 뜨는 동네','']
+    ]}
+  ];
+  const box = document.getElementById('spots');
+  AREAS.forEach((a, idx) => {
+    const div = document.createElement('div');
+    div.className = 'area';
+    if (idx) div.style.marginTop = '20px';
+    div.innerHTML = '<h3>' + a.h + '</h3>' + (a.p ? '<p>' + a.p + '</p>' : '');
+    a.list.forEach(([k, nm, nt, hr, q]) => {
+      const url = k ? gmap(k) : gmapQ(q);
+      const row = document.createElement('div');
+      row.className = 'spot';
+      row.innerHTML = '<div><div class="nm">' + nm + '</div>' + (nt ? '<div class="nt">' + nt + '</div>' : '') +
+        '</div><div class="rt">' + (hr ? hr + '<br>' : '') + '<a class="go" target="_blank" rel="noopener" href="' + url + '">지도 ↗</a></div>';
+      div.appendChild(row);
+    });
+    box.appendChild(div);
+  });
+})();
+</script>
+</body>
+</html>
