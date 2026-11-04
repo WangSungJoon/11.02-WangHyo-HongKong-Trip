@@ -374,7 +374,6 @@
     </div>
   </section>
 
-  <div class="row-scroll" id="dayJump" style="margin-top:12px"></div>
   <div id="days"></div>
   <div class="pager"><button class="btn raise" data-go="0">← 개요</button><button class="btn raise" data-go="2">손민수 →</button></div>
 </div>
@@ -392,7 +391,6 @@
     <div class="row-scroll" id="tabsS" style="margin-bottom:8px"></div>
     <div class="map" id="mapS"></div>
   </section>
-  <div class="row-scroll" id="dayJumpS" style="margin-top:12px"></div>
   <div id="daysS"></div>
   <div class="pager"><button class="btn raise" data-go="1">← 일정</button><button class="btn raise" data-go="3">회화 →</button></div>
 </div>
@@ -521,6 +519,8 @@ const P = {
               addr:'1028 King\'s Rd, 쿼리베이 · MTR 타이쿠역 B 출구 도보 5분', h:'주민 거주지 · 조용히, 드론 금지'},
   hkmoa:     {n:'홍콩 예술관', lat:22.2936, lng:114.1720, q:'Hong Kong Museum of Art',
               addr:'10 Salisbury Rd, 침사추이 해변', h:'10:00–18:00 (목 휴관) · 상설전 무료'},
+  mendels:   {n:'Mendel’s (뉴욕 브런치)', lat:22.2818, lng:114.1280, q:'Mendel’s 66-68 Catchick Street Kennedy Town',
+              addr:'66-68 Catchick St, 케네디타운 · MTR 케네디타운역 도보 약 3분'},
   hotel:     {n:'숙소', lat:22.2871, lng:114.1478, q:'28 Des Voeux Road West Sheung Wan', home:true,
               addr:'28 Des Voeux Road West, Sheung Wan', h:'체크인 14:00 · 체크아웃 12:00'},
   harbour:   {n:'셩완 하버프론트 산책로', lat:22.2893, lng:114.1497, q:'Central and Western District Promenade Sheung Wan Section',
@@ -609,10 +609,13 @@ const DAYS = [
     ]},
   { id:3, label:'11/08 일', title:'러닝 · 미슐랭 딤섬 · 오후 자유 · 피크 야경', hex:'#2a2926',
     sum:'흐리다 낮에 해 25–29°C · 산 위 강풍. 오후는 A/B 중 골라서, 해 질 무렵 피크로',
-    route:['hotel','winstons','hotel','yth'],
+    route:['hotel','winstons','mendels','hotel','yth'],
     cand:['yth','mplus','clock','ferryC','peak'], extra:['taikwun','tck','chilli','yungkee'],
     items:[
       {t:'09:00', it:'러닝 & Winstons Coffee', ds:'숙소 서쪽 사이잉푼', p:'winstons'},
+      {t:'10:00', it:'Mendel’s — 뉴욕 감성 브런치', ds:'고기 가득 샌드위치 (파스트라미·루벤류)', p:'mendels',
+        move:'Winstons에서 서쪽으로 MTR 1정거장(케네디타운) · 트램 약 10분 · 러닝 코스로 이어가도 OK',
+        tip:'12:30 딤섬 예약이 있으니 샌드위치 하나 나눠 먹기 · 근처 케네디타운 해변 산책'},
       {t:'11:50', it:'조던으로 이동', move:'MTR 셩완 → 애드미럴티 환승 → 조던 (약 20분) · 택시 약 15분'},
       {t:'12:30', it:'Yat Tung Heen — 미슐랭 딤섬', p:'yth', book:true,
         tip:'딤섬은 점심에만 · 봉사료 10% 포함 · 하가우·시우마이·창펀 + 바비큐'},
@@ -1102,11 +1105,6 @@ function plan(days, o){
   show('all');
 
   days.forEach(d => {
-    const j = document.createElement('button');
-    j.className = 'btn raise'; j.innerHTML = dot(d);
-    j.onclick = () => { if (curDay !== 'all' && curDay !== d.id) show(d.id); page.scrollTo({top: $(o.days + d.id).offsetTop - 12, behavior:'smooth'}); };
-    $(o.jump).appendChild(j);
-
     const sec = document.createElement('section');
     sec.id = o.days + d.id;
     sec.innerHTML = '<div class="card"><div class="day-h"><span class="day-n"><i style="background:' + d.hex + '"></i>DAY ' + d.id + '</span>' +
@@ -1137,9 +1135,9 @@ function plan(days, o){
     if (b) focusPlace(Number(b.dataset.day), b.dataset.k);
   });
 }
-plan(DAYS, {page:'p2', map:'map', mapSec:'mapSec', tabs:'tabs', jump:'dayJump', days:'days', etc:true,
+plan(DAYS, {page:'p2', map:'map', mapSec:'mapSec', tabs:'tabs', days:'days', etc:true,
   mascot:{1:'woori_sleepy',2:'doori_happy',3:'doori_surprised',4:'doori_sad'}});
-plan(SON, {page:'p3', map:'mapS', mapSec:'mapSecS', tabs:'tabsS', jump:'dayJumpS', days:'daysS',
+plan(SON, {page:'p3', map:'mapS', mapSec:'mapSecS', tabs:'tabsS', days:'daysS',
   mascot:{1:'woori_sleepy',2:'woori_happy',3:'doori_happy',4:'woori_sad'}});
 
 /* P1 구역별 식당·관광지 */
