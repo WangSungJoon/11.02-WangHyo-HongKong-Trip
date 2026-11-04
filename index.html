@@ -244,9 +244,9 @@
     .kv{grid-template-columns:72px 1fr}
   }
 .wxd{display:grid;grid-template-columns:repeat(4,1fr);border:1.5px solid var(--line)}
-.wxd button{all:unset;cursor:pointer;text-align:center;padding:8px 0;font-size:12px;line-height:1.35;border-right:1px solid var(--line-soft)}
+.wxd button{all:unset;cursor:pointer;display:grid;grid-template-columns:auto auto;justify-content:center;align-items:center;column-gap:5px;padding:6px 0;font-size:12px;line-height:1.3;border-right:1px solid var(--line-soft)}
 .wxd button:last-child{border-right:0}.wxd button[aria-pressed=true]{background:var(--fg);color:var(--bg)}
-.wxd i{display:block;font-style:normal;font-size:22px;line-height:1.3}.wxd small{opacity:.75}
+.wxd i{font-style:normal;font-size:18px;line-height:1;text-align:center}.wxd small{opacity:.75;font-size:11px}
 .wxh{overflow-x:auto;overscroll-behavior-x:contain;border:1.5px solid var(--line);border-top:0;scrollbar-width:thin}
 .wxr{display:flex;width:912px}.wxh svg{display:block}.wxr div{flex:0 0 38px;text-align:center;padding:5px 0;font-size:11px;line-height:1.3;border-right:1px solid var(--line-soft)}
 .wxr div:last-child{border-right:0}.wxh i{display:block;font-style:normal;font-size:16px}.wxh small{color:var(--muted-fg)}
@@ -898,7 +898,7 @@ let wxData = null, wxSel = 0;
 function renderWx(w, note){
   if (w) wxData = w; if (note) $('wxNote').textContent = note;
   const [dc, mx, mn, dp] = wxData.d, [hc, ht, hp, hd] = wxData.h;
-  $('wx').innerHTML = '<div class="wxd">' + WX_DAYS.map((lab, i) => '<button aria-pressed="'+(i===wxSel)+'" onclick="wxSel='+i+';renderWx()">'+lab+'<i>'+wxE(dc[i])+'</i><b>'+Math.round(mx[i])+'°</b>/'+Math.round(mn[i])+'°<br><small>☔'+dp[i]+'%</small></button>').join('') + (() => {
+  $('wx').innerHTML = '<div class="wxd">' + WX_DAYS.map((lab, i) => '<button aria-pressed="'+(i===wxSel)+'" onclick="wxSel='+i+';renderWx()">'+'<i>'+wxE(dc[i])+'</i><span>'+lab+'</span><small>☔'+dp[i]+'</small><span><b>'+Math.round(mx[i])+'°</b>/'+Math.round(mn[i])+'°</span></button>').join('') + (() => {
       const t = ht.slice(wxSel*24, wxSel*24+24), lo = Math.min(...t), hi = Math.max(...t), y = v => 52 - (v-lo)/((hi-lo)||1)*34, x = h => h*38+19;
       const pts = t.map((v, h) => x(h)+','+y(v).toFixed(1)).join(' ');
       const svg = '<svg width="912" height="60" viewBox="0 0 912 60"><polyline points="'+pts+'" fill="none" stroke="var(--mark)" stroke-width="2"/>'
