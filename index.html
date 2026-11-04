@@ -203,9 +203,24 @@
   .big .btn{margin-top:20px}
 
   /* 쇼핑 */
-  .shop .ck-t{display:flex;justify-content:space-between;gap:10px}
-  .shop .pr{font-weight:800;white-space:nowrap;text-align:right}
-  .shop .pr small{display:block;font-size:var(--t-meta);color:var(--muted-fg);font-weight:500}
+  .sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .scard{position:relative;border:1.5px solid var(--line);background:var(--bg);cursor:pointer;display:flex;flex-direction:column}
+  .simg{aspect-ratio:1;background:var(--surface);border-bottom:1.5px solid var(--line);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .simg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 160ms ease}
+  .simg span{font-size:var(--t-meta);color:var(--muted-fg);padding:12px;text-align:center}
+  .scard .cbox{position:absolute;top:10px;left:10px;margin:0}
+  .scard input:checked + .cbox{--d:0px;background-color:var(--fg);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e5e3dc' stroke-width='3.5' stroke-linecap='square'%3E%3Cpath d='M4 12l5 5L20 6'/%3E%3C/svg%3E")}
+  .scard input:focus-visible + .cbox{--d:0px}
+  @media (hover:hover) and (pointer:fine){.scard:hover .cbox{--d:0px}}
+  .scard:active .cbox{--d:0px}
+  .scard.done .simg img{opacity:.4}
+  .scard.done .st{text-decoration:line-through;color:var(--muted-fg)}
+  .sbody{padding:10px 10px 12px;display:flex;flex-direction:column;gap:2px}
+  .st{font-weight:700;font-size:var(--t-label);line-height:1.4}
+  .scard .pr{font-weight:800;font-size:var(--t-label)}
+  .scard .pr small{font-size:var(--t-meta);color:var(--muted-fg);font-weight:500;white-space:nowrap;display:block}
+  .sd{font-size:var(--t-meta);color:var(--muted-fg);line-height:1.45}
   .bar{height:10px;display:flex;gap:2px;margin:8px 0 0}
   .bar i{flex:1;border:1.5px solid var(--line)}
   .bar i.on{background:var(--mark);border-color:var(--mark)}
@@ -378,6 +393,14 @@
     <div class="love">사랑해❤️ㅎ</div>
     <div class="love" style="margin-top:4px">오빠가 더💙</div>
     <div style="margin-top:16px;font-size:var(--t-meta)">2026.11 · Hong Kong</div>
+    <div style="margin-top:12px;font-size:var(--t-meta);line-height:1.5">쇼핑 사진: 브랜드·판매처 제품 이미지, Wikimedia Commons —
+      <a class="link" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Cookies_Quartet,_Palmier.jpg">Cookies Quartet Palmier (CC BY-SA 4.0)</a> ·
+      <a class="link" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Tai_Cheong_Bakery_(Hong_Kong).jpg">Tai Cheong</a> ·
+      <a class="link" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:XO_sauce.jpg">XO sauce</a> ·
+      <a class="link" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Tigerbalm.jpg">Tiger Balm</a> ·
+      <a class="link" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Hoe_Hin_White_Flower_Oil2.jpg">White Flower Oil</a> ·
+      <a class="link" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Po_chai_pills.jpg">Po Chai Pills</a> ·
+      <a class="link" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Goods_of_Desire.JPG">G.O.D.</a></div>
   </footer>
 </div>
 </section>
@@ -1043,11 +1066,20 @@ function renderShopPrices(){
   });
   SHOP.forEach(g => {
     const sec = document.createElement('section');
-    sec.innerHTML = '<h2>' + g.h + '</h2>' + (g.p ? '<p class="lead">' + g.p + '</p>' : '') + '<div class="card shop"></div>';
-    const card = sec.querySelector('.card');
+    sec.innerHTML = '<h2>' + g.h + '</h2>' + (g.p ? '<p class="lead">' + g.p + '</p>' : '') + '<div class="sgrid"></div>';
+    const grid = sec.querySelector('.sgrid');
     g.list.forEach(i => {
-      const right = '<span class="pr num">' + i.price + (i.hkd ? '<small data-hkd="' + i.hkd + '"></small>' : '') + '</span>';
-      card.appendChild(checkRow(i.id, i.t, i.d, shopState, 'hk_shop', right));
+      const c = document.createElement('label');
+      c.className = 'scard' + (shopState[i.id] ? ' done' : '');
+      c.innerHTML = '<div class="simg"><img src="img/' + i.id + '.jpg" alt="" loading="lazy" onerror="this.remove()"><span>' + esc(i.t) + '</span></div>' +
+        '<input type="checkbox" class="sr"' + (shopState[i.id] ? ' checked' : '') + '><span class="cbox raise"></span>' +
+        '<div class="sbody"><div class="st">' + i.t + '</div><div class="pr num">' + i.price +
+        (i.hkd ? ' <small data-hkd="' + i.hkd + '"></small>' : '') + '</div>' + (i.d ? '<div class="sd">' + i.d + '</div>' : '') + '</div>';
+      c.querySelector('input').addEventListener('change', e => {
+        shopState[i.id] = e.target.checked; store.set('hk_shop', shopState);
+        c.classList.toggle('done', e.target.checked); renderShopCount();
+      });
+      grid.appendChild(c);
     });
     $('shop').appendChild(sec);
   });
