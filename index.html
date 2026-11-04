@@ -132,7 +132,13 @@
   .ck-d{font-size:var(--t-label);color:var(--muted-fg)}
 
   /* 항공 */
-  .who{font-size:var(--t-label);font-weight:800;margin-bottom:6px}
+  .who{font-size:var(--t-label);font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+  .mi{width:32px;height:32px;flex:none;object-fit:contain}
+  .mi.h{width:48px;height:48px;margin-left:auto}
+  .hero h1{display:flex;align-items:center;gap:8px}
+  .duo{display:flex;margin-left:auto}
+  .duo img{width:64px;height:64px}
+  .duo img + img{margin-left:-14px}
   .flight{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-top:1.5px solid var(--line-soft)}
   .flight:first-of-type{border-top:0}
   .f-route{font-weight:800}
@@ -263,7 +269,7 @@
 <div class="wrap">
   <header class="hero">
     <div class="eyebrow">WANG ♥ HYO · HONG KONG</div>
-    <h1>왕효 홍콩여행</h1>
+    <h1>왕효 홍콩여행<span class="duo"><img class="" src="img/m/woori_greeting.webp" alt="" aria-hidden="true"><img class="" src="img/m/doori_greeting.webp" alt="" aria-hidden="true"></span></h1>
     <div class="meta">
       <span class="pill">11/06 (금) – 11/09 (월) · 3박 4일</span>
       <span class="pill" id="dday"></span>
@@ -275,7 +281,7 @@
     <h2>항공편</h2>
     <div class="grid2">
       <div class="card">
-        <div class="who">성준 · 인천 ↔ 홍콩</div>
+        <div class="who"><img class="mi" src="img/m/woori_neutral.webp" alt="" aria-hidden="true">성준 · 인천 ↔ 홍콩</div>
         <div class="flight">
           <div><div class="f-route">ICN T1 → HKG T1</div><div class="sub">제주항공 7C6013 · 11/06 (금)</div></div>
           <div class="f-time num">20:25 → 23:25</div>
@@ -286,7 +292,7 @@
         </div>
       </div>
       <div class="card">
-        <div class="who">효진 · 호찌민 ↔ 홍콩</div>
+        <div class="who"><img class="mi" src="img/m/doori_neutral.webp" alt="" aria-hidden="true">효진 · 호찌민 ↔ 홍콩</div>
         <div class="flight">
           <div><div class="f-route">SGN → HKG T1</div><div class="sub">캐세이퍼시픽 CX0764 · 11/06 (금)</div></div>
           <div class="f-time num">19:45 → 23:25</div>
@@ -327,8 +333,8 @@
     <h2>준비물</h2>
     <div class="card"><div class="who">공통</div><div id="packCommon" class="packgrid"></div></div>
     <div class="grid2" style="margin-top:12px;grid-template-columns:1fr 1fr">
-      <div class="card"><div class="who">성준</div><div id="packSj"></div></div>
-      <div class="card"><div class="who">효진</div><div id="packHj"></div></div>
+      <div class="card"><div class="who"><img class="mi" src="img/m/woori_happy.webp" alt="" aria-hidden="true">성준</div><div id="packSj"></div></div>
+      <div class="card"><div class="who"><img class="mi" src="img/m/doori_happy.webp" alt="" aria-hidden="true">효진</div><div id="packHj"></div></div>
     </div>
   </section>
 
@@ -357,7 +363,7 @@
 <section class="page" id="p2" aria-label="2 일정">
 <div class="wrap">
   <header class="hero">
-    <h1>일자별 상세 일정</h1>
+    <h1>일자별 상세 일정<img class="mi h" src="img/m/woori_thinking.webp" alt="" aria-hidden="true"></h1>
     <p class="lead" style="margin:0">장소가 있는 항목은 <b>지도</b> 버튼으로 1페이지 지도에서 위치 확인</p>
   </header>
   <div class="row-scroll" id="dayJump" style="margin-top:12px"></div>
@@ -370,7 +376,7 @@
 <section class="page" id="p3" aria-label="3 회화">
 <div class="wrap">
   <header class="hero">
-    <h1>상황별 여행 회화</h1>
+    <h1>상황별 여행 회화<img class="mi h" src="img/m/doori_thinking.webp" alt="" aria-hidden="true"></h1>
     <p class="lead" style="margin:0">문장을 누르면 크게 보여줘요 — 화면을 그대로 보여주면 끝</p>
   </header>
   <div class="row-scroll" id="phJump" style="margin-top:12px"></div>
@@ -383,7 +389,7 @@
 <section class="page" id="p4" aria-label="4 쇼핑">
 <div class="wrap">
   <header class="hero">
-    <h1>간식 · 쇼핑 리스트</h1>
+    <h1>간식 · 쇼핑 리스트<img class="mi h" src="img/m/doori_happy.webp" alt="" aria-hidden="true"></h1>
     <p class="lead num" style="margin:0" id="shopCount"></p>
     <div class="bar" id="shopBar" aria-hidden="true"></div>
   </header>
@@ -637,7 +643,7 @@ const AREAS = [
 /* P4 쇼핑 — hkd: 원화 환산용 HK$ (범위는 'lo-hi') */
 const g = q => '<a class="link" target="_blank" rel="noopener" href="' + gmapQ(q) + '">지도</a>';
 const SHOP_INFO = [
-  {h:'반입 주의 — 사기 전에', html:
+  {h:'반입 주의 — 사기 전에<img class="mi" src="img/m/woori_angry.webp" alt="" aria-hidden="true">', html:
     '<dl class="kv">' +
     '<dt>한국 ✗</dt><dd>육포(비첸향 등)·햄·소시지, <b>이금기 XO소스(돼지 햄 함유)</b>, 돼지기름 페이스트리(노파병 등 — 원재료 豬油/lard 확인), 고기·노른자 월병, 생과일. 홍콩은 ASF 지역이라 돼지 성분 미신고 시 <b>과태료 최대 1,000만 원</b>(첫 적발 500만)</dd>' +
     '<dt>한국 △</dt><dd>계란·버터 든 공장 포장 쿠키(제니·기화)는 흔히 가져오지만 공식 면제 문구 없음 → 걱정되면 세관신고서 체크 후 검역대 확인 (인천 T1 검역 032-740-2671)</dd>' +
@@ -984,7 +990,7 @@ function focusPlace(dayId, k){
     const sec = document.createElement('section');
     sec.id = 'day' + d.id;
     sec.innerHTML = '<div class="card"><div class="day-h"><span class="day-n"><i style="background:' + d.hex + '"></i>DAY ' + d.id + '</span>' +
-      '<span class="day-t">' + d.title + '</span><span class="day-s">' + d.label + '</span></div>' +
+      '<span class="day-t">' + d.title + '</span><span class="day-s">' + d.label + '</span>' + '<img class="mi" src="img/m/' + {1:'woori_sleepy',2:'doori_happy',3:'doori_surprised',4:'doori_sad'}[d.id] + '.webp" alt="" aria-hidden="true" style="margin-left:auto">' + '</div>' +
       (d.sum ? '<p class="day-sum">' + d.sum + '</p>' : '') + '<ul class="tl"></ul></div>';
     const ul = sec.querySelector('ul');
     d.items.forEach(i => {
