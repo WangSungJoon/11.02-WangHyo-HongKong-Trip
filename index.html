@@ -546,6 +546,8 @@ const P = {
               addr:'G/F Carnarvon Mansion, 8-12 Carnarvon Rd, 침사추이', h:'11:00–22:00 무렵'},
   citysuper: {kind:'dess', n:'시티슈퍼 IFC · SO COCO 코코넛 푸딩', lat:22.2855, lng:114.1585, q:"city'super IFC mall",
               addr:'IFC 몰 · 홍콩역 바로 위 (SO COCO 매장도 IFC 근처)'},
+  logye:     {kind:'food', n:'Log Ye 딤섬 (록예)', lat:22.2960, lng:114.1712, q:'Log Ye Dim Sum 19-21 Hankow Road Tsim Sha Tsui',
+              addr:'G/F, 19-21 Hankow Rd, 침사추이 · MTR 침사추이역 도보 약 2분'},
   hotel:     {n:'숙소', lat:22.2871, lng:114.1478, q:'28 Des Voeux Road West Sheung Wan', home:true,
               addr:'28 Des Voeux Road West, Sheung Wan', h:'체크인 14:00 · 체크아웃 12:00'},
   harbour:   {n:'셩완 하버프론트 산책로', lat:22.2893, lng:114.1497, q:'Central and Western District Promenade Sheung Wan Section',
@@ -614,7 +616,7 @@ const DAYS = [
   { id:2, label:'11/07 토', title:'러닝 → 셩완·소호 → 몽콕 → 침사추이 야경', hex:'#e14d2a',
     sum:'흐림 25–28°C · 동풍 강함. 낮엔 홍콩섬(숙소 근처), 저녁엔 구룡으로 건너가 페리로 돌아오는 한 바퀴',
     route:['hotel','harbour','hotel','jenny','kaukee','escalator','soho','ladies','onedimsum'],
-    cand:['onedimsum','avenue','clock','ferryC','hotel'], extra:['bakehouse','vission','wangfu','lausumkee','taifung','laozhang','silk','mammy'],
+    cand:['onedimsum','avenue','clock','ferryC','hotel'], extra:['bakehouse','vission','wangfu','lausumkee','taifung','laozhang','silk','mammy','logye'],
     items:[
       {t:'10:00', it:'셩완 하버프론트 러닝', ds:'숙소 앞 바닷가 산책로 · 서쪽 사이잉푼 ↔ 동쪽 센트럴 부두까지 이어짐', p:'harbour', tip:'바다 쪽 바람이 강한 예보 — 땀 식으면 쌀쌀'},
       {t:'11:30', it:'제니베이커리 셩완점 — 쿠키 사두기', p:'jenny',
@@ -630,8 +632,8 @@ const DAYS = [
         ds:'대안 · 劉森記 죽승면(MTR 1정거장 삼수이포, 1956년 · 미쉐린) — 새우알 소고기 양지·힘줄 비빔면(+새우알 추가) · 영어 메뉴 없음, 옥토퍼스·현금만 · 老掌櫃 3만원대 베이징덕(타이콕초이, 몽콕에서 도보 15분·택시 5분)'},
       {t:'20:00', it:'침사추이 해변 야경 → 스타페리', ds:'스타의 거리 → 시계탑 → 페리로 센트럴 복귀 (운항 ~23:30)', p:'avenue', cand:true,
         move:'MTR 프린스에드워드 → 침사추이 약 10분', cost:'스타페리 주말 상층 HK$6.5',
-        warn:'심포니 오브 라이츠(20:00)는 폐지·중단 보도가 엇갈림 → 당일 확인. 쇼가 없어도 건물 조명 야경은 매일', picks:['taifung'],
-        tip:'저녁을 침사추이에서 먹는다면 大豐樓 — 북경오리·샤오룽바오·지글지글 칠리새우 (저녁 18:00–23:00)'},
+        warn:'심포니 오브 라이츠(20:00)는 폐지·중단 보도가 엇갈림 → 당일 확인. 쇼가 없어도 건물 조명 야경은 매일', picks:['taifung','logye'],
+        tip:'저녁을 침사추이에서 먹는다면 大豐樓 — 북경오리·샤오룽바오·지글지글 칠리새우 (저녁 18:00–23:00) · 가볍게면 록예 딤섬(침사추이역 2분)'},
       {t:'20:45', it:'디저트 — 침사추이', ds:'페리 타기 전에 하나씩 · 둘 다 해변에서 도보 5–10분', picks:['silk','mammy'],
         tip:'Silk 6번 흑당 밀크티 + 타피오카 펄 · 마미팬케이크 에그와플(겉바속촉, 들고 다니며 먹기)'},
       {t:'21:30', it:'센트럴 부두 → 숙소', p:'ferryC', move:'택시 약 5분 · 도보 약 20분'}
