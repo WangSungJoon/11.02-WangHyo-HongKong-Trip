@@ -247,9 +247,9 @@
 .wxd button{all:unset;cursor:pointer;text-align:center;padding:8px 0;font-size:12px;line-height:1.35;border-right:1px solid var(--line-soft)}
 .wxd button:last-child{border-right:0}.wxd button[aria-pressed=true]{background:var(--fg);color:var(--bg)}
 .wxd i{display:block;font-style:normal;font-size:22px;line-height:1.3}.wxd small{opacity:.75}
-.wxh{display:flex;overflow-x:auto;overscroll-behavior-x:contain;border:1.5px solid var(--line);border-top:0;scrollbar-width:thin}
-.wxh div{flex:0 0 38px;text-align:center;padding:5px 0;font-size:11px;line-height:1.3;border-right:1px solid var(--line-soft)}
-.wxh div:last-child{border-right:0}.wxh i{display:block;font-style:normal;font-size:16px}.wxh small{color:var(--muted-fg)}
+.wxh{overflow-x:auto;overscroll-behavior-x:contain;border:1.5px solid var(--line);border-top:0;scrollbar-width:thin}
+.wxr{display:flex;width:912px}.wxh svg{display:block}.wxr div{flex:0 0 38px;text-align:center;padding:5px 0;font-size:11px;line-height:1.3;border-right:1px solid var(--line-soft)}
+.wxr div:last-child{border-right:0}.wxh i{display:block;font-style:normal;font-size:16px}.wxh small{color:var(--muted-fg)}
 .wxh .rn{color:#2f6db5}
 </style>
 </head>
@@ -898,8 +898,15 @@ let wxData = null, wxSel = 0;
 function renderWx(w, note){
   if (w) wxData = w; if (note) $('wxNote').textContent = note;
   const [dc, mx, mn, dp] = wxData.d, [hc, ht, hp, hd] = wxData.h;
-  $('wx').innerHTML = '<div class="wxd">' + WX_DAYS.map((lab, i) => '<button aria-pressed="'+(i===wxSel)+'" onclick="wxSel='+i+';renderWx()">'+lab+'<i>'+wxE(dc[i])+'</i><b>'+Math.round(mx[i])+'°</b>/'+Math.round(mn[i])+'°<br><small>☔'+dp[i]+'%</small></button>').join('') + '</div><div class="wxh">'
-    + Array.from({length:24}, (_, h) => { const k = wxSel*24+h; return '<div><small>'+h+'시</small><i>'+wxE(hc[k], hd[k])+'</i>'+ht[k]+'°<br><span class="rn">'+(hp[k]>=30?hp[k]+'%':'&nbsp;')+'</span></div>'; }).join('') + '</div>';
+  $('wx').innerHTML = '<div class="wxd">' + WX_DAYS.map((lab, i) => '<button aria-pressed="'+(i===wxSel)+'" onclick="wxSel='+i+';renderWx()">'+lab+'<i>'+wxE(dc[i])+'</i><b>'+Math.round(mx[i])+'°</b>/'+Math.round(mn[i])+'°<br><small>☔'+dp[i]+'%</small></button>').join('') + (() => {
+      const t = ht.slice(wxSel*24, wxSel*24+24), lo = Math.min(...t), hi = Math.max(...t), y = v => 52 - (v-lo)/((hi-lo)||1)*34, x = h => h*38+19;
+      const pts = t.map((v, h) => x(h)+','+y(v).toFixed(1)).join(' ');
+      const svg = '<svg width="912" height="60" viewBox="0 0 912 60"><polyline points="'+pts+'" fill="none" stroke="var(--mark)" stroke-width="2"/>'
+        + t.map((v, h) => '<circle cx="'+x(h)+'" cy="'+y(v).toFixed(1)+'" r="2.5" fill="var(--fg)"/><text x="'+x(h)+'" y="'+(y(v)-6).toFixed(1)+'" font-size="11" text-anchor="middle" fill="var(--fg)"'+(v===hi||v===lo?' font-weight="700"':'')+'>'+v+'°</text>').join('') + '</svg>';
+      return '</div><div class="wxh"><div class="wxr" style="border-bottom:1px solid var(--line-soft)">'
+        + Array.from({length:24}, (_, h) => { const k = wxSel*24+h; return '<div><small>'+h+'시</small><i>'+wxE(hc[k], hd[k])+'</i><span class="rn">'+(hp[k]>=30?hp[k]+'%':'&nbsp;')+'</span></div>'; }).join('')
+        + '</div><div style="width:912px">'+svg+'</div></div>';
+    })();
 }
 renderWx(WX_SNAP, '11/4 예보 스냅샷 (오프라인용) · 갱신 중…');
 fetch('https://api.open-meteo.com/v1/forecast?latitude=22.3&longitude=114.17&hourly=temperature_2m,weather_code,precipitation_probability,is_day&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia/Hong_Kong&start_date=2026-11-06&end_date=2026-11-09')
