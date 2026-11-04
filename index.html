@@ -212,18 +212,10 @@
 
   /* 쇼핑 */
   .sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
-  .scard{position:relative;border:1.5px solid var(--line);background:var(--bg);cursor:pointer;display:flex;flex-direction:column}
+  .scard{position:relative;border:1.5px solid var(--line);background:var(--bg);display:flex;flex-direction:column}
   .simg{aspect-ratio:1;background:var(--surface);border-bottom:1.5px solid var(--line);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .simg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 160ms ease}
   .simg span{font-size:var(--t-meta);color:var(--muted-fg);padding:12px;text-align:center}
-  .scard .cbox{position:absolute;top:10px;left:10px;margin:0}
-  .scard input:checked + .cbox{--d:0px;background-color:var(--fg);
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e5e3dc' stroke-width='3.5' stroke-linecap='square'%3E%3Cpath d='M4 12l5 5L20 6'/%3E%3C/svg%3E")}
-  .scard input:focus-visible + .cbox{--d:0px}
-  @media (hover:hover) and (pointer:fine){.scard:hover .cbox{--d:0px}}
-  .scard:active .cbox{--d:0px}
-  .scard.done .simg img{opacity:.4}
-  .scard.done .st{text-decoration:line-through;color:var(--muted-fg)}
   .sbody{padding:10px 10px 12px;display:flex;flex-direction:column;gap:2px}
   .st{font-weight:700;font-size:var(--t-label);line-height:1.4}
   .scard .pr{font-weight:800;font-size:var(--t-label)}
@@ -354,18 +346,6 @@
     </div>
   </section>
 
-  <section id="mapSec">
-    <h2>동선 지도</h2>
-    <div class="row-scroll" id="tabs" style="margin-bottom:8px"></div>
-    <div id="map"></div>
-    <div class="legend">
-      <span><i class="lg-line"></i>확정 동선</span>
-      <span><i class="lg-dash"></i>추천·후보</span>
-      <span>🏠 숙소</span>
-      <span><i class="pin etc" style="display:inline-block"></i>기타 관광지</span>
-    </div>
-  </section>
-
   <section>
     <h2>구역별 식당 · 관광지</h2>
     <div class="card" id="spots"></div>
@@ -380,8 +360,20 @@
 <div class="wrap">
   <header class="hero">
     <h1>일자별 상세 일정<img class="mi h" src="img/m/woori_thinking.webp" alt="" aria-hidden="true"></h1>
-    <p class="lead" style="margin:0">장소가 있는 항목은 <b>지도</b> 버튼으로 1페이지 지도에서 위치 확인</p>
+    <p class="lead" style="margin:0">장소가 있는 항목은 <b>지도</b> 버튼으로 위 지도에서 위치 확인</p>
   </header>
+  <section id="mapSec">
+    <h2>동선 지도</h2>
+    <div class="row-scroll" id="tabs" style="margin-bottom:8px"></div>
+    <div id="map"></div>
+    <div class="legend">
+      <span><i class="lg-line"></i>확정 동선</span>
+      <span><i class="lg-dash"></i>추천·후보</span>
+      <span>🏠 숙소</span>
+      <span><i class="pin etc" style="display:inline-block"></i>기타 관광지</span>
+    </div>
+  </section>
+
   <div class="row-scroll" id="dayJump" style="margin-top:12px"></div>
   <div id="days"></div>
   <div class="pager"><button class="btn raise" data-go="0">← 개요</button><button class="btn raise" data-go="2">회화 →</button></div>
@@ -406,8 +398,6 @@
 <div class="wrap">
   <header class="hero">
     <h1>간식 · 쇼핑 리스트<img class="mi h" src="img/m/doori_happy.webp" alt="" aria-hidden="true"></h1>
-    <p class="lead num" style="margin:0" id="shopCount"></p>
-    <div class="bar" id="shopBar" aria-hidden="true"></div>
   </header>
   <div id="shop"></div>
   <div class="pager"><button class="btn raise" data-go="2">← 회화</button><span></span></div>
@@ -879,7 +869,6 @@ function checkRow(id, title, desc, state, key, right){
   row.querySelector('input').addEventListener('change', e => {
     state[id] = e.target.checked; store.set(key, state);
     row.classList.toggle('done', e.target.checked);
-    if (key === 'hk_shop') renderShopCount();
   });
   return row;
 }
@@ -981,10 +970,9 @@ function show(which){
 }
 function focusPlace(dayId, k){
   if (!map) { window.open(gmap(k), '_blank'); return; }
-  go(0);
+  go(1);
   if (curDay !== 'all' && curDay !== dayId) show(dayId);
-  const p1 = $('p1');
-  p1.scrollTo({top: $('mapSec').offsetTop - p1.querySelector('.fx').offsetHeight - 12, behavior:'smooth'});
+  $('p2').scrollTo({top: $('mapSec').offsetTop - 12, behavior:'smooth'});
   setTimeout(() => {
     map.invalidateSize();
     map.flyTo([P[k].lat, P[k].lng], 16, {duration:.6});
@@ -1092,13 +1080,6 @@ function focusPlace(dayId, k){
 })();
 
 /* ═════════ P4 쇼핑 ═════════ */
-const shopState = store.get('hk_shop', {});
-function renderShopCount(){
-  const all = SHOP.flatMap(g => g.list).length;
-  const n = SHOP.flatMap(g => g.list).filter(i => shopState[i.id]).length;
-  $('shopCount').textContent = '담은 것 ' + n + ' / ' + all + ' · 체크는 이 기기에만 저장';
-  $('shopBar').innerHTML = Array.from({length: all}, (_, k) => '<i' + (k < n ? ' class="on"' : '') + '></i>').join('');
-}
 function renderShopPrices(){
   document.querySelectorAll('[data-krw]').forEach(el => {
     el.textContent = '(' + el.dataset.krw.split('-').map(v => Math.round(v * rateNow()).toLocaleString('ko-KR')).join('~') + '원' + el.dataset.t + ')';
@@ -1118,21 +1099,16 @@ function renderShopPrices(){
     sec.innerHTML = '<h2>' + g.h + '</h2>' + (g.p ? '<p class="lead">' + g.p + '</p>' : '') + '<div class="sgrid"></div>';
     const grid = sec.querySelector('.sgrid');
     g.list.forEach(i => {
-      const c = document.createElement('label');
-      c.className = 'scard' + (shopState[i.id] ? ' done' : '');
+      const c = document.createElement('div');
+      c.className = 'scard';
       c.innerHTML = '<div class="simg"><img src="img/' + i.id + '.jpg" alt="" loading="lazy" onerror="this.remove()"><span>' + esc(i.t) + '</span></div>' +
-        '<input type="checkbox" class="sr"' + (shopState[i.id] ? ' checked' : '') + '><span class="cbox raise"></span>' +
         '<div class="sbody"><div class="st">' + i.t + '</div><div class="pr num">' + i.price +
         (i.hkd ? ' <small data-hkd="' + i.hkd + '"></small>' : '') + '</div>' + (i.d ? '<div class="sd">' + i.d + '</div>' : '') + '</div>';
-      c.querySelector('input').addEventListener('change', e => {
-        shopState[i.id] = e.target.checked; store.set('hk_shop', shopState);
-        c.classList.toggle('done', e.target.checked); renderShopCount();
-      });
       grid.appendChild(c);
     });
     $('shop').appendChild(sec);
   });
-  renderShopCount(); renderShopPrices();
+  renderShopPrices();
 })();
 </script>
 </body>
