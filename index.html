@@ -1047,7 +1047,7 @@ function focusPlace(dayId, k){
       if (i.tip) h += '<div class="ln"><span>Tip</span><span>' + i.tip + '</span></div>';
       if (i.warn) h += '<div class="warn"><span>' + i.warn + '</span></div>';
       (i.picks || []).forEach(k => { h += ' <button class="btn raise" data-day="' + d.id + '" data-k="' + k + '">' + P[k].n + '</button>'; });
-      li.innerHTML = h + '</div>';
+      li.innerHTML = (h + '</div>').replace(/HK\$(\d+(?:\.\d+)?)(?:\s*[~–]\s*(\d+(?:\.\d+)?))?(~?)((?:\/인)?)/g, (m, a, b, t, u) => m + ' <span class="krw" data-krw="' + a + (b ? '-' + b : '') + '" data-t="' + t + '"></span>');
       ul.appendChild(li);
     });
     $('days').appendChild(sec);
@@ -1100,6 +1100,9 @@ function renderShopCount(){
   $('shopBar').innerHTML = Array.from({length: all}, (_, k) => '<i' + (k < n ? ' class="on"' : '') + '></i>').join('');
 }
 function renderShopPrices(){
+  document.querySelectorAll('[data-krw]').forEach(el => {
+    el.textContent = '(' + el.dataset.krw.split('-').map(v => Math.round(v * rateNow()).toLocaleString('ko-KR')).join('~') + '원' + el.dataset.t + ')';
+  });
   document.querySelectorAll('[data-hkd]').forEach(el => {
     el.textContent = '≈ ' + el.dataset.hkd.split('-').map(v => Math.round(v * rateNow()).toLocaleString('ko-KR')).join('~') + '원';
   });
