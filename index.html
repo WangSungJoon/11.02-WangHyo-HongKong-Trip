@@ -373,7 +373,7 @@
     <div class="legend">
       <span><i class="lg-line"></i>확정 동선</span>
       <span><i class="lg-dash"></i>추천·후보</span>
-      <span>🍜 식사</span><span>🍰 디저트·카페</span><span><i class="pin book" style="display:inline-flex;width:14px;height:14px;font-size:9px">✓</i> 예약</span>
+      <span>🍜 식사</span><span>🍖 고기(오리·차슈)</span><span>🍰 디저트·카페</span><span>🍪 쿠키</span><span><i class="pin book" style="display:inline-flex;width:14px;height:14px;font-size:9px">✓</i> 예약</span>
       <span>🏠 숙소</span>
       <span><i class="pin etc" style="display:inline-block"></i>기타 관광지</span>
     </div>
@@ -532,13 +532,13 @@ const P = {
               addr:'Wellington St, 센트럴 (미쉐린 등재 주소 기준 · 원문은 침사추이)', h:'11:00–22:00'},
   lausumkee: {kind:'food', n:'Lau Sum Kee (劉森記) 죽승면', lat:22.3307, lng:114.1626, q:'Lau Sum Kee Noodle 48 Kweilin Street Sham Shui Po',
               addr:'48 Kweilin St, 삼수이포 · MTR 삼수이포역 D2 도보 2분', h:'12:00–22:00 · 옥토퍼스·현금만'},
-  taifung:   {kind:'food', n:'Tai Fung Lau (大豐樓) 북경요리', lat:22.2985, lng:114.1745, q:'Tai Fung Lau Peking Restaurant Tsim Sha Tsui',
+  taifung:   {kind:'meat', n:'Tai Fung Lau (大豐樓) 북경요리', lat:22.2985, lng:114.1745, q:'Tai Fung Lau Peking Restaurant Tsim Sha Tsui',
               addr:'침사추이 (1961년 개업 노포)', h:'11:30–14:00 · 18:00–23:00'},
   lordstow:  {kind:'dess', n:'Lord Stow’s 에그타르트 (만다린 오리엔탈 케이크숍)', lat:22.2817, lng:114.1592, q:'The Mandarin Cake Shop Mandarin Oriental Hong Kong',
               addr:'Mandarin Oriental, 5 Connaught Rd Central · 홍콩역에서 도보 약 5분 · 홍콩 유일 공식 판매처'},
-  laozhang:  {kind:'food', n:'Lao Zhang Gui (老掌櫃) 베이징덕', lat:22.3205, lng:114.1630, q:'Lao Zhang Gui Dongbei Restaurant Tai Kok Tsui',
+  laozhang:  {kind:'meat', n:'Lao Zhang Gui (老掌櫃) 베이징덕', lat:22.3205, lng:114.1630, q:'Lao Zhang Gui Dongbei Restaurant Tai Kok Tsui',
               addr:'타이콕초이 (몽콕 서쪽) · 정확한 번지는 구글맵 확인', h:'오리 한 마리 약 HK$298 (반 마리 3만원대)'},
-  fatj:      {kind:'food', n:'發達叉燒 Fat J Char Siu', lat:22.2765, lng:114.1730, q:'Fat J Char Siu Rialto Building Landale Street Wan Chai',
+  fatj:      {kind:'meat', n:'發達叉燒 Fat J Char Siu', lat:22.2765, lng:114.1730, q:'Fat J Char Siu Rialto Building Landale Street Wan Chai',
               addr:'Rialto Building, Landale St, 완차이 · MTR 완차이역 도보 약 5분', h:'12:00–16:00 · 17:00–21:00'},
   silk:      {kind:'dess', n:'Silk 밀크티', lat:22.2975, lng:114.1745, q:'Silk milk tea K11 Art Mall Tsim Sha Tsui',
               addr:'B122A, B1/F K11 Art Mall, 18 Hanoi Rd, 침사추이 · 침차이키 옆 줄 서는 집'},
@@ -550,13 +550,13 @@ const P = {
               addr:'G/F, 19-21 Hankow Rd, 침사추이 · MTR 침사추이역 도보 약 2분'},
   pigmates:  {kind:'dess', n:'Pigmates 에그와플', lat:22.2985, lng:114.1725, q:'Pigmates Tsim Sha Tsui',
               addr:'침사추이 · 핀 위치는 대략 → 지도 버튼의 구글맵 검색으로 매장 확인', h:'초코 헤이즐넛 와플 HK$40~'},
-  sunkwai:   {kind:'food', n:'新桂香燒臘 Sun Kwai Heung 차슈', lat:22.2650, lng:114.2370, q:'Sun Kwai Heung Goldmine Building 345 Chai Wan Road',
+  sunkwai:   {kind:'meat', n:'新桂香燒臘 Sun Kwai Heung 차슈', lat:22.2650, lng:114.2370, q:'Sun Kwai Heung Goldmine Building 345 Chai Wan Road',
               addr:'Shop 17, G/F, Block C, Goldmine Building, 345 Chai Wan Rd, 차이완 · MTR 차이완역 도보 약 5분'},
   hotel:     {n:'숙소', lat:22.2871, lng:114.1478, q:'28 Des Voeux Road West Sheung Wan', home:true,
               addr:'28 Des Voeux Road West, Sheung Wan', h:'체크인 14:00 · 체크아웃 12:00'},
   harbour:   {n:'셩완 하버프론트 산책로', lat:22.2893, lng:114.1497, q:'Central and Western District Promenade Sheung Wan Section',
               addr:'Central and Western District Promenade (Sheung Wan Section)', h:'24시간 · 숙소 도보 약 5분'},
-  jenny:     {n:'제니베이커리 셩완점', lat:22.2866, lng:114.1522, q:'Jenny Bakery 15 Wing Wo Street Sheung Wan',
+  jenny:     {kind:'shop', n:'제니베이커리 셩완점', lat:22.2866, lng:114.1522, q:'Jenny Bakery 15 Wing Wo Street Sheung Wan',
               addr:'15 Wing Wo Street, Sheung Wan · 셩완역 E2', h:'10:00–19:00 · 현금·위챗페이만'},
   kaukee:    {kind:'food', n:'카우키 (九記牛腩)', lat:22.2847, lng:114.1525, q:'Kau Kee Restaurant 21 Gough Street',
               addr:'21 Gough Street, Central', h:'월–토 12:30–22:30 · 일·공휴일 휴무'},
@@ -587,7 +587,7 @@ const P = {
               addr:'98 Wellington Street, Central', h:'매일 약 09:00–22:00 · 현금'},
   chilli:    {kind:'food', n:'Chilli Fagara', lat:22.2816, lng:114.1531, q:'Chilli Fagara 7 Old Bailey Street',
               addr:'7 Old Bailey Street, Central', h:'11:30–15:00 / 17:00–22:30 · 예약 권장'},
-  yungkee:   {kind:'food', n:'Yung Kee (鏞記)', lat:22.2822, lng:114.1557, q:'Yung Kee Restaurant 32-40 Wellington Street',
+  yungkee:   {kind:'meat', n:'Yung Kee (鏞記)', lat:22.2822, lng:114.1557, q:'Yung Kee Restaurant 32-40 Wellington Street',
               addr:'32-40 Wellington Street, Central', h:'11:00–22:30'},
   lanfong:   {kind:'food', n:'Lan Fong Yuen (蘭芳園)', lat:22.2836, lng:114.1546, q:'Lan Fong Yuen 2 Gage Street Central',
               addr:'2 Gage Street, Central', h:'아침부터 영업 · 밀크티·돼지갈비 번 원조'},
@@ -623,10 +623,8 @@ const DAYS = [
     cand:['onedimsum','avenue','clock','ferryC','hotel'], extra:['bakehouse','vission','wangfu','lausumkee','taifung','laozhang','silk','mammy','logye','pigmates'],
     items:[
       {t:'10:00', it:'하버프론트 러닝 → 대관람차', ds:'숙소 앞 바닷가 산책로를 동쪽(오른쪽)으로 · 센트럴 부두 지나 홍콩 대관람차까지 약 2.5km, 왕복 5km', p:'harbour', tip:'바다 쪽 바람이 강한 예보 — 땀 식으면 쌀쌀'},
-      {t:'11:30', it:'제니베이커리 셩완점 — 쿠키 사두기', p:'jenny',
-        tip:'현금·위챗페이만 · 공항엔 없음 · 사서 숙소에 두고 점심으로', warn:'홍콩 매장은 2곳뿐 — 비슷한 곰 캔 파는 노점은 가짜'},
       {t:'12:15', it:'카우키 — 소고기 국수', fix:true, ds:'안심 소육수 국수 · 도가니&안심 카레국수 (메뉴 4·14번)', p:'kaukee',
-        move:'숙소에서 도보 약 15분', tip:'12:30 오픈 전에 줄 서기 · 합석 기본 · 현금 준비', warn:'일요일·공휴일 휴무라 토요일 점심 고정'},
+        move:'숙소에서 도보 약 15분', picks:['jenny'], tip:'12:30 오픈 전에 줄 서기 · 합석 기본 · 현금 준비 · 근처 제니베이커리 셩완점(현금·위챗페이만)', warn:'일요일·공휴일 휴무라 토요일 점심 고정'},
       {t:'13:30', it:'미드레벨 에스컬레이터 · 소호', ds:'10시 이후 상행 · 중간 Staunton/Elgin St에서 내려 벽화·카페 구경', p:'escalator',
         tip:'Bakehouse(5 Staunton St) 에그타르트 약 HK$14 · 근처 Tai Cheong Bakery(35 Lyndhurst Terrace)도 유명 · Vission Bakery 피스타치오 커스터드 데니시·피스타치오 치즈케이크·말차 모찌 데니시 · 왕푸 미쉐린 수제 만두', picks:['bakehouse','vission','wangfu']},
       {t:'16:00', it:'레이디스마켓', ds:'알럽홍콩 티셔츠·마그넷 등 기념품', p:'ladies',
@@ -1025,9 +1023,7 @@ const SON = [
       {t:'10:00', it:'케네디타운 표지판 포토존', p:'ktsign', move:'MTR 사이잉푼 → 케네디타운 약 4분 · 트램 종점'},
       {t:'11:45', it:'센트럴 마켓', p:'centralmkt', move:'MTR 케네디타운 → 셩완/센트럴 약 10분 · 트램 약 25분', cost:'입장 무료'},
       {t:'12:30', it:'미드레벨 에스컬레이터', p:'escalator', ds:'센트럴 마켓 바로 옆에서 시작', tip:'10시 이후 상행 · 무료'},
-      {t:'12:50', it:'통라우 벽화', p:'mural', ds:'원문 "덩라우 벽화" — 그레이엄 스트리트 옛 홍콩 벽화로 추정'},
-      {t:'13:20', it:'제니쿠키 포장', p:'jenny', move:'벽화에서 도보 약 10분',
-        cost:'4믹스 소 약 HK$80 · 대 약 HK$150', tip:'현금·위챗페이만 · 사서 숙소에 두기'},
+      {t:'12:50', it:'통라우 벽화', p:'mural', ds:'원문 "덩라우 벽화" — 그레이엄 스트리트 옛 홍콩 벽화로 추정', picks:['jenny']},
       {t:'15:00', it:'피크트램 → 빅토리아 피크', p:'peaktram', move:'숙소에서 택시 약 10분',
         cost:'왕복 약 HK$118 · 스카이테라스 포함 약 HK$150', tip:'주말 줄 1시간+ → Klook 예매 · 해 질 무렵(약 17:40) 맞추면 낮·노을·야경 한 번에'},
       {t:'18:30', it:'숙소 · 배달 저녁 · 수영', p:'hotel', tip:'배달은 Foodpanda · KeeTa 앱'}
@@ -1055,6 +1051,7 @@ const SON = [
 /* 지도 + 일자별 일정 — 2페이지(DAYS)·3페이지(SON) 공용 */
 const gmap = k => gmapQ(P[k].q);
 const krw = h => h.replace(/HK\$(\d+(?:\.\d+)?)(?:\s*[~–]\s*(\d+(?:\.\d+)?))?(~?)((?:\/인)?)/g, (m, a, b, t) => m + ' <span class="krw" data-krw="' + a + (b ? '-' + b : '') + '" data-t="' + t + '"></span>');
+const EMO = {food:'🍜', dess:'🍰', meat:'🍖', shop:'🍪'};
 function plan(days, o){
   const page = $(o.page), layers = {};
   let map = null, etcLayer = null, curDay = 'all';
@@ -1074,7 +1071,6 @@ function plan(days, o){
         return '<b>' + p.n + '</b>' + (p.addr ? '<br>' + p.addr : '') + (p.h ? '<br>🕒 ' + p.h : '') +
           '<br><a class="link" target="_blank" rel="noopener" href="' + gmap(k) + '">구글맵 ↗</a>';
       };
-      const EMO = {food:'🍜', dess:'🍰'};
       days.forEach(d => {
         const g = L.layerGroup();
         const booked = new Set(d.items.filter(i => (i.book || i.fix) && i.p).map(i => i.p));
@@ -1158,7 +1154,7 @@ function plan(days, o){
     d.items.forEach(i => {
       const li = document.createElement('li');
       const pl = i.p ? P[i.p] : null;
-      let h = '<div class="tm num">' + i.t + '</div><div><div class="it">' + (pl && pl.kind ? {food:'🍜 ', dess:'🍰 '}[pl.kind] : '') + i.it +
+      let h = '<div class="tm num">' + i.t + '</div><div><div class="it">' + (pl && pl.kind ? EMO[pl.kind] + ' ' : '') + i.it +
         (i.cand ? ' <span class="tag warn">후보</span>' : '') + (i.book ? ' <span class="tag ok">예약 완료</span>' : '') + (i.fix ? ' <span class="tag ok">확정</span>' : '') + (i.top ? ' <span class="tag acc">유력 원딤섬</span>' : '') +
         (i.p ? '<button class="btn raise" data-day="' + d.id + '" data-k="' + i.p + '">지도</button>' : '') + '</div>';
       if (i.ds) h += '<div class="ds">' + i.ds + '</div>';
@@ -1168,7 +1164,7 @@ function plan(days, o){
       if (i.cost) h += '<div class="ln"><span>비용</span><span>' + i.cost + '</span></div>';
       if (i.tip) h += '<div class="ln"><span>Tip</span><span>' + i.tip + '</span></div>';
       if (i.warn) h += '<div class="warn"><span>' + i.warn + '</span></div>';
-      if (i.picks) h += '<div class="ln"><span>후보</span><span>' + i.picks.map(k => '<button class="btn raise" data-day="' + d.id + '" data-k="' + k + '">' + ({food:'🍜 ', dess:'🍰 '}[P[k].kind] || '') + P[k].n + '</button>').join('') + '</span></div>';
+      if (i.picks) h += '<div class="ln"><span>후보</span><span>' + i.picks.map(k => '<button class="btn raise" data-day="' + d.id + '" data-k="' + k + '">' + (P[k].kind ? EMO[P[k].kind] + ' ' : '') + P[k].n + '</button>').join('') + '</span></div>';
       li.innerHTML = krw(h + '</div>');
       ul.appendChild(li);
     });
