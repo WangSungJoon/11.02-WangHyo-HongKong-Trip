@@ -243,11 +243,12 @@
     .tl li{grid-template-columns:44px 1fr;gap:10px}
     .kv{grid-template-columns:72px 1fr}
   }
-.wx{border:1.5px solid var(--line);background:var(--bg);margin-bottom:8px}
-.wx summary{display:grid;grid-template-columns:64px 36px 1fr auto;align-items:center;gap:8px;padding:10px 12px;cursor:pointer;list-style:none}
-.wx summary::-webkit-details-marker{display:none}
-.wx .we{font-size:26px;line-height:1}.wx .wt b{font-size:16px}.wx .wr{font-size:12px;color:var(--muted-fg)}
-.wxh{display:grid;grid-template-columns:repeat(6,1fr);border-top:1.5px solid var(--line)}
+.wxd{display:grid;grid-template-columns:repeat(4,1fr);border:1.5px solid var(--line)}
+.wxd button{all:unset;cursor:pointer;text-align:center;padding:8px 0;font-size:12px;line-height:1.35;border-right:1px solid var(--line-soft)}
+.wxd button:last-child{border-right:0}.wxd button[aria-pressed=true]{background:var(--fg);color:var(--bg)}
+.wxd i{display:block;font-style:normal;font-size:22px;line-height:1.3}.wxd small{opacity:.75}
+.wxh{border:1.5px solid var(--line);border-top:0}
+.wxh{display:grid;grid-template-columns:repeat(6,1fr)}
 .wxh div{text-align:center;padding:6px 0;font-size:11px;border-right:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
 .wxh div:nth-child(6n){border-right:0}.wxh i{display:block;font-style:normal;font-size:18px}.wxh small{color:var(--muted-fg)}.wxh .rn{color:#2f6db5}
 </style>
@@ -893,17 +894,17 @@ function checkRow(id, title, desc, state, key, right){
 const WX_SNAP = {"d":[[53,53,51,51],[27.6,26.3,27.5,27.7],[22.4,22.9,23.7,17.9],[37,45,25,22]],"h":[[0,1,0,45,45,45,45,45,51,53,53,51,51,51,0,0,1,2,1,1,51,51,53,53,51,51,51,53,51,51,51,1,1,1,0,2,2,3,3,51,1,0,0,1,1,1,1,1,51,51,51,51,51,51,2,3,3,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,51,51,51,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[24,24,23,23,23,22,22,23,24,26,26,27,28,27,28,27,27,26,26,25,25,24,24,23,23,23,23,23,23,23,23,23,24,25,26,26,26,26,26,26,26,25,25,25,25,25,25,25,25,25,24,24,24,24,24,24,24,25,26,26,27,27,27,27,27,26,26,25,25,24,24,24,24,24,24,23,22,22,22,22,22,23,25,26,27,27,28,27,26,26,24,23,22,21,20,19],[0,0,0,0,0,0,1,3,8,18,30,37,35,29,22,16,10,6,4,4,6,11,18,25,33,41,45,44,40,35,28,19,12,8,5,4,4,5,6,7,9,10,10,10,10,10,11,12,15,19,22,23,24,24,25,25,25,23,19,16,13,10,8,6,3,2,1,1,2,3,5,8,13,19,22,20,16,12,9,6,4,2,1,0,1,3,4,4,3,2,2,2,2,1,1,0],[0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0]]};
 const WX_DAYS = ['11/06 금','11/07 토','11/08 일','11/09 월'];
 const wxE = (c, day=1) => c===0 ? (day?'☀️':'🌙') : c<=2 ? (day?'🌤️':'🌙') : c===3 ? '☁️' : c<=48 ? '🌫️' : c<=57 ? '🌦️' : c<=67 ? '🌧️' : c<=77 ? '🌨️' : c<=82 ? '🌧️' : '⛈️';
+let wxData = null, wxSel = 0;
 function renderWx(w, note){
-  const [dc, mx, mn, dp] = w.d, [hc, ht, hp, hd] = w.h;
-  $('wx').innerHTML = WX_DAYS.map((lab, i) => '<details class="wx"'+(i===0?' open':'')+'><summary><b>'+lab+'</b><span class="we">'+wxE(dc[i])+'</span><span class="wt"><b>'+Math.round(mx[i])+'°</b> / '+Math.round(mn[i])+'°</span><span class="wr">☔ '+dp[i]+'%</span></summary><div class="wxh">'
-    + Array.from({length:24}, (_, h) => { const k = i*24+h; return '<div><small>'+h+'시</small><i>'+wxE(hc[k], hd[k])+'</i>'+ht[k]+'°'+(hp[k]>=30?'<br><span class="rn">'+hp[k]+'%</span>':'')+'</div>'; }).join('')
-    + '</div></details>').join('');
-  $('wxNote').textContent = note;
+  if (w) wxData = w; if (note) $('wxNote').textContent = note;
+  const [dc, mx, mn, dp] = wxData.d, [hc, ht, hp, hd] = wxData.h;
+  $('wx').innerHTML = '<div class="wxd">' + WX_DAYS.map((lab, i) => '<button aria-pressed="'+(i===wxSel)+'" onclick="wxSel='+i+';renderWx()">'+lab+'<i>'+wxE(dc[i])+'</i><b>'+Math.round(mx[i])+'°</b>/'+Math.round(mn[i])+'°<br><small>☔'+dp[i]+'%</small></button>').join('') + '</div><div class="wxh">'
+    + Array.from({length:24}, (_, h) => { const k = wxSel*24+h; return '<div><small>'+h+'시</small><i>'+wxE(hc[k], hd[k])+'</i>'+ht[k]+'°'+(hp[k]>=30?'<br><span class="rn">'+hp[k]+'%</span>':'')+'</div>'; }).join('') + '</div>';
 }
 renderWx(WX_SNAP, '11/4 예보 스냅샷 (오프라인용) · 갱신 중…');
 fetch('https://api.open-meteo.com/v1/forecast?latitude=22.3&longitude=114.17&hourly=temperature_2m,weather_code,precipitation_probability,is_day&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia/Hong_Kong&start_date=2026-11-06&end_date=2026-11-09')
   .then(r => r.json()).then(d => { const h = d.hourly, x = d.daily; if (!h) throw 0;
-    renderWx({d:[x.weather_code,x.temperature_2m_max,x.temperature_2m_min,x.precipitation_probability_max], h:[h.weather_code,h.temperature_2m.map(Math.round),h.precipitation_probability,h.is_day]}, 'Open-Meteo 실시간 예보 · 탭하면 시간별 · 파란 숫자 = 비 확률 30% 이상'); })
+    renderWx({d:[x.weather_code,x.temperature_2m_max,x.temperature_2m_min,x.precipitation_probability_max], h:[h.weather_code,h.temperature_2m.map(Math.round),h.precipitation_probability,h.is_day]}, 'Open-Meteo 실시간 예보 · 날짜를 누르면 시간별 · 파란 숫자 = 비 확률 30% 이상'); })
   .catch(() => { $('wxNote').textContent = '11/4 예보 스냅샷 (실시간 갱신 실패) · 홍콩천문대 앱 확인 권장'; });
 
 /* 지도 */
