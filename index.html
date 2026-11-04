@@ -621,15 +621,15 @@ const DAYS = [
       {t:'10:00', it:'하버프론트 러닝 → 대관람차', ds:'숙소 앞 바닷가 산책로를 동쪽(오른쪽)으로 · 센트럴 부두 지나 홍콩 대관람차까지 약 2.5km, 왕복 5km', p:'harbour', tip:'바다 쪽 바람이 강한 예보 — 땀 식으면 쌀쌀'},
       {t:'11:30', it:'제니베이커리 셩완점 — 쿠키 사두기', p:'jenny',
         tip:'현금·위챗페이만 · 공항엔 없음 · 사서 숙소에 두고 점심으로', warn:'홍콩 매장은 2곳뿐 — 비슷한 곰 캔 파는 노점은 가짜'},
-      {t:'12:15', it:'카우키 — 소고기 국수', ds:'안심 소육수 국수 · 도가니&안심 카레국수 (메뉴 4·14번)', p:'kaukee',
+      {t:'12:15', it:'카우키 — 소고기 국수', fix:true, ds:'안심 소육수 국수 · 도가니&안심 카레국수 (메뉴 4·14번)', p:'kaukee',
         move:'숙소에서 도보 약 15분', tip:'12:30 오픈 전에 줄 서기 · 합석 기본 · 현금 준비', warn:'일요일·공휴일 휴무라 토요일 점심 고정'},
       {t:'13:30', it:'미드레벨 에스컬레이터 · 소호', ds:'10시 이후 상행 · 중간 Staunton/Elgin St에서 내려 벽화·카페 구경', p:'escalator',
         tip:'Bakehouse(5 Staunton St) 에그타르트 약 HK$14 · 근처 Tai Cheong Bakery(35 Lyndhurst Terrace)도 유명 · Vission Bakery 피스타치오 커스터드 데니시·피스타치오 치즈케이크·말차 모찌 데니시 · 왕푸 미쉐린 수제 만두', picks:['bakehouse','vission','wangfu']},
       {t:'16:00', it:'레이디스마켓', ds:'알럽홍콩 티셔츠·마그넷 등 기념품', p:'ladies',
         move:'MTR 센트럴 → 몽콕 (췬완선 약 15분) · E2 출구', tip:'처음 부른 값에서 30–50% 깎는 느낌으로 시작 · 알럽 티는 HK$20이면 적정가'},
-      {t:'18:30', it:'원딤섬 — 현지인 픽 딤섬', p:'onedimsum', move:'레이디스마켓에서 북쪽으로 도보 약 10분',
+      {t:'18:30', it:'저녁 — 레이디스마켓 근처', p:'onedimsum', top:true, move:'레이디스마켓에서 북쪽으로 도보 약 10분',
         tip:'줄 있으면 번호표 · 주문서에 체크', warn:'주소 표기가 두 가지 — 구글맵에서 "一點心 太子"로 검색', picks:['lausumkee','laozhang'],
-        ds:'대안 · 劉森記 죽승면(MTR 1정거장 삼수이포, 1956년 · 미쉐린) — 새우알 소고기 양지·힘줄 비빔면(+새우알 추가) · 영어 메뉴 없음, 옥토퍼스·현금만 · 老掌櫃 3만원대 베이징덕(타이콕초이, 몽콕에서 도보 15분·택시 5분)'},
+        ds:'유력 원딤섬(一點心, 현지인 픽 딤섬) · 대안 · 劉森記 죽승면(MTR 1정거장 삼수이포, 1956년 · 미쉐린) — 새우알 소고기 양지·힘줄 비빔면(+새우알 추가) · 영어 메뉴 없음, 옥토퍼스·현금만 · 老掌櫃 3만원대 베이징덕(타이콕초이, 몽콕에서 도보 15분·택시 5분)'},
       {t:'20:00', it:'침사추이 해변 야경 → 스타페리', ds:'스타의 거리 → 시계탑 → 페리로 센트럴 복귀 (운항 ~23:30)', p:'avenue', cand:true,
         move:'MTR 프린스에드워드 → 침사추이 약 10분', cost:'스타페리 주말 상층 HK$6.5',
         warn:'심포니 오브 라이츠(20:00)는 폐지·중단 보도가 엇갈림 → 당일 확인. 쇼가 없어도 건물 조명 야경은 매일', picks:['taifung','logye'],
@@ -1003,8 +1003,6 @@ const SON = [
       {t:'10:15', it:'토이 — 완차이 장난감 거리', ds:'레트로 장난감·레고·피규어 노점', p:'toystreet', move:'도보 약 5분'},
       {t:'11:30', it:'베이크하우스 — 에그타르트', p:'bakehouseW', move:'장난감 거리에서 도보 3분',
         cost:'에그타르트 약 HK$14', tip:'10–13시 줄 가장 김 · 포장해서 숙소로'},
-      {t:'11:50', it:'망고모찌 포장', ds:'허니문 디저트(滿記) 망고 찹쌀떡류로 추정 — 원본 게시물 확인',
-        cost:'약 HK$40'},
       {t:'12:30', it:'호텔 복귀 · 휴식', p:'hotel', move:'MTR 완차이 → 셩완 약 10분 (애드미럴티 환승 없음, 아일랜드선 직통)'},
       {t:'15:00', it:'몽콕 · 레이디스마켓', ds:'통채이 거리 노점 · 기념품', p:'ladies',
         move:'MTR 셩완 → 센트럴 → 췬완선 몽콕 약 25분 · E2 출구', tip:'부른 값의 30–50% 깎는 느낌으로 시작'},
@@ -1075,7 +1073,7 @@ function plan(days, o){
       const EMO = {food:'🍜', dess:'🍰'};
       days.forEach(d => {
         const g = L.layerGroup();
-        const booked = new Set(d.items.filter(i => i.book && i.p).map(i => i.p));
+        const booked = new Set(d.items.filter(i => (i.book || i.fix) && i.p).map(i => i.p));
         const onRoute = k => !P[k].kind || booked.has(k);
         L.polyline(d.route.filter(onRoute).map(k => [P[k].lat, P[k].lng]), {color:d.hex, weight:4, opacity:.9}).addTo(g);
         if (d.cand) L.polyline(d.cand.map(k => [P[k].lat, P[k].lng]), {color:d.hex, weight:3, opacity:.85, dashArray:'6 8'}).addTo(g);
@@ -1102,7 +1100,7 @@ function plan(days, o){
 
   function show(which){
     curDay = which;
-    $(o.tabs).querySelectorAll('.btn').forEach(t => t.setAttribute('aria-pressed', String(t.dataset.k) === String(which)));
+    page.querySelectorAll('#' + o.tabs + ' .btn, #' + o.tabs + 'B .btn').forEach(t => t.setAttribute('aria-pressed', String(t.dataset.k) === String(which)));
     days.forEach(d => { const el = $(o.days + d.id); if (el) el.hidden = which !== 'all' && d.id !== which; });
     if (!map) return;
     Object.values(layers).forEach(l => map.removeLayer(l));
@@ -1135,7 +1133,13 @@ function plan(days, o){
     b.className = 'btn raise'; b.dataset.k = k; b.innerHTML = html;
     b.onclick = () => show(k === 'all' ? 'all' : Number(k));
     $(o.tabs).appendChild(b);
+    const c = b.cloneNode(true);
+    c.onclick = () => { show(k === 'all' ? 'all' : Number(k)); page.scrollTo({top: $(o.days).offsetTop - 12, behavior:'smooth'}); };
+    bottom.appendChild(c);
   };
+  const bottom = document.createElement('div');
+  bottom.className = 'row-scroll'; bottom.id = o.tabs + 'B'; bottom.style.marginTop = '16px';
+  $(o.days).after(bottom);
   tab('all', '전체');
   days.forEach(d => tab(d.id, dot(d)));
   show('all');
@@ -1151,7 +1155,7 @@ function plan(days, o){
       const li = document.createElement('li');
       const pl = i.p ? P[i.p] : null;
       let h = '<div class="tm num">' + i.t + '</div><div><div class="it">' + (pl && pl.kind ? {food:'🍜 ', dess:'🍰 '}[pl.kind] : '') + i.it +
-        (i.cand ? ' <span class="tag warn">후보</span>' : '') + (i.book ? ' <span class="tag ok">예약 완료</span>' : '') +
+        (i.cand ? ' <span class="tag warn">후보</span>' : '') + (i.book ? ' <span class="tag ok">예약 완료</span>' : '') + (i.fix ? ' <span class="tag ok">확정</span>' : '') + (i.top ? ' <span class="tag acc">유력 원딤섬</span>' : '') +
         (i.p ? '<button class="btn raise" data-day="' + d.id + '" data-k="' + i.p + '">지도</button>' : '') + '</div>';
       if (i.ds) h += '<div class="ds">' + i.ds + '</div>';
       if (pl && pl.addr) h += '<div class="ln"><span>위치</span><span>' + pl.addr + '</span></div>';
