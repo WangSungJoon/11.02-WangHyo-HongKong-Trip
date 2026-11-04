@@ -111,8 +111,8 @@
   .tag.ok{color:var(--positive)}
   .tag.inv{background:var(--fg);color:var(--bg);border-color:var(--fg)}
   .note{font-size:var(--t-label);padding:10px 12px;background:var(--surface);margin-top:12px}
-  .warn{font-size:var(--t-label);margin-top:6px;padding:6px 10px;border:1.5px solid var(--warning);color:var(--warning);display:flex;gap:8px}
-  .warn::before{content:'!';font-weight:900;flex:none}
+  div.warn{font-size:var(--t-label);margin-top:6px;padding:6px 10px;border:1.5px solid var(--warning);color:var(--warning);display:flex;gap:8px}
+  div.warn::before{content:'!';font-weight:900;flex:none}
   .link{color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px}
   .pager{display:flex;justify-content:space-between;gap:12px;margin-top:40px;padding-left:5px}
 
@@ -521,6 +521,14 @@ const P = {
               addr:'10 Salisbury Rd, 침사추이 해변', h:'10:00–18:00 (목 휴관) · 상설전 무료'},
   mendels:   {n:'Mendel’s (뉴욕 브런치)', lat:22.2818, lng:114.1280, q:'Mendel’s 66-68 Catchick Street Kennedy Town',
               addr:'66-68 Catchick St, 케네디타운 · MTR 케네디타운역 도보 약 3분'},
+  vission:   {n:'Vission Bakery', lat:22.2823, lng:114.1527, q:'Vission Bakery 7 Staunton Street Central',
+              addr:'LG/F, 7 Staunton St, 센트럴 · 에스컬레이터 옆', h:'월–금 07:30–21:00 · 토–일 09:00–21:00'},
+  wangfu:    {n:'Wang Fu (王府) 만두', lat:22.2836, lng:114.1537, q:'Wang Fu Wellington Street Central',
+              addr:'Wellington St, 센트럴 (미쉐린 등재 주소 기준 · 원문은 침사추이)', h:'11:00–22:00'},
+  lausumkee: {n:'Lau Sum Kee (劉森記) 죽승면', lat:22.3307, lng:114.1626, q:'Lau Sum Kee Noodle 48 Kweilin Street Sham Shui Po',
+              addr:'48 Kweilin St, 삼수이포 · MTR 삼수이포역 D2 도보 2분', h:'12:00–22:00 · 옥토퍼스·현금만'},
+  taifung:   {n:'Tai Fung Lau (大豐樓) 북경요리', lat:22.2985, lng:114.1745, q:'Tai Fung Lau Peking Restaurant Tsim Sha Tsui',
+              addr:'침사추이 (1961년 개업 노포)', h:'11:30–14:00 · 18:00–23:00'},
   hotel:     {n:'숙소', lat:22.2871, lng:114.1478, q:'28 Des Voeux Road West Sheung Wan', home:true,
               addr:'28 Des Voeux Road West, Sheung Wan', h:'체크인 14:00 · 체크아웃 12:00'},
   harbour:   {n:'셩완 하버프론트 산책로', lat:22.2893, lng:114.1497, q:'Central and Western District Promenade Sheung Wan Section',
@@ -589,7 +597,7 @@ const DAYS = [
   { id:2, label:'11/07 토', title:'러닝 → 셩완·소호 → 몽콕 → 침사추이 야경', hex:'#e14d2a',
     sum:'흐림 25–28°C · 동풍 강함. 낮엔 홍콩섬(숙소 근처), 저녁엔 구룡으로 건너가 페리로 돌아오는 한 바퀴',
     route:['hotel','harbour','hotel','jenny','kaukee','escalator','soho','ladies','onedimsum'],
-    cand:['onedimsum','avenue','clock','ferryC','hotel'], extra:['bakehouse'],
+    cand:['onedimsum','avenue','clock','ferryC','hotel'], extra:['bakehouse','vission','wangfu','lausumkee','taifung'],
     items:[
       {t:'10:00', it:'셩완 하버프론트 러닝', ds:'숙소 앞 바닷가 산책로 · 서쪽 사이잉푼 ↔ 동쪽 센트럴 부두까지 이어짐', p:'harbour', tip:'바다 쪽 바람이 강한 예보 — 땀 식으면 쌀쌀'},
       {t:'11:30', it:'제니베이커리 셩완점 — 쿠키 사두기', p:'jenny',
@@ -597,14 +605,16 @@ const DAYS = [
       {t:'12:15', it:'카우키 — 소고기 국수', ds:'안심 소육수 국수 · 도가니&안심 카레국수 (메뉴 4·14번)', p:'kaukee',
         move:'숙소에서 도보 약 15분', tip:'12:30 오픈 전에 줄 서기 · 합석 기본 · 현금 준비', warn:'일요일·공휴일 휴무라 토요일 점심 고정'},
       {t:'13:30', it:'미드레벨 에스컬레이터 · 소호', ds:'10시 이후 상행 · 중간 Staunton/Elgin St에서 내려 벽화·카페 구경', p:'escalator',
-        tip:'Bakehouse(5 Staunton St) 에그타르트 약 HK$14 · 근처 Tai Cheong Bakery(35 Lyndhurst Terrace)도 유명', picks:['bakehouse']},
+        tip:'Bakehouse(5 Staunton St) 에그타르트 약 HK$14 · 근처 Tai Cheong Bakery(35 Lyndhurst Terrace)도 유명 · Vission Bakery 피스타치오 커스터드 데니시·피스타치오 치즈케이크·말차 모찌 데니시 · 왕푸 미쉐린 수제 만두', picks:['bakehouse','vission','wangfu']},
       {t:'16:00', it:'레이디스마켓', ds:'알럽홍콩 티셔츠·마그넷 등 기념품', p:'ladies',
         move:'MTR 센트럴 → 몽콕 (췬완선 약 15분) · E2 출구', tip:'처음 부른 값에서 30–50% 깎는 느낌으로 시작 · 알럽 티는 HK$20이면 적정가'},
       {t:'18:30', it:'원딤섬 — 현지인 픽 딤섬', p:'onedimsum', move:'레이디스마켓에서 북쪽으로 도보 약 10분',
-        tip:'줄 있으면 번호표 · 주문서에 체크', warn:'주소 표기가 두 가지 — 구글맵에서 "一點心 太子"로 검색'},
+        tip:'줄 있으면 번호표 · 주문서에 체크', warn:'주소 표기가 두 가지 — 구글맵에서 "一點心 太子"로 검색', picks:['lausumkee'],
+        ds:'대안 · 劉森記 죽승면(MTR 1정거장 삼수이포, 1956년 · 미쉐린) — 새우알 소고기 양지·힘줄 비빔면(+새우알 추가) · 영어 메뉴 없음, 옥토퍼스·현금만'},
       {t:'20:00', it:'침사추이 해변 야경 → 스타페리', ds:'스타의 거리 → 시계탑 → 페리로 센트럴 복귀 (운항 ~23:30)', p:'avenue', cand:true,
         move:'MTR 프린스에드워드 → 침사추이 약 10분', cost:'스타페리 주말 상층 HK$6.5',
-        warn:'심포니 오브 라이츠(20:00)는 폐지·중단 보도가 엇갈림 → 당일 확인. 쇼가 없어도 건물 조명 야경은 매일'},
+        warn:'심포니 오브 라이츠(20:00)는 폐지·중단 보도가 엇갈림 → 당일 확인. 쇼가 없어도 건물 조명 야경은 매일', picks:['taifung'],
+        tip:'저녁을 침사추이에서 먹는다면 大豐樓 — 북경오리·샤오룽바오·지글지글 칠리새우 (저녁 18:00–23:00)'},
       {t:'21:30', it:'센트럴 부두 → 숙소', p:'ferryC', move:'택시 약 5분 · 도보 약 20분'}
     ]},
   { id:3, label:'11/08 일', title:'러닝 · 미슐랭 딤섬 · 오후 자유 · 피크 야경', hex:'#2a2926',
