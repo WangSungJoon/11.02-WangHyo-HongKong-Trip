@@ -191,6 +191,7 @@
   .ln{font-size:var(--t-label);margin-top:4px;display:flex;gap:6px}
   .ln > span:first-child{flex:none;width:34px;font-weight:800;color:var(--muted-fg)}
   .tl .btn{margin-top:8px;padding:3px 8px;font-size:var(--t-meta)}
+  .tl .it .btn{float:right;margin:0 0 0 8px}
 
   /* 회화 */
   .phr{display:grid;grid-template-columns:1fr auto;gap:2px 12px;width:100%;text-align:left;background:none;border:0;border-top:1.5px solid var(--line-soft);padding:10px 0;cursor:pointer}
@@ -1036,15 +1037,15 @@ function focusPlace(dayId, k){
       const li = document.createElement('li');
       const pl = i.p ? P[i.p] : null;
       let h = '<div class="tm num">' + i.t + '</div><div><div class="it">' + i.it +
-        (i.cand ? ' <span class="tag warn">후보</span>' : '') + (i.book ? ' <span class="tag ok">예약 완료</span>' : '') + '</div>';
+        (i.cand ? ' <span class="tag warn">후보</span>' : '') + (i.book ? ' <span class="tag ok">예약 완료</span>' : '') +
+        (i.p ? '<button class="btn raise" data-day="' + d.id + '" data-k="' + i.p + '">지도</button>' : '') + '</div>';
       if (i.ds) h += '<div class="ds">' + i.ds + '</div>';
       if (pl && pl.addr) h += '<div class="ln"><span>위치</span><span>' + pl.addr + '</span></div>';
       if (pl && pl.h && !i.noHours) h += '<div class="ln"><span>시간</span><span>' + pl.h + '</span></div>';
       if (i.move) h += '<div class="ln"><span>이동</span><span>' + i.move + '</span></div>';
       if (i.cost) h += '<div class="ln"><span>비용</span><span>' + i.cost + '</span></div>';
-      if (i.tip) h += '<div class="ln"><span>팁</span><span>' + i.tip + '</span></div>';
+      if (i.tip) h += '<div class="ln"><span>Tip</span><span>' + i.tip + '</span></div>';
       if (i.warn) h += '<div class="warn"><span>' + i.warn + '</span></div>';
-      if (i.p) h += '<button class="btn raise" data-day="' + d.id + '" data-k="' + i.p + '">지도</button>';
       (i.picks || []).forEach(k => { h += ' <button class="btn raise" data-day="' + d.id + '" data-k="' + k + '">' + P[k].n + '</button>'; });
       li.innerHTML = h + '</div>';
       ul.appendChild(li);
