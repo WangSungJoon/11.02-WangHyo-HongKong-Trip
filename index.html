@@ -1064,6 +1064,7 @@ function plan(days, o){
   function show(which){
     curDay = which;
     $(o.tabs).querySelectorAll('.btn').forEach(t => t.setAttribute('aria-pressed', String(t.dataset.k) === String(which)));
+    days.forEach(d => { const el = $(o.days + d.id); if (el) el.hidden = which !== 'all' && d.id !== which; });
     if (!map) return;
     Object.values(layers).forEach(l => map.removeLayer(l));
     if (etcLayer) map.removeLayer(etcLayer);
@@ -1103,7 +1104,7 @@ function plan(days, o){
   days.forEach(d => {
     const j = document.createElement('button');
     j.className = 'btn raise'; j.innerHTML = dot(d);
-    j.onclick = () => page.scrollTo({top: $(o.days + d.id).offsetTop - 12, behavior:'smooth'});
+    j.onclick = () => { if (curDay !== 'all' && curDay !== d.id) show(d.id); page.scrollTo({top: $(o.days + d.id).offsetTop - 12, behavior:'smooth'}); };
     $(o.jump).appendChild(j);
 
     const sec = document.createElement('section');
