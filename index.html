@@ -504,8 +504,8 @@ const BASICS = [
 const P = {
   airport:   {n:'홍콩국제공항 T1', lat:22.3159, lng:113.9365, q:'Hong Kong International Airport Terminal 1',
               addr:'도착·출국 게이트 모두 T1 (T2는 일부 항공사 체크인 전용)'},
-  hkstation: {n:'홍콩역 (공항철도·In-Town 체크인)', lat:22.2850, lng:114.1580, q:'Hong Kong Station Airport Express',
-              addr:'IFC 몰 지하 · 숙소에서 택시 약 5분', h:'In-Town 체크인 06:00–23:00 (캐세이 등 일부 항공사)'},
+  hkstation: {n:'홍콩역 (공항철도)', lat:22.2850, lng:114.1580, q:'Hong Kong Station Airport Express',
+              addr:'IFC 몰 지하 · 숙소에서 택시 약 5분'},
   busstop:   {n:'Central (Macau Ferry) 버스 정류장', lat:22.2876, lng:114.1518, q:'Central (Macau Ferry) Bus Terminus',
               addr:'Connaught Road Central · A11·N11 정류장 · 숙소 도보 5–8분'},
   bluehouse: {n:'블루하우스 (藍屋)', lat:22.2733, lng:114.1736, q:'Blue House Wan Chai',
@@ -669,22 +669,21 @@ const DAYS = [
         tip:'침차이키 새우완탕면(현금) · Chilli Fagara 마파두부·탄탄면(저녁 17:00~, 예약 권장) · Yung Kee 거위구이(~22:30) · 發達叉燒 인생 차슈(완차이, 택시 약 10분 · 21:00 마감이라 20:00 전 도착) · 新桂香 차슈(차이완, MTR 아일랜드선 센트럴에서 약 30분 — 동네 바비큐집이라 늦으면 품절, 포장해서 숙소로) · 귀가길 웰컴 셩완점(~22:00)에서 밀크티·연유 쇼핑'}
     ]},
   { id:4, label:'11/09 월', title:'아침 · 출국', hex:'#5e5c56',
-    sum:'맑고 건조 23–28°C. 성준 13:45 / 효진 16:45 — 효진은 홍콩역에서 짐을 먼저 부치고 같이 공항으로',
+    sum:'맑고 건조 23–28°C. 성준 13:45 / 효진 16:45 — 부칠 짐 없음 · 둘이 같이 공항으로',
     route:['hotel','hkstation','airport'], cand:['airport','citygate'], extra:['lanfong','lordstow','citysuper'],
     items:[
       {t:'08:00', it:'아침 — 차찬텡', ds:'Kwan Lok Restaurant (07:00–18:00)', picks:['lanfong'],
         warn:'Kwan Lok은 조사에서 정확한 상호·주소 확인 실패 → 대안 Lan Fong Yuen(2 Gage St, 밀크티·돼지갈비 번 원조)'},
       {t:'09:30', it:'짐 정리 & 체크아웃', p:'hotel', tip:'항공사 앱 온라인 체크인 미리'},
-      {t:'10:00', it:'홍콩역 — 효진 In-Town 체크인', p:'hkstation',
-        ds:'캐세이는 홍콩역에서 짐 부치고 탑승권 발급 (출발 90분 전 15:15까지) → 이후 짐 없이 이동',
-        move:'숙소에서 택시 약 5분 (HK$30 안팎)', warn:'티웨이는 In-Town 체크인 불가 → 성준은 공항에서', picks:['lordstow','citysuper'],
-        tip:'짐 부친 뒤 만다린 오리엔탈 케이크숍에서 마카오 로드 스토우즈 에그타르트 포장 (도보 5분) — 판매 여부·시간은 당일 확인 · IFC 시티슈퍼에서 SO COCO 코코넛 푸딩 (보냉 필요 → 공항 가기 직전에)'},
+      {t:'10:00', it:'홍콩역 (IFC)', p:'hkstation',
+        move:'숙소에서 택시 약 5분 (HK$30 안팎)', picks:['lordstow','citysuper'],
+        tip:'공항철도 타기 전 만다린 오리엔탈 케이크숍에서 마카오 로드 스토우즈 에그타르트 포장 (도보 5분) — 판매 여부·시간은 당일 확인 · IFC 시티슈퍼에서 SO COCO 코코넛 푸딩 (보냉 필요 → 공항 가기 직전에)'},
       {t:'10:30', it:'공항철도 함께 → 공항', move:'약 24분', cost:'HK$120/인 · 아끼려면 A11 HK$41.9 (Macau Ferry 정류장, 45–60분)'},
       {t:'11:00', it:'성준 체크인 · 출국', p:'airport', noHours:true,
         ds:'TW638 13:45 · T1 체크인 추정(제주항공 등 일부는 T2로 이전) → 공항 안내판 확인 · 카운터 마감 약 12:45'},
       {t:'11:30', it:'효진 남은 시간', p:'citygate', cand:true,
         ds:'시티게이트 아울렛(퉁청, 공항에서 버스 약 10분) 또는 공항 안에서 간식 마지막 쇼핑',
-        warn:'CX0799 16:45 — 탑승권이 있어도 15:30쯤엔 보안검색 통과'}
+        warn:'CX0799 16:45 — 15:30쯤엔 보안검색 통과'}
     ]}
 ];
 const ETC = ['temple','choihung','hopewell','wheel','sky100','disney','kt'];
@@ -730,7 +729,7 @@ const SHOP_INFO = [
     '<dt>한국 △</dt><dd>계란·버터 든 공장 포장 쿠키(제니·기화)는 흔히 가져오지만 공식 면제 문구 없음 → 걱정되면 세관신고서 체크 후 검역대 확인 (인천 T1 검역 032-740-2671)</dd>' +
     '<dt>한국 면세</dt><dd>1인 US$800 · 술 2L·US$400 이하 · 연고·오일 등 의약품 총 6개까지</dd>' +
     '<dt>베트남</dt><dd>효진 · 밀봉 포장 식품 OK, 면세 1,000만 동 이하 · 고기·생과일 엄격 검역 → 육포·XO소스는 피하거나 신고 · <b>전자담배 전면 금지</b>(2025~)</dd>' +
-    '<dt>기내 액체</dt><dd>용기당 100ml 이하 → 연유 캔·병 소스는 위탁 수하물. 쿠키 캔은 잘 부서지니 기내로</dd>' +
+    '<dt>기내 액체</dt><dd>부칠 짐 없음 → 용기당 100ml 초과(연유 캔·병 소스)는 사지 않기. 보안검색 뒤 공항 면세점 구매분만 예외</dd>' +
     '</dl>'},
   {h:'어디서 몰아 살까', html:
     '<dl class="kv">' +
@@ -738,10 +737,17 @@ const SHOP_INFO = [
     '<dt>일 오후</dt><dd>B안 동선과 겹침: 타이청 에그타르트 → G.O.D. 48 Hollywood Rd(~20:00) ' + g("G.O.D. 48 Hollywood Road") + ' → 쿠키스 콰르텟 + 돈키 100 Queen\'s Rd C(~21:00) ' + g("Cookies Quartet 100 Queen's Road Central") + ' → 기화 IFC L1(~20:00) ' + g('Kee Wah Bakery IFC Mall') + '</dd>' +
     '<dt>일 저녁</dt><dd><b>웰컴 셩완점</b> 2–12 Queen\'s Rd West (08:00–22:00) ' + g("Wellcome Arion Commercial Centre Queen's Road West") + ' — 밀크티·연유·크래커 · 근처 왓슨스·매닝스에서 약</dd>' +
     '<dt>공항</dt><dd>출국장 안쪽(보안검색 후)에 기화·쿠키스 콰르텟·윙와·G.O.D. 있음 — 제니·타이청은 없음</dd>' +
-    '<dt>짐 싸기</dt><dd>한국행 / 베트남행 가방 따로 · 쿠키 캔은 기내, 액체는 위탁</dd>' +
+    '<dt>짐 싸기</dt><dd>한국행 / 베트남행 가방 따로 · 전부 기내 · 액체 100ml 초과 불가</dd>' +
     '</dl>'}
 ];
 const SHOP = [
+  {h:'편의점', p:'세븐일레븐·서클K 어디서나 — 숙소 가는 길에. 가격은 대략', list:[
+    {id:'bluegirl', t:'블루걸 맥주', d:'홍콩 국민 라거 · 캔 500ml · 숙소 야식용 (한국 반입은 술 2L 면세 한도 안에서)', price:'약 HK$15~20', hkd:'15-20'},
+    {id:'calbee_hs', t:'칼비 핫앤스파이시 감자칩', d:'홍콩 한정 매운맛 · 작은 봉지 여러 개가 선물용으로 좋음', price:'약 HK$10~15', hkd:'10-15'},
+    {id:'tomato_chip', t:'토마토 감자칩', d:'홍콩식 토마토맛 감자칩 · 칼비 등 브랜드 확인', price:'약 HK$10~15', hkd:'10-15'},
+    {id:'vlt', t:'VLT 비타 레몬티', d:'維他檸檬茶 · 팩·캔 · 차갑게 바로 마시기', price:'약 HK$6~9', hkd:'6-9'},
+    {id:'vita_milk', t:'비타 밀크티', d:'維他奶茶 · 홍콩식 밀크티 팩', price:'약 HK$6~9', hkd:'6-9'}
+  ]},
   {h:'쿠키·베이커리', p:'선물 1순위. 캔·상자째 기내 가방으로', list:[
     {id:'jenny', t:'제니베이커리 4믹스 버터쿠키', d:'곰 그림 캔 · 셩완점 현금만 · 아주 잘 부서짐', price:'HK$80 / 96', hkd:'80-96'},
     {id:'kw_pine', t:'기화 파인애플케이크 (펑리수)', d:'6개 / 9개 · IFC·공항 · 상자라 운반 쉬움', price:'HK$85~108', hkd:'85-108'},
@@ -752,21 +758,14 @@ const SHOP = [
     {id:'taicheong', t:'타이청 에그타르트 (그 자리에서)', d:'35 Lyndhurst Terrace · 당일에 먹기', price:'HK$12', hkd:'12'},
     {id:'wingwah', t:'윙와 에그롤·노파병', d:'시내에서 못 사면 공항 출국장 안쪽 · 노파병은 돼지기름 여부 확인', price:'공항'}
   ]},
-  {h:'편의점', p:'세븐일레븐·서클K 어디서나 — 숙소 가는 길에. 가격은 대략', list:[
-    {id:'bluegirl', t:'블루걸 맥주', d:'홍콩 국민 라거 · 캔 500ml · 숙소 야식용 (한국 반입은 술 2L 면세 한도 안에서)', price:'약 HK$15~20', hkd:'15-20'},
-    {id:'calbee_hs', t:'칼비 핫앤스파이시 감자칩', d:'홍콩 한정 매운맛 · 작은 봉지 여러 개가 선물용으로 좋음', price:'약 HK$10~15', hkd:'10-15'},
-    {id:'tomato_chip', t:'토마토 감자칩', d:'홍콩식 토마토맛 감자칩 · 칼비 등 브랜드 확인', price:'약 HK$10~15', hkd:'10-15'},
-    {id:'vlt', t:'VLT 비타 레몬티', d:'維他檸檬茶 · 팩·캔 · 차갑게 바로 마시기', price:'약 HK$6~9', hkd:'6-9'},
-    {id:'vita_milk', t:'비타 밀크티', d:'維他奶茶 · 홍콩식 밀크티 팩', price:'약 HK$6~9', hkd:'6-9'}
-  ]},
   {h:'밀크티·식료품', p:'웰컴 같은 슈퍼마켓에서 한 번에', list:[
     {id:'lipton_yy', t:'립톤 홍콩식 원앙 밀크티 10포', d:'가볍고 안 부서짐', price:'HK$35.9', hkd:'35.9'},
     {id:'lipton_gold', t:'립톤 골드 밀크티 10포', d:'같은 매대', price:'2개 HK$45', hkd:'45'},
-    {id:'bw', t:'블랙앤화이트 연유', d:'캔 385–410ml → 위탁 수하물 · 무거우니 1–2캔', price:'HK$10~15', hkd:'10-15'},
-    {id:'yuen', t:'여균익(余均益) 칠리소스', d:'고기 없는 홍콩 노포 소스 — XO소스 대신 · 병이라 위탁', price:'매장 확인'},
+    {id:'bw', t:'블랙앤화이트 연유', d:'캔 385–410ml → 기내 반입 불가 (부칠 짐 없음) · 튜브형 소용량이면 OK', price:'HK$10~15', hkd:'10-15'},
+    {id:'yuen', t:'여균익(余均益) 칠리소스', d:'고기 없는 홍콩 노포 소스 — XO소스 대신 · 병 100ml 초과면 기내 불가', price:'매장 확인'},
     {id:'garden', t:'가든 파 크래커 · 레몬퍼프', d:'가볍지만 잘 부서짐', price:'HK$15~30', hkd:'15-30'},
     {id:'calbee', t:'가루비 熱浪 감자칩', d:'홍콩 한정 매운맛', price:'매장 확인'},
-    {id:'xo', t:'이금기 XO소스 — 효진 베트남행만', d:'돼지 햄 함유 → 한국 반입 금지 수준 · 베트남도 소량·신고, 위탁', price:'매장 확인'}
+    {id:'xo', t:'이금기 XO소스 — 효진 베트남행만', d:'돼지 햄 함유 → 한국 반입 금지 수준 · 베트남도 소량·신고 · 병이라 기내 불가 가능성', price:'매장 확인'}
   ]},
   {h:'약·생활용품', p:'왓슨스·매닝스 어디나 · 한국 의약품 면세 총 6개까지', list:[
     {id:'tiger', t:'타이거밤 레드 30g', d:'고체 연고 · 기내 OK', price:'HK$49', hkd:'49'},
@@ -1244,11 +1243,6 @@ function renderShopPrices(){
   });
 }
 (function(){
-  SHOP_INFO.forEach(c => {
-    const sec = document.createElement('section');
-    sec.innerHTML = '<h2>' + c.h + '</h2><div class="card">' + c.html + '</div>';
-    $('shop').appendChild(sec);
-  });
   SHOP.forEach(g => {
     const sec = document.createElement('section');
     sec.innerHTML = '<h2>' + g.h + '</h2>' + (g.p ? '<p class="lead">' + g.p + '</p>' : '') + '<div class="sgrid"></div>';
@@ -1261,6 +1255,11 @@ function renderShopPrices(){
         (i.hkd ? ' <small data-hkd="' + i.hkd + '"></small>' : '') + '</div>' + (i.d ? '<div class="sd">' + i.d + '</div>' : '') + '</div>';
       grid.appendChild(c);
     });
+    $('shop').appendChild(sec);
+  });
+  SHOP_INFO.forEach(c => {
+    const sec = document.createElement('section');
+    sec.innerHTML = '<h2>' + c.h + '</h2><div class="card">' + c.html + '</div>';
     $('shop').appendChild(sec);
   });
   renderShopPrices();
