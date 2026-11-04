@@ -29,7 +29,7 @@
   html{background:var(--bg)}
   body{color:var(--fg);font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
     font-size:var(--t-body);line-height:1.6;-webkit-font-smoothing:antialiased;word-break:keep-all;
-    display:flex;flex-direction:column;height:100dvh;overflow:hidden}
+    display:flex;flex-direction:column;height:100dvh;overflow:hidden;padding-top:env(safe-area-inset-top);box-sizing:border-box}
   a{color:inherit}
   button{font:inherit;color:inherit}
   .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -59,7 +59,10 @@
   .row-scroll .btn{flex:none}
 
   /* ── 상단: 환율 계산기 ── */
-  .fx{flex:none;border-bottom:1.5px solid var(--line);background:var(--bg);padding:10px var(--gut) 6px;padding-top:max(10px,env(safe-area-inset-top))}
+  .fx{position:sticky;top:0;z-index:5;border-bottom:1.5px solid var(--line);background:var(--bg);padding:10px var(--gut) 6px}
+  .eyebrow{font-size:var(--t-meta);font-weight:800;color:var(--accent);letter-spacing:.08em;margin-bottom:6px}
+  .packgrid{display:grid;grid-template-columns:1fr 1fr;column-gap:16px}
+  .packgrid .check:nth-child(2){border-top:0}
   .fx-in{display:flex;align-items:center;gap:10px;max-width:880px;margin:0 auto}
   .fx-box{display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);background:var(--surface);height:44px;padding:0 10px;flex:1;min-width:0}
   .fx-box input{border:0;outline:0;background:transparent;font:inherit;font-size:16px;font-weight:700;width:100%;min-width:0}
@@ -75,7 +78,7 @@
   /* ── 가로 페이지 (scroll-snap) ── */
   .pages{flex:1;min-height:0;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
   .pages::-webkit-scrollbar{display:none}
-  .page{flex:0 0 100%;min-width:0;scroll-snap-align:start;scroll-snap-stop:always;overflow-y:auto;overscroll-behavior-y:contain;position:relative}
+  .page{flex:0 0 100%;min-width:0;scroll-snap-align:start;scroll-snap-stop:always;overflow-y:auto;overscroll-behavior-y:contain;position:relative;margin:0}
   .wrap{max-width:880px;margin:0 auto;padding:20px var(--gut) 32px}
 
   /* ── 하단 탭 (seg-item) ── */
@@ -222,7 +225,11 @@
 </head>
 <body>
 
-<!-- 환율 계산기 (모든 페이지 공통) -->
+<main class="pages" id="pages">
+
+<!-- ═════════ P1 개요 ═════════ -->
+<section class="page" id="p1" aria-label="1 개요">
+<!-- 환율 계산기 (P1 상단 고정) -->
 <div class="fx" role="region" aria-label="환율 계산기">
   <div class="fx-in">
     <label class="fx-box">
@@ -238,12 +245,9 @@
   </div>
 </div>
 
-<main class="pages" id="pages">
-
-<!-- ═════════ P1 개요 ═════════ -->
-<section class="page" id="p1" aria-label="1 개요">
 <div class="wrap">
   <header class="hero">
+    <div class="eyebrow">WANG ♥ HYO · HONG KONG</div>
     <h1>왕효 홍콩여행</h1>
     <div class="meta">
       <span class="pill">11/06 (금) – 11/09 (월) · 3박 4일</span>
@@ -251,20 +255,6 @@
       <span class="pill">숙소 · 셩완</span>
     </div>
   </header>
-
-  <section>
-    <h2>출발 전 준비</h2>
-    <div class="card" id="checklist"></div>
-  </section>
-
-  <section>
-    <h2>준비물</h2>
-    <div class="card"><div class="who">공통</div><div id="packCommon"></div></div>
-    <div class="grid2" style="margin-top:12px;grid-template-columns:1fr 1fr">
-      <div class="card"><div class="who">성준</div><div id="packSj"></div></div>
-      <div class="card"><div class="who">효진</div><div id="packHj"></div></div>
-    </div>
-  </section>
 
   <section>
     <h2>항공편</h2>
@@ -311,6 +301,20 @@
   <section>
     <h2>현지 기본 정보</h2>
     <div class="card"><dl class="kv" id="basics"></dl></div>
+  </section>
+
+  <section>
+    <h2>출발 전 확인</h2>
+    <div class="card" id="checklist"></div>
+  </section>
+
+  <section>
+    <h2>준비물</h2>
+    <div class="card"><div class="who">공통</div><div id="packCommon" class="packgrid"></div></div>
+    <div class="grid2" style="margin-top:12px;grid-template-columns:1fr 1fr">
+      <div class="card"><div class="who">성준</div><div id="packSj"></div></div>
+      <div class="card"><div class="who">효진</div><div id="packHj"></div></div>
+    </div>
   </section>
 
   <section id="mapSec">
@@ -410,26 +414,21 @@ const gmapQ = q => 'https://www.google.com/maps/search/?api=1&query=' + encodeUR
 
 /* ═════════ 데이터 ═════════ */
 /* 조사 기준일 2026-11-04 — HKO 9일 예보·MTR·Citybus·The Peak·미슐랭 가이드·OpenRice 등 */
-const FX_CHIPS = [
-  {v:20, l:'알럽 티 20'}, {v:41.9, l:'A11 41.9'}, {v:120, l:'공항철도 120'},
-  {v:116, l:'피크트램 왕복 116'}, {v:100, l:'HK$100'}, {v:500, l:'HK$500'}
-];
+const FX_CHIPS = [50,100,200,500,1000].map(v => ({v, l:'HK$' + v}));
 
 const CHECKLIST = [
   {id:'flight', t:'항공편 재확인', d:'7C6013·TW638 편명이 공개 검색에서 확인되지 않음 → e티켓 편명·시각 재확인 · 출국 체크인 터미널(T1/T2)은 항공사 앱으로'},
   {id:'octopus', t:'교통 결제 수단', d:'MTR·공항철도·Citybus는 Visa/Master 컨택리스 카드 바로 사용(들어갈 때·나올 때 같은 카드). 미니버스·편의점까지 쓰려면 애플월렛 옥토퍼스(Octopus for Tourists 앱, HK$100 + 보증금 HK$50)'},
   {id:'esim', t:'이심 (eSIM)', d:'출국 전 설치, 도착 후 데이터 로밍 켜기 — 공항 합류 때 카톡 위치 공유'},
   {id:'cash', t:'현금 조금', d:'트래블월렛 → HSBC ATM 수수료 없이 인출 · 카우키·침차이키·노점·차찬텡은 현금만인 곳 있음'},
-  {id:'adapter', t:'G타입(영국식 3핀) 어댑터', d:'220V라 충전기는 그대로, 플러그 모양만 다름'},
-  {id:'jacket', t:'얇은 바람막이', d:'낮 25–29°C로 덥지만 주말 내내 강한 북동풍 — 피크 정상·페리 위는 쌀쌀'},
   {id:'peak', t:'피크트램 표 (선택)', d:'웹스토어·Klook 예매는 매표 줄만 건너뜀(탑승 줄은 그대로) · 올라갈 땐 15번 버스도 방법'},
   {id:'yth', t:'Yat Tung Heen 예약', d:'일요일 점심 12:30 — 완료'}
 ];
 
 /* 준비물 — [id, 이름] */
 const PACKING = {
-  packCommon: [['run','운동복 1벌 / 운동화'], ['battery','보조배터리 / 충전기'], ['sunglass','선글라스'], ['under','속옷 / 양말 3세트']],
-  packSj: [['speaker','블루투스 스피커'], ['mount','흡착 거치대']],
+  packCommon: [['run','운동복 1벌 / 운동화'], ['battery','보조배터리 / 충전기'], ['sunglass','선글라스'], ['under','속옷 / 양말 3세트'], ['jacket','얇은 바람막이']],
+  packSj: [['speaker','블루투스 스피커'], ['mount','흡착 거치대'], ['adapter','멀티어댑터 (G타입)']],
   packHj: [['maskpack','마스크팩'], ['cleanoil','클렌징오일'], ['foam','폼클렌징']]
 };
 
@@ -916,7 +915,7 @@ function focusPlace(dayId, k){
   go(0);
   if (curDay !== 'all' && curDay !== dayId) show(dayId);
   const p1 = $('p1');
-  p1.scrollTo({top: $('mapSec').offsetTop - 12, behavior:'smooth'});
+  p1.scrollTo({top: $('mapSec').offsetTop - p1.querySelector('.fx').offsetHeight - 12, behavior:'smooth'});
   setTimeout(() => {
     map.invalidateSize();
     map.flyTo([P[k].lat, P[k].lng], 16, {duration:.6});
