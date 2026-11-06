@@ -267,7 +267,7 @@
     <button class="btn raise fx-swap" id="swap" aria-label="HKD/원 방향 바꾸기">⇄</button>
   </div>
   <div class="fx-sub">
-    <label class="fx-rate">1 HKD =<input id="rate" type="number" inputmode="decimal" value="171" aria-label="환율">원</label>
+    <label class="fx-rate">1 HKD =<input id="rate" type="number" inputmode="decimal" value="175" aria-label="환율">원</label>
     <div class="row-scroll" id="chips"></div>
   </div>
 </div>
@@ -490,7 +490,7 @@ const PACKING = {
 };
 
 const BASICS = [
-  ['날씨', '11/6–9 낮 <b>25–29°C</b> · 흐리다 맑음 · 비 확률 낮음 · <b>주말 강한 북동풍</b> (홍콩천문대 11/4 예보)'],
+  ['날씨', '11/7–8 낮 <b>25–29°C</b> · 대체로 흐림, 아침·밤 한때 약한 비 · <b>주말 강한 동풍</b> · <b>11/9(월) 한랭전선</b> → 북풍 강해지고 20–26°C, 밤부터 쌀쌀 (홍콩천문대 11/7 예보)'],
   ['입국', '한국 여권 무비자 90일 · 입국카드 없음 (2024.10 폐지)'],
   ['전기', '220V · G타입(영국식 3핀) — 어댑터 필수'],
   ['결제', 'MTR·Citybus 컨택리스 OK · 차찬텡·노점·미니버스는 현금이나 옥토퍼스'],
@@ -622,7 +622,7 @@ const DAYS = [
       {t:'01:10', it:'체크인 & 씻고 자기', p:'hotel'}
     ]},
   { id:2, label:'11/07 토', title:'러닝 → 셩완·소호 → 몽콕 → 침사추이 야경', hex:'#e14d2a',
-    sum:'흐림 25–28°C · 동풍 강함. 낮엔 홍콩섬(숙소 근처), 저녁엔 구룡으로 건너가 페리로 돌아오는 한 바퀴',
+    sum:'대체로 흐림 25–28°C · 아침·밤 한때 비 · 동풍 강함. 낮엔 홍콩섬(숙소 근처), 저녁엔 구룡으로 건너가 페리로 돌아오는 한 바퀴',
     route:['hotel','harbour','wheel','hotel','jenny','kaukee','escalator','soho','ladies','onedimsum'],
     cand:['onedimsum','avenue','clock','ferryC','hotel'], extra:['dimsumsq','bakehouse','vission','wangfu','lausumkee','taifung','laozhang','silk','mammy','logye','pigmates'],
     items:[
@@ -645,7 +645,7 @@ const DAYS = [
       {t:'21:30', it:'센트럴 부두 → 숙소', p:'ferryC', move:'택시 약 5분 · 도보 약 20분'}
     ]},
   { id:3, label:'11/08 일', title:'러닝 · 미슐랭 딤섬 · 오후 자유 · 피크 야경', hex:'#2a2926',
-    sum:'흐리다 낮에 해 25–29°C · 산 위 강풍. 오후는 A/B 중 골라서, 해 질 무렵 피크로',
+    sum:'흐리다 낮에 해 25–29°C · 아침·밤 약한 비 조금 · 산 위 강풍. 오후는 A/B 중 골라서, 해 질 무렵 피크로',
     route:['hotel','kt','mendels','hotel','yth'],
     cand:['yth','mplus','clock','ferryC','peak'], extra:['taikwun','tck','chilli','yungkee','fatj','sunkwai'],
     items:[
@@ -671,7 +671,7 @@ const DAYS = [
         tip:'🦆 지선씨 추천 Duck Victoria 베이징덕(침사추이 하버시티 · 센트럴에서 스타페리 약 10분, 22:30 마감이라 21:00 전 도착) · 침차이키 새우완탕면(현금) · Chilli Fagara 마파두부·탄탄면(저녁 17:00~, 예약 권장) · Yung Kee 거위구이(~22:30) · 發達叉燒 인생 차슈(완차이, 택시 약 10분 · 21:00 마감이라 20:00 전 도착) · 新桂香 차슈(차이완, MTR 아일랜드선 센트럴에서 약 30분 — 동네 바비큐집이라 늦으면 품절, 포장해서 숙소로) · 귀가길 웰컴 셩완점(~22:00)에서 밀크티·연유 쇼핑'}
     ]},
   { id:4, label:'11/09 월', title:'아침 · 출국', hex:'#5e5c56',
-    sum:'맑고 건조 23–28°C. 성준 13:45 / 효진 16:45 — 부칠 짐 없음 · 둘이 같이 공항으로',
+    sum:'한랭전선 통과 — 아침 한때 비, 낮부터 맑고 건조 20–26°C · 북풍 강함, 겉옷 챙기기. 성준 13:45 / 효진 16:45 — 부칠 짐 없음 · 둘이 같이 공항으로',
     route:['hotel','hkstation','airport'], cand:['airport','citygate'], extra:['lanfong','lordstow','citysuper'],
     items:[
       {t:'08:00', it:'아침 — 차찬텡', ds:'Kwan Lok Restaurant (07:00–18:00)', picks:['lanfong'],
@@ -908,14 +908,14 @@ const fmtKRW = n => Math.round(n).toLocaleString('ko-KR') + '원';
 (function(){
   const amt = $('amt'), rate = $('rate'), out = $('out');
   let dir = 'hkd';
-  rate.value = store.get('hk_rate', rate.value);
+  rate.value = store.get('hk_rate_v2', rate.value);
   const fmtHKD = n => 'HK$ ' + n.toLocaleString('en-US', {maximumFractionDigits: 1});
   function calc(){
     const a = parseFloat(amt.value) || 0, r = rateNow();
     out.textContent = '= ' + (dir === 'hkd' ? fmtKRW(a * r) : fmtHKD(r ? a / r : 0));
   }
   amt.addEventListener('input', calc);
-  rate.addEventListener('input', () => { store.set('hk_rate', rateNow()); calc(); renderShopPrices(); });
+  rate.addEventListener('input', () => { store.set('hk_rate_v2', rateNow()); calc(); renderShopPrices(); });
   $('swap').addEventListener('click', () => {
     dir = dir === 'hkd' ? 'krw' : 'hkd';
     $('fromCur').textContent = dir === 'hkd' ? 'HK$' : '₩';
@@ -963,8 +963,8 @@ function checkRow(id, title, desc, state, key, right){
   $('basics').innerHTML = BASICS.map(([k, v]) => '<dt>' + k + '</dt><dd>' + v + '</dd>').join('');
 })();
 
-/* 날씨 — Open-Meteo 실시간, 실패 시 11/4 스냅샷 */
-const WX_SNAP = {"d":[[53,53,51,51],[27.6,26.3,27.5,27.7],[22.4,22.9,23.7,17.9],[37,45,25,22]],"h":[[0,1,0,45,45,45,45,45,51,53,53,51,51,51,0,0,1,2,1,1,51,51,53,53,51,51,51,53,51,51,51,1,1,1,0,2,2,3,3,51,1,0,0,1,1,1,1,1,51,51,51,51,51,51,2,3,3,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,51,51,51,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[24,24,23,23,23,22,22,23,24,26,26,27,28,27,28,27,27,26,26,25,25,24,24,23,23,23,23,23,23,23,23,23,24,25,26,26,26,26,26,26,26,25,25,25,25,25,25,25,25,25,24,24,24,24,24,24,24,25,26,26,27,27,27,27,27,26,26,25,25,24,24,24,24,24,24,23,22,22,22,22,22,23,25,26,27,27,28,27,26,26,24,23,22,21,20,19],[0,0,0,0,0,0,1,3,8,18,30,37,35,29,22,16,10,6,4,4,6,11,18,25,33,41,45,44,40,35,28,19,12,8,5,4,4,5,6,7,9,10,10,10,10,10,11,12,15,19,22,23,24,24,25,25,25,23,19,16,13,10,8,6,3,2,1,1,2,3,5,8,13,19,22,20,16,12,9,6,4,2,1,0,1,3,4,4,3,2,2,2,2,1,1,0],[0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0]]};
+/* 날씨 — Open-Meteo 실시간, 실패 시 11/7 스냅샷 */
+const WX_SNAP = {"d":[[53,53,51,51],[27.6,26.7,27.2,24.8],[23.2,22.5,23.8,16.4],[53,37,24,47]],"h":[[1,1,0,1,1,0,0,0,0,1,51,53,53,53,53,51,0,1,1,1,1,51,51,51,51,51,51,51,51,53,51,53,51,1,1,2,3,2,3,1,1,51,51,51,51,51,51,51,51,51,51,51,51,1,1,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,51,51,51,1,3,3,3,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0],[24,24,24,24,24,24,23,23,26,27,28,27,28,27,27,27,27,26,25,25,25,25,24,24,24,24,23,23,23,23,23,23,24,24,25,26,26,26,27,26,26,25,24,24,24,25,25,24,24,24,24,24,24,24,24,24,24,25,26,26,27,27,27,27,26,26,25,24,24,24,24,24,24,23,23,22,22,21,21,20,20,21,22,23,24,25,25,25,24,23,21,20,19,18,18,17],[0,0,0,5,12,16,11,2,0,13,32,47,53,53,49,36,18,4,0,0,0,0,0,0,8,18,27,33,37,37,30,19,10,6,5,4,4,5,6,6,5,6,8,11,14,18,23,25,24,20,18,19,21,22,20,16,12,10,8,6,4,2,0,0,0,0,0,0,0,1,3,8,22,39,47,39,22,8,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0]]};
 const WX_DAYS = ['11/06 금','11/07 토','11/08 일','11/09 월'];
 const wxE = (c, day=1) => c===0 ? (day?'☀️':'🌙') : c<=2 ? (day?'🌤️':'🌙') : c===3 ? '☁️' : c<=48 ? '🌫️' : c<=57 ? '🌦️' : c<=67 ? '🌧️' : c<=77 ? '🌨️' : c<=82 ? '🌧️' : '⛈️';
 let wxData = null, wxSel = 0;
@@ -981,11 +981,11 @@ function renderWx(w, note){
         + '</div><div style="width:912px">'+svg+'</div></div>';
     })();
 }
-renderWx(WX_SNAP, '11/4 예보 스냅샷 (오프라인용) · 갱신 중…');
+renderWx(WX_SNAP, '11/7 예보 스냅샷 (오프라인용) · 갱신 중…');
 fetch('https://api.open-meteo.com/v1/forecast?latitude=22.3&longitude=114.17&hourly=temperature_2m,weather_code,precipitation_probability,is_day&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia/Hong_Kong&start_date=2026-11-06&end_date=2026-11-09')
   .then(r => r.json()).then(d => { const h = d.hourly, x = d.daily; if (!h) throw 0;
     renderWx({d:[x.weather_code,x.temperature_2m_max,x.temperature_2m_min,x.precipitation_probability_max], h:[h.weather_code,h.temperature_2m.map(Math.round),h.precipitation_probability,h.is_day]}, 'Open-Meteo 실시간 예보 · 날짜를 누르면 시간별 · 시간 줄은 옆으로 밀기 · 파란 숫자 = 비 확률 30% 이상'); })
-  .catch(() => { $('wxNote').textContent = '11/4 예보 스냅샷 (실시간 갱신 실패) · 홍콩천문대 앱 확인 권장'; });
+  .catch(() => { $('wxNote').textContent = '11/7 예보 스냅샷 (실시간 갱신 실패) · 홍콩천문대 앱 확인 권장'; });
 
 /* ═════════ P3 손민수 (인스타 코스 → 우리 항공편·숙소 기준) ═════════ */
 const SON = [
