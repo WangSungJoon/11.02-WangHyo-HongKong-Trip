@@ -629,28 +629,23 @@ const DAYS = [
       {t:'00:50', it:'홍콩역 → 숙소 택시', p:'hkstation', noHours:true, move:'약 5분', cost:'HK$30 안팎'},
       {t:'01:10', it:'체크인 & 씻고 자기', p:'hotel'}
     ]},
-  { id:2, label:'11/07 토', title:'러닝 → 셩완·소호 → 몽콕 → 침사추이 야경', hex:'#e14d2a',
-    sum:'대체로 흐림 25–28°C · 아침·밤 한때 비 · 동풍 강함. 낮엔 홍콩섬(숙소 근처), 저녁엔 구룡으로 건너가 페리로 돌아오는 한 바퀴',
-    route:['hotel','harbour','wheel','hotel','jenny','kaukee','escalator','soho','ladies','onedimsum'],
-    cand:['onedimsum','avenue','clock','ferryC','hotel'], extra:['dimsumsq','bakehouse','vission','wangfu','lausumkee','taifung','laozhang','silk','mammy','logye','pigmates'],
+  { id:2, label:'11/07 토', title:'카우키 · 소호 벽화·에스컬레이터 · 몽콕 · 록예 딤섬 · 침사추이 야경', hex:'#e14d2a',
+    sum:'실제 다녀온 동선 — 카우키로 시작해 소호 골목(벽화·에스컬레이터·베이커리), 오후엔 몽콕 쇼핑, 저녁은 침사추이 딤섬과 해변 야경, 숙소에서 맥주로 마무리',
+    route:['hotel','kaukee','mural','escalator','vission','bakehouse','ladies','logye','avenue','hotel'],
     items:[
-      {t:'10:00', it:'하버프론트 러닝 → 대관람차', ds:'숙소 앞 바닷가 산책로를 동쪽(오른쪽)으로 · 센트럴 부두 지나 홍콩 대관람차까지 약 2.5km, 왕복 5km', p:'harbour', tip:'바다 쪽 바람이 강한 예보 — 땀 식으면 쌀쌀'},
       {t:'12:15', it:'카우키 — 소고기 국수', fix:true, ds:'안심 소육수 국수 · 도가니&안심 카레국수 (메뉴 4·14번)', p:'kaukee',
-        move:'숙소에서 도보 약 15분', picks:['jenny','dimsumsq'], tip:'12:30 오픈 전에 줄 서기 · 합석 기본 · 현금 준비 · 근처 제니베이커리 셩완점(현금·위챗페이만) · 카우키 줄이 너무 길면 Dim Sum Square(현지인 가득, 구글 추천 메뉴 실패 없음)', warn:'일요일·공휴일 휴무라 토요일 점심 고정'},
-      {t:'13:30', it:'미드레벨 에스컬레이터 · 소호', ds:'10시 이후 상행 · 중간 Staunton/Elgin St에서 내려 벽화·카페 구경', p:'escalator',
-        tip:'Bakehouse(5 Staunton St) 에그타르트 약 HK$14 · 근처 Tai Cheong Bakery(35 Lyndhurst Terrace)도 유명 · Vission Bakery 피스타치오 커스터드 데니시·피스타치오 치즈케이크·말차 모찌 데니시 · 왕푸 미쉐린 수제 만두', picks:['bakehouse','vission','wangfu']},
-      {t:'16:00', it:'레이디스마켓', ds:'알럽홍콩 티셔츠·마그넷 등 기념품 · 목마르면 미쉐(蜜雪冰城) 버블 밀크티 — 홍콩 매장이 줄고 있어(몽콕 CTMA점·침사추이점 2026 폐점) 구글맵에서 문 연 지점 확인', p:'ladies',
-        move:'MTR 센트럴 → 몽콕 (췬완선 약 15분) · E2 출구', tip:'처음 부른 값에서 30–50% 깎는 느낌으로 시작 · 알럽 티는 HK$20이면 적정가'},
-      {t:'18:30', it:'저녁 — 레이디스마켓 근처', p:'onedimsum', top:true, move:'레이디스마켓에서 북쪽으로 도보 약 10분',
-        tip:'줄 있으면 번호표 · 주문서에 체크', warn:'주소 표기가 두 가지 — 구글맵에서 "一點心 太子"로 검색', picks:['lausumkee','laozhang'],
-        ds:'유력 원딤섬(一點心, 현지인 픽 딤섬) · 대안 · 劉森記 죽승면(MTR 1정거장 삼수이포, 1956년 · 미쉐린) — 새우알 소고기 양지·힘줄 비빔면(+새우알 추가) · 영어 메뉴 없음, 옥토퍼스·현금만 · 老掌櫃 3만원대 베이징덕(타이콕초이, 몽콕에서 도보 15분·택시 5분)'},
-      {t:'20:00', it:'침사추이 해변 야경 → 스타페리', ds:'스타의 거리 → 시계탑 → 페리로 센트럴 복귀 (운항 ~23:30)', p:'avenue', cand:true,
-        move:'MTR 프린스에드워드 → 침사추이 약 10분', cost:'스타페리 주말 상층 HK$6.5',
-        warn:'심포니 오브 라이츠(20:00)는 폐지·중단 보도가 엇갈림 → 당일 확인. 쇼가 없어도 건물 조명 야경은 매일', picks:['taifung','logye'],
-        tip:'저녁을 침사추이에서 먹는다면 大豐樓 — 북경오리·샤오룽바오·지글지글 칠리새우 (저녁 18:00–23:00) · 가볍게면 록예 딤섬(침사추이역 2분)'},
-      {t:'20:45', it:'디저트 — 침사추이', ds:'페리 타기 전에 하나씩 · 둘 다 해변에서 도보 5–10분', picks:['silk','mammy','pigmates'],
-        tip:'Silk 6번 흑당 밀크티 + 타피오카 펄 · 마미팬케이크 에그와플(겉바속촉, 들고 다니며 먹기) · 비교하려면 Pigmates 에그와플도'},
-      {t:'21:30', it:'센트럴 부두 → 숙소', p:'ferryC', move:'택시 약 5분 · 도보 약 20분'}
+        move:'숙소에서 도보 약 15분', tip:'합석 기본 · 현금만'},
+      {t:'13:15', it:'벽화거리 — 사진', p:'mural', ds:'그레이엄 스트리트 · 할리우드로드 일대 벽화', move:'카우키에서 도보 약 5분'},
+      {t:'13:45', it:'미드레벨 에스컬레이터 — 사진 찍고 타고 올라가기', p:'escalator', ds:'10시 이후 상행 · Staunton St에서 내리기'},
+      {t:'14:15', it:'Vission Bakery — 피스타치오 파이', p:'vission', fix:true, ds:'7 Staunton St, 소호'},
+      {t:'14:45', it:'Bakehouse — 에그타르트 + 커피 테이크아웃', p:'bakehouse', fix:true, ds:'5 Staunton St · 에그타르트 약 HK$14'},
+      {t:'15:15', it:'옷가게 — 알럽홍콩 밤티 사진', ds:'I ♥ HK 티셔츠 앞에서 기념사진'},
+      {t:'16:00', it:'Silk 밀크티 들고 → 레이디스마켓', p:'ladies',
+        ds:'실크 밀크티 마시면서 구경 · 알럽홍콩 티셔츠 · 기념품 쇼핑', move:'MTR 센트럴 → 몽콕 (췬완선 약 15분) · E2 출구',
+        tip:'처음 부른 값에서 30–50% 깎는 느낌으로 · 알럽 티는 HK$20이면 적정가'},
+      {t:'18:30', it:'Log Ye 딤섬 (록예) — 저녁', p:'logye', fix:true, ds:'19-21 Hankow Rd, 침사추이', move:'MTR 몽콕 → 침사추이 약 8분 · 역에서 도보 약 2분'},
+      {t:'20:00', it:'침사추이 해변 — 야경쇼', p:'avenue', ds:'스타의 거리 · 해변 산책로에서 20:00 심포니 오브 라이츠', move:'록예에서 해변까지 도보 약 10분'},
+      {t:'21:00', it:'숙소 — 맥주로 마무리', p:'hotel', move:'스타페리 → 센트럴 부두 → 택시 약 5분 · 또는 MTR 침사추이 → 셩완'}
     ]},
   { id:3, label:'11/08 일', title:'라떼 · 미슐랭 딤섬 · 구룡공원 · 케네디타운 노을 · 베이징덕', hex:'#2a2926',
     sum:'실제 다녀온 동선 — 러닝은 쉬고 11시 출발. 구룡에서 딤섬·공원·LP샵, 해 질 녘 케네디타운, 저녁은 완차이, 마무리는 소호 칵테일',
@@ -1080,6 +1075,7 @@ function plan(days, o){
       days.forEach(d => {
         const g = L.layerGroup();
         const booked = new Set(d.items.filter(i => (i.book || i.fix) && i.p).map(i => i.p));
+        const reserved = new Set(d.items.filter(i => i.book && i.p).map(i => i.p));
         const onRoute = k => !P[k].kind || booked.has(k);
         L.polyline(d.route.filter(onRoute).map(k => [P[k].lat, P[k].lng]), {color:d.hex, weight:4, opacity:.9}).addTo(g);
         if (d.cand) L.polyline(d.cand.map(k => [P[k].lat, P[k].lng]), {color:d.hex, weight:3, opacity:.85, dashArray:'6 8'}).addTo(g);
@@ -1087,7 +1083,7 @@ function plan(days, o){
         d.route.filter(onRoute).forEach(k => {
           if (seen.has(k)) return; seen.add(k);
           const home = !!P[k].home;
-          g['m_' + k] = L.marker([P[k].lat, P[k].lng], {icon: pinIcon(home ? '🏠' : ++n, d.hex, {home, book: booked.has(k)})}).bindPopup(popup(k) + (booked.has(k) ? '<br>✓ 예약 완료' : '')).addTo(g);
+          g['m_' + k] = L.marker([P[k].lat, P[k].lng], {icon: pinIcon(home ? '🏠' : ++n, d.hex, {home, book: reserved.has(k)})}).bindPopup(popup(k) + (reserved.has(k) ? '<br>✓ 예약 완료' : '')).addTo(g);
         });
         d.route.concat(d.cand || [], d.extra || [], d.items.flatMap(i => i.picks || [])).forEach(k => {
           if (seen.has(k)) return; seen.add(k);
@@ -1161,7 +1157,7 @@ function plan(days, o){
       const li = document.createElement('li');
       const pl = i.p ? P[i.p] : null;
       let h = '<div class="tm num">' + i.t + '</div><div><div class="it">' + (pl && pl.kind ? EMO[pl.kind] + ' ' : '') + i.it +
-        (i.cand ? ' <span class="tag warn">후보</span>' : '') + (i.book ? ' <span class="tag ok">예약 완료</span>' : '') + (i.fix ? ' <span class="tag ok">확정</span>' : '') + (i.top ? ' <span class="tag acc">유력 원딤섬</span>' : '') +
+        (i.cand ? ' <span class="tag warn">후보</span>' : '') + (i.book ? ' <span class="tag ok">예약 완료</span>' : '') + (i.top ? ' <span class="tag acc">유력 원딤섬</span>' : '') +
         (i.p ? '<button class="btn raise" data-day="' + d.id + '" data-k="' + i.p + '">지도</button>' : '') + '</div>';
       if (i.ds) h += '<div class="ds">' + i.ds + '</div>';
       if (pl && pl.addr) h += '<div class="ln"><span>위치</span><span>' + pl.addr + '</span></div>';
