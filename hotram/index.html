@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>왕효 호짬여행</title>
+<meta name="description" content="왕효 호찌민·호짬여행 08/07–08/11 플래너 — 개요·일정·회화·쇼핑">
+<meta name="theme-color" content="#e5e3dc">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='6' y='6' width='88' height='88' fill='%23e5e3dc' stroke='%232a2926' stroke-width='8'/><rect x='30' y='30' width='40' height='40' fill='%23e14d2a'/></svg>">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="../common.css">
+</head>
+<body>
+
+<main class="pages" id="pages">
+
+<!-- ═════════ P1 개요 ═════════ -->
+<section class="page" id="p1" aria-label="1 개요">
+<!-- 환율 계산기 (P1 상단 고정) -->
+<div class="fx" role="region" aria-label="환율 계산기">
+  <div class="fx-in">
+    <label class="fx-box">
+      <span class="fx-cur" id="fromCur">₫</span>
+      <input id="amt" type="number" inputmode="decimal" placeholder="동 입력" aria-label="금액">
+      <span class="fx-eq num" id="out">= 0원</span>
+    </label>
+    <button class="btn raise fx-swap" id="swap" aria-label="동/원 방향 바꾸기">⇄</button>
+  </div>
+  <div class="fx-sub">
+    <label class="fx-rate">1,000₫ =<input id="rate" type="number" inputmode="decimal" value="55" aria-label="환율">원</label>
+    <div class="row-scroll" id="chips"></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">WANG ♥ HYO · HO CHI MINH · HO TRAM</div>
+    <h1>왕효 호짬여행<span class="duo"><img class="" src="../img/m/woori_greeting.webp" alt="" aria-hidden="true"><img class="" src="../img/m/doori_greeting.webp" alt="" aria-hidden="true"></span></h1>
+    <div class="meta">
+      <span class="pill">08/07 (금) – 08/11 (화) · 4박 5일</span>
+      <span class="pill" id="dday"></span>
+      <span class="pill">호찌민 · 호짬</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>항공편</h2>
+    <div class="grid2">
+      <div class="card">
+        <div class="who"><img class="mi" src="../img/m/woori_neutral.webp" alt="" aria-hidden="true">성준 · 인천 ↔ 호찌민</div>
+        <div class="flight">
+          <div><div class="f-route">ICN → SGN</div><div class="sub">아시아나 OZ735 · 08/07 (금) · 5시간 20분</div></div>
+          <div class="f-time num">19:30 → 22:50</div>
+        </div>
+        <div class="flight">
+          <div><div class="f-route">SGN → ICN</div><div class="sub">아시아나 OZ732 · 08/11 (화) · 5시간 20분</div></div>
+          <div class="f-time num">12:05 → 19:25</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="who"><img class="mi" src="../img/m/doori_neutral.webp" alt="" aria-hidden="true">예약 정보</div>
+        <div class="sub">예약번호 FK••HY · 오쓰번호 0167••YS (공개 페이지라 일부 가림)</div>
+        <div style="margin-top:10px;font-size:var(--t-label)"><span class="tag ok">완료</span> 떤선녓 공항 입국 패스트트랙</div>
+        <div class="sub" style="margin-top:10px">효진은 호찌민 거주 — 집에서 합류</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>숙소</h2>
+    <div class="grid2">
+      <div class="card">
+        <div style="font-weight:800;font-size:var(--t-section)">효진이네 집 · Q2 Thảo Điền</div>
+        <div class="sub">타오디엔 (구 2군) · 동호수는 공개 페이지라 생략</div>
+        <div style="margin-top:12px;font-size:var(--t-label)"><span class="tag inv">1박</span> 08/07 (금) – 08/08 (토)</div>
+        <div style="margin-top:6px;font-size:var(--t-label)"><span class="tag inv">1박</span> 08/10 (월) – 08/11 (화)</div>
+        <div style="margin-top:8px;font-size:var(--t-label)"><a class="link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Q2+Thao+Dien">구글맵에서 열기 ↗</a></div>
+      </div>
+      <div class="card">
+        <div style="font-weight:800;font-size:var(--t-section)">Meliá Ho Tram Beach Resort</div>
+        <div class="sub">호짬 · 2박 · 오션뷰 · 조식 06:30–10:30</div>
+        <div style="margin-top:12px;font-size:var(--t-label)"><span class="tag inv">체크인</span> 08/08 (토) 14:00</div>
+        <div style="margin-top:6px;font-size:var(--t-label)"><span class="tag acc">체크아웃</span> 08/10 (월) 12:00</div>
+        <div class="sub" style="margin-top:10px">예약번호 2604••••55 · 예약 완료 · ☎ +84 254 378 9012</div>
+        <div style="margin-top:8px;font-size:var(--t-label)"><a class="link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Melia+Ho+Tram+Beach+Resort">구글맵에서 열기 ↗</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>현지 기본 정보</h2>
+    <div class="card"><dl class="kv" id="basics"></dl></div>
+  </section>
+
+  <section>
+    <h2>날씨 · 일별·시간별 (실제 기록)</h2>
+    <div id="wx"></div>
+    <p class="sub" id="wxNote"></p>
+  </section>
+
+  <section>
+    <h2>출발 전 확인</h2>
+    <div class="card" id="checklist"></div>
+  </section>
+
+  <section>
+    <h2>준비물</h2>
+    <div class="card"><div class="who">공통</div><div id="packCommon" class="packgrid"></div></div>
+    <div class="grid2" style="margin-top:12px;grid-template-columns:1fr 1fr">
+      <div class="card"><div class="who"><img class="mi" src="../img/m/woori_happy.webp" alt="" aria-hidden="true">성준</div><div id="packSj"></div></div>
+      <div class="card"><div class="who"><img class="mi" src="../img/m/doori_happy.webp" alt="" aria-hidden="true">효진</div><div id="packHj"></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>구역별 식당 · 관광지</h2>
+    <div class="card" id="spots"></div>
+  </section>
+
+  <div class="pager"><span></span><button class="btn raise" data-go="1">일정 보기 →</button></div>
+</div>
+</section>
+
+<!-- ═════════ P2 일정 ═════════ -->
+<section class="page" id="p2" aria-label="2 일정">
+<div class="wrap">
+  <header class="hero">
+    <h1>일자별 상세 일정<img class="mi h" src="../img/m/woori_thinking.webp" alt="" aria-hidden="true"></h1>
+    <p class="lead" style="margin:0">장소가 있는 항목은 <b>지도</b> 버튼으로 위 지도에서 위치 확인</p>
+  </header>
+  <section id="mapSec">
+    <h2>동선 지도</h2>
+    <div class="row-scroll" id="tabs" style="margin-bottom:8px"></div>
+    <div class="map" id="map"></div>
+    <div class="legend">
+      <span><i class="lg-line"></i>확정 동선</span>
+      <span><i class="lg-dash"></i>추천·후보</span>
+      <span>🍜 식사</span><span>🍖 스테이크·그릴</span><span>🛍️ 쇼핑</span><span><i class="pin book" style="display:inline-flex;width:14px;height:14px;font-size:9px">✓</i> 예약</span>
+      <span>🏠 숙소</span>
+      <span><i class="pin etc" style="display:inline-block"></i>기타 관광지</span>
+    </div>
+  </section>
+
+  <div id="days"></div>
+  <div class="pager"><button class="btn raise" data-go="0">← 개요</button><button class="btn raise" data-go="2">회화 →</button></div>
+</div>
+</section>
+
+<!-- ═════════ P3 회화 ═════════ -->
+<section class="page" id="p3" aria-label="3 회화">
+<div class="wrap">
+  <header class="hero">
+    <h1>상황별 여행 회화<img class="mi h" src="../img/m/doori_thinking.webp" alt="" aria-hidden="true"></h1>
+    <p class="lead" style="margin:0">문장을 누르면 크게 보여줘요 — 화면을 그대로 보여주면 끝</p>
+  </header>
+  <div class="row-scroll" id="phJump" style="margin-top:12px"></div>
+  <div id="phrases"></div>
+  <div class="pager"><button class="btn raise" data-go="1">← 일정</button><button class="btn raise" data-go="3">쇼핑 →</button></div>
+</div>
+</section>
+
+<!-- ═════════ P4 쇼핑 ═════════ -->
+<section class="page" id="p4" aria-label="4 쇼핑">
+<div class="wrap">
+  <header class="hero">
+    <h1>간식 · 쇼핑 리스트<img class="mi h" src="../img/m/doori_happy.webp" alt="" aria-hidden="true"></h1>
+  </header>
+  <div id="shop"></div>
+  <div class="pager"><button class="btn raise" data-go="2">← 회화</button><span></span></div>
+  <footer>
+    <div style="font-size:var(--t-meta)">2026.08 · Ho Chi Minh · Ho Tram</div>
+  </footer>
+</div>
+</section>
+
+</main>
+
+<nav class="nav" aria-label="페이지">
+  <div class="nav-in" id="nav">
+    <button class="btn raise" id="menuBtn" aria-label="여행 목록 열기" aria-haspopup="dialog">☰</button>
+    <div role="tablist" style="display:contents">
+    <button class="btn raise" role="tab" aria-controls="p1" data-go="0"><b>1</b>개요</button>
+    <button class="btn raise" role="tab" aria-controls="p2" data-go="1"><b>2</b>일정</button>
+    <button class="btn raise" role="tab" aria-controls="p3" data-go="2"><b>3</b>회화</button>
+    <button class="btn raise" role="tab" aria-controls="p4" data-go="3"><b>4</b>쇼핑</button>
+    </div>
+  </div>
+</nav>
+
+<dialog class="big" id="bigDlg" aria-label="크게 보기">
+  <div class="yp" id="bgYp"></div>
+  <div class="zh" id="bgZh" lang="vi"></div>
+  <div class="ko" id="bgKo"></div>
+  <div class="en" id="bgEn" lang="en"></div>
+  <form method="dialog"><button class="btn raise">닫기</button></form>
+</dialog>
+
+<dialog class="drawer" id="drawer" aria-label="여행 목록">
+  <nav id="tripList"></nav>
+</dialog>
+<script src="../trips.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>window.L || document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"><script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"><\/script>');</script>
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+const gmapQ = q => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
+
+/* ═════════ 데이터 ═════════ */
+/* 조사 기준일 2026-11-11 — Meliá 공식·Time Out·Michelin·Gowabi·Open-Meteo 기록 등. ₫ 가격은 대략 */
+const FX_UNIT = 1000;   /* 환율 입력 단위: 1,000₫ */
+const FX_CHIPS = [50000,100000,200000,500000,1000000].map(v => ({v, l:(v/10000) + '만₫'}));
+
+const CHECKLIST = [
+  {id:'flight', t:'항공편 재확인', d:'아시아나 OZ735 (8/7 19:30 ICN→22:50 SGN) · OZ732 (8/11 12:05 SGN→19:25 ICN) · 예약번호 FK••HY'},
+  {id:'fasttrack', t:'떤선녓 공항 패스트트랙', d:'예약 완료 — 입국 심사 줄 건너뛰기, 도착 게이트에서 이름 피켓 확인'},
+  {id:'melia', t:'멜리아 호짬 예약', d:'8/8–8/10 2박 · 오션뷰 · 예약번호 2604••••55 — 완료'},
+  {id:'pickup', t:'호짬 가는 차 예약', d:'8/8 14:00 효진집 픽업 → 멜리아 (약 2시간)'},
+  {id:'shuttle', t:'호찌민 복귀 셔틀', d:'멜리아 → 호찌민 11:00 출발 · 좌석 선착순이라 컨시어지 메일로 미리 (concierge@meliahotram.com)'},
+  {id:'grab', t:'Grab 앱', d:'택시·오토바이·배달 다 됨 · 해외 카드 등록해 두기 · 기사와 가격 흥정 필요 없음'},
+  {id:'esim', t:'이심 (eSIM)', d:'출국 전 설치, 도착 후 데이터 로밍 켜기'},
+  {id:'cash', t:'현금 (동)', d:'로컬 식당·마사지 팁·시장은 현금 · 공항보다 시내 금은방·환전소 환율이 좋음 · 0이 많아 20만₫·50만₫ 지폐 헷갈리지 않기'}
+];
+
+/* 준비물 — [id, 이름] */
+const PACKING = {
+  packCommon: [['sunglass','썬글라스'], ['flipflop','커플쪼리'], ['shortpin','커플숏핀'], ['swim','수영복 (리조트 수영)'], ['sunscreen','선크림'], ['umbrella','접이식 우산 (오후 스콜)'], ['mosquito','모기 기피제']],
+  packSj: [['speaker','블루투스 스피커'], ['passport','여권 / 트래블카드'], ['battery','보조배터리 / 충전기']],
+  packHj: [['work','출근 준비 (8/8 오전)']]
+};
+
+const BASICS = [
+  ['날씨', '8월은 <b>우기</b> · 낮 30–33°C, 습도 높음 · <b>오후~저녁 소나기(스콜)</b> 한두 시간 → 우산·여벌 옷. 호짬 바다는 바람·파도가 있는 편'],
+  ['입국', '한국 여권 <b>무비자 45일</b> · 여권 유효기간 6개월 이상 · 패스트트랙 예약 완료'],
+  ['전기', '220V · A/C타입 혼용 — 한국 플러그 대부분 그대로 꽂힘 (멀티어댑터 있으면 안심)'],
+  ['돈', '1,000₫ ≈ 55원 → <b>0 세 개 빼고 ×55</b> (10만₫ ≈ 5,500원) · 지폐가 비슷해 20만₫/50만₫ 주의'],
+  ['결제', '리조트·레스토랑·Grab은 카드 OK · 로컬 식당·노점·시장은 현금'],
+  ['팁', '의무 없음 · 마사지는 팁 문화 (1인 5–10만₫ 정도) · 짐 들어준 벨보이 2–5만₫'],
+  ['이동', '시내는 <b>Grab</b> (택시·오토바이) · 호찌민 ↔ 호짬은 차로 약 2시간 (약 110km)'],
+  ['물', '수돗물 X · 생수 · 길거리 얼음은 조심'],
+  ['긴급', '경찰 <b>113</b> · 소방 <b>114</b> · 구급 <b>115</b>'],
+  ['총영사관', '주호찌민 대한민국 총영사관 107 Nguyễn Du, 1군 · ☎ +84 28 3822 5757<br>영사콜센터 24시간 +82-2-3210-0404']
+];
+
+/* 장소 — 일정·지도 공용 */
+const P = {
+  airport:   {n:'떤선녓 국제공항 (SGN)', lat:10.8188, lng:106.6519, q:'Tan Son Nhat International Airport International Terminal',
+              addr:'국제선 터미널 · 1군까지 차로 30–40분, 타오디엔까지 약 30분'},
+  home:      {n:'효진이네 집 (Q2 Thảo Điền)', lat:10.8037, lng:106.7362, q:'Q2 Thao Dien', home:true,
+              addr:'Q2 Thảo Điền, 타오디엔 (구 2군) · 동호수는 공개 페이지라 생략'},
+  melia:     {n:'멜리아 호짬 (Meliá Ho Tram)', lat:10.4810, lng:107.4185, q:'Melia Ho Tram Beach Resort', home:true,
+              addr:'Coastal Road, Ho Tram Hamlet, Phước Thuận · 호찌민에서 약 110km', h:'체크인 14:00 · 체크아웃 12:00 · 조식 06:30–10:30'},
+  bepmein:   {kind:'food', n:'벱메인 (Bếp Mẹ Ỉn) 1호점', lat:10.7737, lng:106.6985, q:'Bếp Mẹ Ỉn 136/9 Lê Thánh Tôn',
+              addr:'136/9 Lê Thánh Tôn, Bến Thành, 1군 · 골목 안쪽 · 벤탄시장 도보 5분', h:'대략 10:00–22:00 (구글맵 확인)'},
+  muoi:      {kind:'food', n:'Muối 레스토랑', lat:10.4820, lng:107.4200, q:'Muoi restaurant Ho Tram Melia',
+              addr:'Coastal Road, Ho Tram · 멜리아 바로 옆'},
+  myle:      {kind:'food', n:'Vựa Hải Sản Mỹ Lệ 2 (해산물)', lat:10.4725, lng:107.4040, q:'Hải Sản Mỹ Lệ Hồ Tràm',
+              addr:'호짬 마을 해산물 거리 · 핀 위치는 대략 → 구글맵 검색으로 확인', h:'수조에서 고르고 무게로 계산'},
+  shuttle:   {n:'셔틀 하차 (Ba Lá Trà, 살라)', lat:10.7700, lng:106.7220, q:'Ba La Tra Sarimi Sala Thu Duc',
+              addr:'Sarimi A2, Sala 도시구역, 투득 · 멜리아 셔틀 픽업·하차 지점 (공식 안내 기준)'},
+  anspa:     {n:'AN\'s Spa 4 — 타오디엔', lat:10.8030, lng:106.7380, q:"AN's Spa Thao Dien 22 Vo Truong Toan",
+              addr:'22 Võ Trường Toản, An Khánh, 타오디엔 · 효진집 근처', h:'예약 권장'},
+  sol:       {kind:'meat', n:'Sol Kitchen & Bar (미쉐린 셀렉티드)', lat:10.7740, lng:106.6975, q:'Sol Kitchen & Bar 112 Ly Tu Trong',
+              addr:'110–112 Lý Tự Trọng, Bến Thành, 1군 · ☎ +84 799 991 811 · 라틴 아메리칸', h:'11:00–14:00 · 17:00–22:30'},
+  benthanh:  {n:'벤탄시장', lat:10.7725, lng:106.6980, q:'Ben Thanh Market', addr:'1군 중심 · 기념품·커피·견과류 · 흥정 필수', h:'대략 07:00–18:00 · 야시장은 저녁'},
+  notredame: {n:'노트르담 성당 · 중앙우체국', lat:10.7798, lng:106.6992, q:'Saigon Notre-Dame Cathedral Basilica', addr:'1군 · 둘이 길 하나 사이 · 성당은 보수 공사 중일 수 있음'},
+  bvien:     {n:'부이비엔 여행자 거리', lat:10.7672, lng:106.6930, q:'Bui Vien Walking Street', addr:'1군 · 밤에 맥주·클럽 거리', h:'저녁~새벽'},
+  hococ:     {n:'호꼭 해변 (Hồ Cốc)', lat:10.5000, lng:107.4700, q:'Ho Coc Beach', addr:'멜리아에서 차로 약 15분 · 한적한 로컬 해변'},
+  binhchau:  {n:'빈차우 온천 (Bình Châu)', lat:10.5730, lng:107.5530, q:'Binh Chau Hot Springs Resort', addr:'멜리아에서 차로 약 30분 · 온천 달걀 삶기'},
+  grandht:   {n:'더 그랜드 호짬 (카지노·골프)', lat:10.4730, lng:107.4060, q:'The Grand Ho Tram', addr:'멜리아에서 차로 약 5분 · 리조트 단지'},
+  annam:     {kind:'shop', n:'Annam Gourmet 타오디엔', lat:10.8035, lng:106.7340, q:'Annam Gourmet Thao Dien', addr:'타오디엔점 · 정확한 번지는 구글맵 확인', h:'대략 07:00–22:00'}
+};
+
+/* 일정 — route: 동선(실선) · cand: 후보 동선(점선) · extra: 후보 핀만 */
+const DAYS = [
+  { id:1, label:'08/07 금', title:'인천 → 호찌민', hex:'#7b7973',
+    sum:'다녀온 동선 — OZ735 저녁 출발, 비행기 연착에 짐까지 늦게 나와서 자정에 효진집 도착. 야식은 패스하고 바로 취침',
+    route:['airport','home'],
+    items:[
+      {t:'19:30', it:'인천 출발 — OZ735', ds:'아시아나 · ICN → SGN 5시간 20분'},
+      {t:'22:50', it:'떤선녓 공항 도착 (예정)', p:'airport', noHours:true, book:true, ds:'패스트트랙으로 입국 심사 · 실제로는 연착 + 짐 늦게 나옴'},
+      {t:'24:00', it:'효진이네 집 도착 → 바로 취침', p:'home', move:'공항에서 Grab 약 30분', tip:'야식 계획은 다음 기회에'}
+    ]},
+  { id:2, label:'08/08 토', title:'벱메인 · 호짬 이동 · Muối · 밤바다', hex:'#e14d2a',
+    sum:'오전엔 효진 출근·성준 휴식, 점심은 1군 벱메인. 14시 집 앞 픽업으로 호짬 멜리아까지 2시간, 저녁은 리조트 옆 Muối, 밤엔 둘이 바다 구경',
+    route:['home','bepmein','home','melia','muoi','melia'],
+    items:[
+      {t:'오전', it:'효진 출근 · 성준 휴식', p:'home'},
+      {t:'12:00', it:'벱메인 — 반쎄오 · 분짜 · 두부튀김', p:'bepmein', fix:true,
+        ds:'반쎄오(바삭한 베트남 부침개)는 상추·허브에 싸서 소스에 · 분짜 · 두부튀김', move:'타오디엔에서 Grab 약 20분',
+        tip:'골목 안쪽이라 구글맵 핀 보고 들어가기 · 1인 약 150,000₫'},
+      {t:'14:00', it:'호짬으로 이동 — 효진집 픽업', ds:'차로 약 2시간 (약 110km)', move:'점심 후 집에 들러 짐 챙기기'},
+      {t:'16:00', it:'멜리아 호짬 체크인', p:'melia', book:true, ds:'2박 · 오션뷰', tip:'웰컴 드링크 · 수영장·해변 위치 먼저 보기'},
+      {t:'저녁', it:'Muối — 짜조 · 립 · 새우 타마린드 소스', p:'muoi', fix:true, ds:'짜조(베트남 튀김 스프링롤) · 립 · 새우 타마린드(새콤달콤 소스)', move:'멜리아에서 도보'},
+      {t:'밤', it:'둘이 바다 구경', p:'melia', noHours:true, ds:'리조트 앞 해변 · 블루투스 스피커 챙기기'}
+    ]},
+  { id:3, label:'08/09 일', title:'조식 · 수영 · 해산물 파티', hex:'#2f7f86',
+    sum:'하루 종일 리조트. 조식 먹고 수영하다가 저녁엔 호짬 해산물집에서 랍스타·새우·대합. 둘 다 피곤해서 기절',
+    route:['melia','myle','melia'],
+    items:[
+      {t:'아침', it:'멜리아 조식', p:'melia', noHours:true, ds:'조식 06:30–10:30'},
+      {t:'점심', it:'수영', p:'melia', noHours:true, ds:'리조트 수영장 · 바다', tip:'한낮 햇볕 강함 — 선크림 덧바르기'},
+      {t:'저녁', it:'Vựa Hải Sản Mỹ Lệ 2 — 랍스타 · 새우 · 대합', p:'myle', fix:true,
+        ds:'수조에서 직접 고르고 무게(kg)로 계산 → 요리법 고르기', move:'멜리아에서 차로 약 5–10분 (Grab·리조트 차량)',
+        tip:'주문 전에 kg당 가격 꼭 확인 · 대합은 버터갈릭·레몬그라스 찜 · 랍스타는 치즈구이나 회'},
+      {t:'밤', it:'둘 다 피곤해서 기절', p:'melia', noHours:true}
+    ]},
+  { id:4, label:'08/10 월', title:'셔틀로 복귀 · 안스파 · Sol Kitchen', hex:'#2a2926',
+    sum:'조식 먹고 11시 셔틀로 호찌민 복귀, 오후엔 타오디엔 안스파에서 마사지, 저녁은 1군 Sol Kitchen. 효진집에서 맥주 한 캔 하고 기절',
+    route:['melia','shuttle','home','anspa','sol','home'],
+    items:[
+      {t:'아침', it:'멜리아 조식 · 체크아웃', p:'melia', noHours:true, ds:'조식 06:30–10:30 · 체크아웃 12:00'},
+      {t:'11:00', it:'호찌민 복귀 셔틀버스', p:'melia', noHours:true, ds:'멜리아 → 호찌민 약 2–3시간 (교통 상황에 따라)', tip:'좌석 선착순 · 컨시어지 예약'},
+      {t:'14:00', it:'호찌민 도착 (예정)', p:'shuttle', ds:'하차 후 Grab으로 효진집', move:'살라 → 타오디엔 Grab 약 10–15분'},
+      {t:'오후', it:'안스파 — 마사지', p:'anspa', ds:'AN\'s Spa 타오디엔점으로 추정 — 다른 곳이면 알려주기', tip:'팁 1인 5–10만₫ 정도'},
+      {t:'저녁', it:'Sol Kitchen — 스테이크 · 새우파스타 · 게 튀김', p:'sol', fix:true, ds:'미쉐린 셀렉티드 라틴 아메리칸 · 1군', move:'타오디엔에서 Grab 약 20분'},
+      {t:'밤', it:'맥주 한 캔 하고 기절', p:'home'}
+    ]},
+  { id:5, label:'08/11 화', title:'출국', hex:'#5e5c56',
+    sum:'9시 30분 공항으로. OZ732 12:05 출발 → 19:25 인천 → 22시 집 도착 🥲',
+    route:['home','airport'],
+    items:[
+      {t:'09:30', it:'공항으로 출발', p:'home', move:'Grab 약 30분 · 출근 시간대라 여유 있게'},
+      {t:'12:05', it:'호찌민 출발 — OZ732', p:'airport', noHours:true, ds:'아시아나 · SGN → ICN 5시간 20분'},
+      {t:'19:25', it:'인천 도착'},
+      {t:'22:00', it:'집 도착 🥲 가지마🥹'}
+    ]}
+];
+const ETC = ['benthanh','notredame','bvien','hococ','binhchau','grandht'];
+
+const AREAS = [
+  {h:'1. 호찌민 1군', p:'관광지·맛집 밀집 · 타오디엔에서 Grab 약 20분', list:[
+    ['bepmein','벱메인 (Bếp Mẹ Ỉn)','반쎄오 · 분짜 · 두부튀김','대략 10:00–22:00'],
+    ['sol','Sol Kitchen & Bar','스테이크 · 새우파스타 · 게 튀김 · 미쉐린 셀렉티드','11:00–14:00 / 17:00–22:30'],
+    ['benthanh','벤탄시장','기념품 · 커피 · 견과류 · 흥정','07:00–18:00경'],
+    ['notredame','노트르담 성당 · 중앙우체국','사진 스폿',''],
+    ['bvien','부이비엔 거리','밤 맥주 거리','저녁~새벽']
+  ]},
+  {h:'2. 타오디엔 (구 2군)', p:'효진이네 동네 · 카페·스파·외국인 많은 동네', list:[
+    ['anspa','AN\'s Spa 타오디엔','마사지 · 예약 권장',''],
+    ['annam','Annam Gourmet','수입 식료품 · 커피 선물','07:00–22:00경']
+  ]},
+  {h:'3. 호짬', p:'호찌민에서 차로 약 2시간 · 조용한 리조트 해변', list:[
+    ['melia','멜리아 호짬','2박 · 오션뷰 · 조식 06:30–10:30',''],
+    ['muoi','Muối','짜조 · 립 · 새우 타마린드 · 멜리아 옆',''],
+    ['myle','Vựa Hải Sản Mỹ Lệ 2','랍스타 · 새우 · 대합 · kg 단위',''],
+    ['hococ','호꼭 해변','차로 15분 · 한적한 로컬 해변',''],
+    ['binhchau','빈차우 온천','차로 30분 · 온천',''],
+    ['grandht','더 그랜드 호짬','카지노 · 골프 · 차로 5분','']
+  ]}
+];
+
+/* P4 쇼핑 — vnd: 원화 환산용 ₫ (범위는 'lo-hi') */
+const g = q => '<a class="link" target="_blank" rel="noopener" href="' + gmapQ(q) + '">지도</a>';
+const SHOP_INFO = [
+  {h:'반입 주의 — 사기 전에<img class="mi" src="../img/m/woori_angry.webp" alt="" aria-hidden="true">', html:
+    '<dl class="kv">' +
+    '<dt>한국 ✗</dt><dd><b>생과일(망고·두리안 등)</b>·육류·육포·햄 — 검역 불가. 말린 과일·과일칩은 가공품이라 OK</dd>' +
+    '<dt>한국 면세</dt><dd>1인 US$800 · 술 2L·US$400 이하 · 담배 1보루</dd>' +
+    '<dt>커피·견과</dt><dd>원두·인스턴트 커피·볶은 캐슈넛 포장 제품은 반입 OK</dd>' +
+    '<dt>베트남 출국</dt><dd>전자담배 전면 금지 (2025~) · 현금 US$5,000 넘으면 신고</dd>' +
+    '<dt>기내 액체</dt><dd>100ml 초과 소스·술은 부치는 짐으로</dd>' +
+    '</dl>'},
+  {h:'어디서 몰아 살까', html:
+    '<dl class="kv">' +
+    '<dt>타오디엔</dt><dd><b>Annam Gourmet</b> ' + g('Annam Gourmet Thao Dien') + ' — 포장 예쁜 커피·초콜릿 선물</dd>' +
+    '<dt>마트</dt><dd>롯데마트·Co.opmart·윈마트 — G7 커피·말린 과일·캐슈넛은 마트가 제일 쌈 ' + g('Co.opmart Ho Chi Minh') + '</dd>' +
+    '<dt>시장</dt><dd>벤탄시장 — 라탄백·기념품 · 부른 값의 50%부터 흥정 ' + g('Ben Thanh Market') + '</dd>' +
+    '<dt>공항</dt><dd>출국장 면세점은 비쌈 → 시내에서 미리</dd>' +
+    '</dl>'}
+];
+const SHOP = [
+  {h:'커피', p:'베트남 선물 1순위 · 마트가 제일 쌈', list:[
+    {id:'g7', t:'G7 3in1 커피', d:'베트남 국민 믹스커피 · 18포·50포 · 가볍고 안 깨짐', price:'약 60,000₫~', vnd:'60000'},
+    {id:'legend', t:'쭝응우옌 레전드 (Trung Nguyên Legend)', d:'인스턴트 · 원두 · 고급 선물용', price:'약 100,000₫~', vnd:'100000'},
+    {id:'congcaphe', t:'콩카페 코코넛 커피 (Cộng Cà Phê)', d:'매장에서 마시고 인스턴트 팩 사기', price:'약 60,000₫~', vnd:'60000'},
+    {id:'phin', t:'핀 (Phin) 커피 필터', d:'베트남식 드립 필터 · 스테인리스', price:'약 30,000–60,000₫', vnd:'30000-60000'}
+  ]},
+  {h:'간식', p:'말린 과일·견과는 가공품이라 한국 반입 OK', list:[
+    {id:'cashew', t:'캐슈넛 (껍질째 볶은 것)', d:'500g 단위 · 마트·시장 · 진공 포장', price:'약 200,000–300,000₫', vnd:'200000-300000'},
+    {id:'vinamit', t:'비나밋 과일칩 (Vinamit)', d:'잭프룻·믹스 과일칩 · 바삭', price:'약 50,000₫~', vnd:'50000'},
+    {id:'mango', t:'말린 망고', d:'쫀득한 반건조 · 마트', price:'약 60,000–100,000₫', vnd:'60000-100000'},
+    {id:'coconut', t:'코코넛 캔디 (벤째)', d:'카라멜 같은 쫀득 캔디', price:'약 30,000₫~', vnd:'30000'}
+  ]},
+  {h:'편의점·마트', p:'숙소·리조트 야식용', list:[
+    {id:'saigon', t:'사이공 스페셜 · 333 맥주', d:'베트남 대표 라거 · 캔', price:'약 15,000–20,000₫', vnd:'15000-20000'},
+    {id:'banhmi', t:'반미', d:'길거리·편의점 · 아침 대용', price:'약 20,000–40,000₫', vnd:'20000-40000'}
+  ]},
+  {h:'약·생활용품', p:'약국(Pharmacity·Long Châu) 어디나', list:[
+    {id:'golden', t:'금성 연고 (Cao Sao Vàng)', d:'작은 동그란 틴 · 근육통·벌레 물림', price:'약 10,000₫~', vnd:'10000'},
+    {id:'daugio', t:'그린 오일 (Dầu Gió Xanh)', d:'두통·멀미에 바르는 오일 · 롤온', price:'약 20,000₫~', vnd:'20000'}
+  ]},
+  {h:'기념품', p:'', list:[
+    {id:'rattan', t:'라탄백', d:'벤탄시장 · 흥정 필수', price:'약 150,000₫~', vnd:'150000'},
+    {id:'magnet', t:'냉장고 자석', d:'시장·기념품 가게', price:'약 20,000–50,000₫', vnd:'20000-50000'}
+  ]}
+];
+
+/* P3 회화 — [한국어, 베트남어, (예비), 한글 발음, English]. 발음은 성조 뺀 근사치 */
+const PHRASES = [
+  {h:'인사·기본', p:'남부(호찌민) 발음 기준 · 웃으면서 말하면 성조가 좀 틀려도 통함', list:[
+    ['안녕하세요','Xin chào','','씬 짜오','Hello'],
+    ['고마워요','Cảm ơn','','깜 언','Thank you'],
+    ['정말 고마워요','Cảm ơn nhiều','','깜 언 니에우','Thank you so much'],
+    ['죄송합니다 · 실례해요','Xin lỗi','','씬 로이','Sorry / Excuse me'],
+    ['네 / 아니요','Vâng / Không','','벙 / 콩','Yes / No'],
+    ['괜찮아요','Không sao','','콩 싸오','It\'s OK'],
+    ['이해 못 했어요','Tôi không hiểu','','또이 콩 히에우','I don\'t understand']
+  ]},
+  {h:'식당', p:'저기요 = Em ơi (엠 어이) — 직원 부를 때 가장 많이 씀', list:[
+    ['저기요 (직원 부를 때)','Em ơi!','','엠 어이','Excuse me!'],
+    ['두 명이요','Hai người','','하이 응어이','Table for two'],
+    ['메뉴판 주세요','Cho tôi xem thực đơn','','쪼 또이 쌤 특 던','Menu, please'],
+    ['이거 주세요 (가리키며)','Cho tôi cái này','','쪼 또이 까이 나이','I\'ll have this'],
+    ['고수 빼 주세요','Không bỏ rau mùi','','콩 보 자우 무이','No coriander'],
+    ['안 맵게 해 주세요','Không cay','','콩 까이','Not spicy'],
+    ['얼음 넣어 주세요 / 빼 주세요','Có đá / Không đá','','꼬 다 / 콩 다','With / without ice'],
+    ['맛있어요!','Ngon quá!','','응온 꽈','Delicious!'],
+    ['계산해 주세요','Tính tiền','','띤 띠엔','Bill, please'],
+    ['카드 돼요?','Trả thẻ được không?','','짜 테 드억 콩','Card OK?']
+  ]},
+  {h:'해산물 주문', p:'수조에서 고르고 kg당 가격 확인 → 요리법 선택. 무게 다는 걸 같이 보기', list:[
+    ['1kg에 얼마예요?','Bao nhiêu một ký?','','바오 니에우 못 끼','How much per kg?'],
+    ['랍스타','Tôm hùm','','똠 훔','Lobster'],
+    ['새우','Tôm','','똠','Shrimp'],
+    ['대합 (조개)','Nghêu','','응에우','Clams'],
+    ['구워 주세요','Nướng','','느엉','Grilled'],
+    ['쪄 주세요','Hấp','','헙','Steamed'],
+    ['버터 갈릭으로','Bơ tỏi','','버 또이','Butter garlic'],
+    ['이 정도면 돼요','Vậy đủ rồi','','버이 두 조이','That\'s enough']
+  ]},
+  {h:'교통·Grab', p:'Grab은 목적지·요금이 앱에 찍혀서 말할 일이 거의 없음', list:[
+    ['여기로 가 주세요 (화면 보여주며)','Cho tôi đến đây','','쪼 또이 덴 더이','Please go here'],
+    ['여기서 세워 주세요','Dừng ở đây','','증 어 더이','Stop here'],
+    ['천천히 가 주세요','Chạy chậm thôi','','짜이 쩜 토이','Slow down, please'],
+    ['얼마나 걸려요?','Mất bao lâu?','','멋 바오 러우','How long?'],
+    ['공항','Sân bay','','썬 바이','Airport']
+  ]},
+  {h:'쇼핑·흥정', p:'흥정은 시장에서만. 마트·리조트는 정가', list:[
+    ['얼마예요?','Bao nhiêu tiền?','','바오 니에우 띠엔','How much?'],
+    ['너무 비싸요','Đắt quá','','닷 꽈','Too expensive'],
+    ['깎아 주세요','Bớt đi','','벗 디','Cheaper, please'],
+    ['이걸로 할게요','Lấy cái này','','러이 까이 나이','I\'ll take it'],
+    ['그냥 구경하는 거예요','Tôi chỉ xem thôi','','또이 찌 쌤 토이','Just looking']
+  ]},
+  {h:'리조트·마사지', p:'리조트는 영어로 충분. 마사지 강도는 미리 말하기', list:[
+    ['체크인 할게요','Tôi muốn nhận phòng','','또이 무온 년 퐁','Check in, please'],
+    ['수건 더 주세요','Cho thêm khăn','','쪼 템 칸','More towels, please'],
+    ['세게 해 주세요','Mạnh hơn','','마인 헌','Stronger, please'],
+    ['살살 해 주세요','Nhẹ thôi','','녜 토이','Softer, please'],
+    ['아파요','Đau','','다우','It hurts'],
+    ['좋아요','Tốt lắm','','똣 람','Very good']
+  ]},
+  {h:'긴급', p:'경찰 113 · 소방 114 · 구급 115', list:[
+    ['살려주세요!','Cứu tôi với!','','끄우 또이 버이','Help!'],
+    ['경찰 불러 주세요','Gọi công an!','','고이 꽁 안','Call the police!'],
+    ['병원','Bệnh viện','','벤 비엔','Hospital'],
+    ['몸이 안 좋아요','Tôi bị ốm','','또이 비 옴','I feel sick'],
+    ['여권을 잃어버렸어요','Tôi bị mất hộ chiếu','','또이 비 멋 호 찌에우','I lost my passport']
+  ]}
+];
+const PHRASE_TIPS = [
+  ['Em ơi · Anh ơi · Chị ơi','젊은 직원은 Em ơi(엠 어이), 나이 있는 남자는 Anh ơi(아인 어이), 여자는 Chị ơi(찌 어이)'],
+  ['오토바이','길 건널 땐 뛰지 말고 일정한 속도로 천천히 — 오토바이가 피해 감'],
+  ['물티슈·땅콩','식당 테이블 물티슈·땅콩은 손대면 계산되는 곳 많음 (2–5천₫)'],
+  ['날치기','길가에서 휴대폰 들고 있으면 오토바이 날치기 주의 — 가게 안쪽에서'],
+  ['팁','마사지는 팁이 관행, 식당은 거스름돈 정도']
+];
+
+/* ═════════ 페이지 넘김 (scroll-snap + 하단 탭 + #p1~#p4) ═════════ */
+const pagesEl = $('pages');
+const navBtns = [...document.querySelectorAll('#nav [data-go]')];
+let cur = -1;
+function go(i, smooth){
+  pagesEl.scrollTo({left: i * pagesEl.clientWidth, behavior: smooth === false ? 'instant' : 'smooth'});
+}
+function sync(){
+  const i = Math.round(pagesEl.scrollLeft / pagesEl.clientWidth);
+  if (i === cur || i < 0 || i > 3) return;
+  cur = i;
+  navBtns.forEach((b, k) => b.setAttribute('aria-selected', k === i));
+  history.replaceState(null, '', '#p' + (i + 1));
+}
+pagesEl.addEventListener('scroll', sync, {passive:true});
+addEventListener('resize', () => go(Math.max(cur, 0), false));
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-go]');
+  if (b) go(Number(b.dataset.go));
+});
+document.addEventListener('keydown', e => {
+  if (e.target.closest('input,textarea,.map') || document.querySelector('dialog[open]')) return;
+  if (e.key === 'ArrowRight') go(Math.min(cur + 1, 3));
+  if (e.key === 'ArrowLeft') go(Math.max(cur - 1, 0));
+});
+{
+  const m = /^#p([1-4])$/.exec(location.hash);
+  requestAnimationFrame(() => { go(m ? m[1] - 1 : 0, false); sync(); });
+}
+
+/* ═════════ 환율 계산기 ═════════ */
+const rateNow = () => parseFloat($('rate').value) || 0;
+const fmtKRW = n => Math.round(n).toLocaleString('ko-KR') + '원';
+(function(){
+  const amt = $('amt'), rate = $('rate'), out = $('out');
+  let dir = 'vnd';
+  rate.value = store.get('vn_rate', rate.value);
+  const fmtVND = n => Math.round(n).toLocaleString('ko-KR') + '₫';
+  function calc(){
+    const a = parseFloat(amt.value) || 0, r = rateNow();
+    out.textContent = '= ' + (dir === 'vnd' ? fmtKRW(a * r / FX_UNIT) : fmtVND(r ? a / r * FX_UNIT : 0));
+  }
+  amt.addEventListener('input', calc);
+  rate.addEventListener('input', () => { store.set('vn_rate', rateNow()); calc(); renderShopPrices(); });
+  $('swap').addEventListener('click', () => {
+    dir = dir === 'vnd' ? 'krw' : 'vnd';
+    $('fromCur').textContent = dir === 'vnd' ? '₫' : '₩';
+    amt.value = ''; amt.placeholder = dir === 'vnd' ? '동 입력' : '원화 입력';
+    renderChips(); calc(); amt.focus();
+  });
+  function renderChips(){
+    const list = dir === 'vnd' ? FX_CHIPS : [10000,30000,50000,100000].map(v => ({v, l: v.toLocaleString('ko-KR') + '원'}));
+    $('chips').innerHTML = '';
+    list.forEach(c => {
+      const b = document.createElement('button');
+      b.className = 'btn raise'; b.textContent = c.l;
+      b.onclick = () => { amt.value = c.v; calc(); };
+      $('chips').appendChild(b);
+    });
+  }
+  renderChips(); calc();
+})();
+
+/* ═════════ P1 ═════════ */
+(function(){
+  const now = new Date(new Date().toLocaleString('en-US', {timeZone:'Asia/Seoul'}));
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const start = new Date(2026, 7, 7), end = new Date(2026, 7, 11);
+  const diff = Math.round((start - today) / 86400000);
+  $('dday').innerHTML = diff > 0 ? '출발까지 <b>D-' + diff + '</b>' : today <= end ? '<b>여행 ' + (1 - diff) + '일차</b>' : '다녀왔어요 💕';
+})();
+
+function checkRow(id, title, desc, state, key, right){
+  const row = document.createElement('label');
+  row.className = 'check' + (state[id] ? ' done' : '');
+  row.innerHTML = '<input type="checkbox" class="sr"' + (state[id] ? ' checked' : '') + '><span class="cbox raise"></span>' +
+    '<div class="ck-b"><div class="ck-t"><span>' + title + '</span>' + (right || '') + '</div>' + (desc ? '<div class="ck-d">' + desc + '</div>' : '') + '</div>';
+  row.querySelector('input').addEventListener('change', e => {
+    state[id] = e.target.checked; store.set(key, state);
+    row.classList.toggle('done', e.target.checked);
+  });
+  return row;
+}
+(function(){
+  const state = store.get('vn_check', {fasttrack:true, melia:true});
+  CHECKLIST.forEach(i => $('checklist').appendChild(checkRow(i.id, i.t, i.d, state, 'vn_check')));
+  const pack = store.get('vn_pack', {});
+  Object.entries(PACKING).forEach(([box, list]) => list.forEach(([id, t]) => $(box).appendChild(checkRow(id, t, '', pack, 'vn_pack'))));
+  $('basics').innerHTML = BASICS.map(([k, v]) => '<dt>' + k + '</dt><dd>' + v + '</dd>').join('');
+})();
+
+/* 날씨 — Open-Meteo 기록(재분석) 8/7–8/11 · 호찌민~호짬 사이 지점. 강수는 mm */
+const WX_SNAP = {"d":[[63,61,63,53,65],[31.7,32.7,31.3,30.2,30.8],[25.1,26.4,25.3,24.9,25.2],[9,3,11,4,16]],"h":[[2,3,61,51,3,3,3,3,63,61,51,2,51,51,51,53,53,51,2,2,3,2,2,1,2,3,3,3,3,3,3,3,3,51,51,51,51,51,53,51,61,51,3,3,3,3,3,3,3,3,3,51,51,51,3,3,3,3,3,51,63,61,51,51,61,61,53,51,51,51,51,3,3,3,51,51,53,53,3,3,3,3,3,3,51,2,53,53,51,3,2,3,51,3,3,3,51,51,51,51,51,3,3,3,3,3,3,3,3,51,65,63,55,51,3,3,3,3,3,3],[27,27,26,26,26,26,26,28,25,26,28,30,31,31,32,29,29,30,29,29,28,28,28,28,27,27,27,27,27,27,26,27,29,30,31,31,32,33,31,32,29,29,29,28,28,28,28,28,28,28,28,27,26,26,26,28,29,30,30,31,29,27,28,28,27,26,26,26,26,25,25,26,26,26,25,25,25,25,25,26,27,27,28,29,30,29,30,29,28,29,28,27,27,27,27,27,26,26,26,25,25,25,25,26,27,29,30,31,31,28,27,26,27,27,27,28,28,27,27,27],[0,0,1.6,0.1,0,0,0,0,3.6,1.5,0.1,0,0.1,0.1,0.1,0.9,0.6,0.1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.1,0.1,0.2,0.2,0.1,0.8,0.2,1.3,0.2,0,0,0,0,0,0,0,0,0,0.1,0.4,0.1,0,0,0,0,0,0.1,2.7,1.5,0.4,0.3,2.3,1.5,0.5,0.1,0.3,0.2,0.1,0,0,0,0.1,0.1,0.7,0.8,0,0,0,0,0,0,0.2,0,0.5,0.6,0.3,0,0,0,0.2,0,0,0,0.2,0.4,0.2,0.2,0.1,0,0,0,0,0,0,0,0,0.1,10.1,3.0,1.1,0.3,0,0,0,0,0,0],[0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0]]};
+const WX_DAYS = ['08/07 금','08/08 토','08/09 일','08/10 월','08/11 화'];
+const wxE = (c, day=1) => c===0 ? (day?'☀️':'🌙') : c<=2 ? (day?'🌤️':'🌙') : c===3 ? '☁️' : c<=48 ? '🌫️' : c<=57 ? '🌦️' : c<=67 ? '🌧️' : c<=77 ? '🌨️' : c<=82 ? '🌧️' : '⛈️';
+let wxData = null, wxSel = 0;
+function renderWx(w, note){
+  if (w) wxData = w; if (note) $('wxNote').textContent = note;
+  const [dc, mx, mn, dp] = wxData.d, [hc, ht, hp, hd] = wxData.h;
+  $('wx').innerHTML = '<div class="wxd">' + WX_DAYS.map((lab, i) => '<button aria-pressed="'+(i===wxSel)+'" onclick="wxSel='+i+';renderWx()">'+'<i>'+wxE(dc[i])+'</i><span>'+lab+'</span><small>☔'+dp[i]+'mm</small><span><b>'+Math.round(mx[i])+'°</b>/'+Math.round(mn[i])+'°</span></button>').join('') + (() => {
+      const t = ht.slice(wxSel*24, wxSel*24+24), lo = Math.min(...t), hi = Math.max(...t), y = v => 52 - (v-lo)/((hi-lo)||1)*34, x = h => h*38+19;
+      const pts = t.map((v, h) => x(h)+','+y(v).toFixed(1)).join(' ');
+      const svg = '<svg width="912" height="60" viewBox="0 0 912 60"><polyline points="'+pts+'" fill="none" stroke="var(--mark)" stroke-width="2"/>'
+        + t.map((v, h) => '<circle cx="'+x(h)+'" cy="'+y(v).toFixed(1)+'" r="2.5" fill="var(--fg)"/><text x="'+x(h)+'" y="'+(y(v)-6).toFixed(1)+'" font-size="11" text-anchor="middle" fill="var(--fg)"'+(v===hi||v===lo?' font-weight="700"':'')+'>'+v+'°</text>').join('') + '</svg>';
+      return '</div><div class="wxh"><div class="wxr" style="border-bottom:1px solid var(--line-soft)">'
+        + Array.from({length:24}, (_, h) => { const k = wxSel*24+h; return '<div><small>'+h+'시</small><i>'+wxE(hc[k], hd[k])+'</i><span class="rn">'+(hp[k]>=0.5?hp[k]+'mm':'&nbsp;')+'</span></div>'; }).join('')
+        + '</div><div style="width:912px">'+svg+'</div></div>';
+    })();
+}
+renderWx(WX_SNAP, 'Open-Meteo 기록 기준 (다녀온 날 실제 날씨) · 날짜를 누르면 시간별 · 시간 줄은 옆으로 밀기 · 파란 숫자 = 시간당 강수량');
+
+/* 지도 + 일자별 일정 — 2페이지(DAYS) */
+const gmap = k => gmapQ(P[k].q);
+const krw = h => h.replace(/(\d{1,3}(?:,\d{3})+)₫/g, (m, a) => m + ' <span class="krw" data-krw="' + a.replace(/,/g, '') + '" data-t=""></span>');
+const EMO = {food:'🍜', dess:'🍰', meat:'🍖', shop:'🛍️'};
+function plan(days, o){
+  const page = $(o.page), layers = {};
+  let map = null, etcLayer = null, curDay = 'all';
+  if (window.L) {
+    try {
+      map = L.map(o.map, {scrollWheelZoom:false}).setView([10.65, 107.0], 9);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution:'&copy; OpenStreetMap', maxZoom:19}).addTo(map);
+      const pinIcon = (label, hex, opt) => {
+        opt = opt || {};
+        const cls = 'pin' + (opt.cand ? ' cand' : '') + (opt.home ? ' home' : '') + (opt.etc ? ' etc' : '') + (opt.eat ? ' eat' : '') + (opt.book ? ' book' : '');
+        const style = opt.etc ? '' : (opt.cand || opt.eat ? 'color:' + hex : 'background:' + hex);
+        const size = opt.etc ? 12 : 24;
+        return L.divIcon({className:'', html:'<div class="' + cls + '" style="' + style + '">' + (opt.etc ? '' : label) + '</div>', iconSize:[size,size], iconAnchor:[size/2,size/2]});
+      };
+      const popup = k => {
+        const p = P[k];
+        return '<b>' + p.n + '</b>' + (p.addr ? '<br>' + p.addr : '') + (p.h ? '<br>🕒 ' + p.h : '') +
+          '<br><a class="link" target="_blank" rel="noopener" href="' + gmap(k) + '">구글맵 ↗</a>';
+      };
+      days.forEach(d => {
+        const g = L.layerGroup();
+        const booked = new Set(d.items.filter(i => (i.book || i.fix) && i.p).map(i => i.p));
+        const reserved = new Set(d.items.filter(i => i.book && i.p).map(i => i.p));
+        const onRoute = k => !P[k].kind || booked.has(k);
+        L.polyline(d.route.filter(onRoute).map(k => [P[k].lat, P[k].lng]), {color:d.hex, weight:4, opacity:.9}).addTo(g);
+        if (d.cand) L.polyline(d.cand.map(k => [P[k].lat, P[k].lng]), {color:d.hex, weight:3, opacity:.85, dashArray:'6 8'}).addTo(g);
+        let n = 0; const seen = new Set();
+        d.route.filter(onRoute).forEach(k => {
+          if (seen.has(k)) return; seen.add(k);
+          const home = !!P[k].home;
+          g['m_' + k] = L.marker([P[k].lat, P[k].lng], {icon: pinIcon(home ? '🏠' : ++n, d.hex, {home, book: reserved.has(k)})}).bindPopup(popup(k) + (reserved.has(k) ? '<br>✓ 예약 완료' : '')).addTo(g);
+        });
+        d.route.concat(d.cand || [], d.extra || [], d.items.flatMap(i => i.picks || [])).forEach(k => {
+          if (seen.has(k)) return; seen.add(k);
+          g['m_' + k] = L.marker([P[k].lat, P[k].lng], {icon: P[k].kind ? pinIcon(EMO[P[k].kind], d.hex, {eat:true}) : pinIcon('★', d.hex, {cand:true})}).bindPopup(popup(k)).addTo(g);
+        });
+        layers[d.id] = g;
+      });
+      if (o.etc) {
+        etcLayer = L.layerGroup();
+        ETC.forEach(k => { etcLayer['m_' + k] = L.marker([P[k].lat, P[k].lng], {icon: pinIcon('', '', {etc:true})}).bindPopup(popup(k)).addTo(etcLayer); });
+      }
+      addEventListener('resize', () => map.invalidateSize());
+    } catch (e) { map = null; }
+  }
+  if (!map) $(o.map).innerHTML = '<div class="map-err">지도를 불러오지 못했어요<br>네트워크 확인 후 새로고침</div>';
+
+  function show(which){
+    curDay = which;
+    page.querySelectorAll('#' + o.tabs + ' .btn, #' + o.tabs + 'B .btn').forEach(t => t.setAttribute('aria-pressed', String(t.dataset.k) === String(which)));
+    days.forEach(d => { const el = $(o.days + d.id); if (el) el.hidden = which !== 'all' && d.id !== which; });
+    if (!map) return;
+    Object.values(layers).forEach(l => map.removeLayer(l));
+    if (etcLayer) map.removeLayer(etcLayer);
+    const bounds = [];
+    const add = (l, keys) => { l.addTo(map); keys.forEach(k => bounds.push([P[k].lat, P[k].lng])); };
+    if (which === 'all'){
+      days.forEach(d => add(layers[d.id], d.route.concat(d.cand || [])));
+      if (etcLayer) add(etcLayer, ETC.filter(k => k !== 'disney'));
+    } else {
+      const d = days.find(x => x.id === which);
+      add(layers[which], d.route.concat(d.cand || [], d.extra || []));
+    }
+    map.fitBounds(bounds, {padding:[30,30], maxZoom:15});
+  }
+  function focusPlace(dayId, k){
+    if (!map) { window.open(gmap(k), '_blank'); return; }
+    if (curDay !== 'all' && curDay !== dayId) show(dayId);
+    page.scrollTo({top: $(o.mapSec).offsetTop - 12, behavior:'smooth'});
+    setTimeout(() => {
+      map.invalidateSize();
+      map.flyTo([P[k].lat, P[k].lng], 16, {duration:.6});
+      const m = (layers[dayId] && layers[dayId]['m_' + k]) || (etcLayer && etcLayer['m_' + k]);
+      if (m) setTimeout(() => m.openPopup(), 650);
+    }, 350);
+  }
+  const dot = d => '<i style="width:8px;height:8px;background:' + d.hex + ';display:inline-block"></i>Day ' + d.id + ' · ' + d.label;
+  const tab = (k, html) => {
+    const b = document.createElement('button');
+    b.className = 'btn raise'; b.dataset.k = k; b.innerHTML = html;
+    b.onclick = () => show(k === 'all' ? 'all' : Number(k));
+    $(o.tabs).appendChild(b);
+    const c = b.cloneNode(true);
+    c.onclick = () => { show(k === 'all' ? 'all' : Number(k)); page.scrollTo({top: $(o.days).offsetTop - 12, behavior:'smooth'}); };
+    bottom.appendChild(c);
+  };
+  const bottom = document.createElement('div');
+  bottom.className = 'row-scroll'; bottom.id = o.tabs + 'B'; bottom.style.marginTop = '16px';
+  $(o.days).after(bottom);
+  tab('all', '전체');
+  days.forEach(d => tab(d.id, dot(d)));
+  show('all');
+
+  days.forEach(d => {
+    const sec = document.createElement('section');
+    sec.id = o.days + d.id;
+    sec.innerHTML = '<div class="card"><div class="day-h"><span class="day-n"><i style="background:' + d.hex + '"></i>DAY ' + d.id + '</span>' +
+      '<span class="day-t">' + d.title + '</span><span class="day-s">' + d.label + '</span>' + '<img class="mi" src="../img/m/' + o.mascot[d.id] + '.webp" alt="" aria-hidden="true" style="margin-left:auto">' + '</div>' +
+      (d.sum ? '<p class="day-sum">' + d.sum + '</p>' : '') + '<ul class="tl"></ul></div>';
+    const ul = sec.querySelector('ul');
+    d.items.forEach(i => {
+      const li = document.createElement('li');
+      const pl = i.p ? P[i.p] : null;
+      let h = '<div class="tm num">' + i.t + '</div><div><div class="it">' + (pl && pl.kind ? EMO[pl.kind] + ' ' : '') + i.it +
+        (i.cand ? ' <span class="tag warn">후보</span>' : '') + (i.book ? ' <span class="tag ok">예약 완료</span>' : '') + (i.top ? ' <span class="tag acc">유력 원딤섬</span>' : '') +
+        (i.p ? '<button class="btn raise" data-day="' + d.id + '" data-k="' + i.p + '">지도</button>' : '') + '</div>';
+      if (i.ds) h += '<div class="ds">' + i.ds + '</div>';
+      if (pl && pl.addr) h += '<div class="ln"><span>위치</span><span>' + pl.addr + '</span></div>';
+      if (pl && pl.h && !i.noHours) h += '<div class="ln"><span>시간</span><span>' + pl.h + '</span></div>';
+      if (i.move) h += '<div class="ln"><span>이동</span><span>' + i.move + '</span></div>';
+      if (i.cost) h += '<div class="ln"><span>비용</span><span>' + i.cost + '</span></div>';
+      if (i.tip) h += '<div class="ln"><span>Tip</span><span>' + i.tip + '</span></div>';
+      if (i.warn) h += '<div class="warn"><span>' + i.warn + '</span></div>';
+      if (i.picks) h += '<div class="ln"><span>후보</span><span>' + i.picks.map(k => '<button class="btn raise" data-day="' + d.id + '" data-k="' + k + '">' + (P[k].kind ? EMO[P[k].kind] + ' ' : '') + P[k].n + '</button>').join('') + '</span></div>';
+      li.innerHTML = krw(h + '</div>');
+      ul.appendChild(li);
+    });
+    $(o.days).appendChild(sec);
+  });
+  $(o.days).addEventListener('click', e => {
+    const b = e.target.closest('button[data-k]');
+    if (b) focusPlace(Number(b.dataset.day), b.dataset.k);
+  });
+}
+plan(DAYS, {page:'p2', map:'map', mapSec:'mapSec', tabs:'tabs', days:'days', etc:true,
+  mascot:{1:'woori_sleepy',2:'doori_happy',3:'woori_happy',4:'doori_surprised',5:'doori_sad'}});
+
+/* P1 구역별 식당·관광지 */
+(function(){
+  AREAS.forEach((a, idx) => {
+    const div = document.createElement('div');
+    if (idx) div.style.marginTop = '20px';
+    div.innerHTML = '<h3>' + a.h + '</h3>' + (a.p ? '<p class="sub" style="margin:0 0 6px">' + a.p + '</p>' : '');
+    a.list.forEach(([k, nm, nt, hr, q]) => {
+      const url = k ? gmap(k) : gmapQ(q);
+      const row = document.createElement('div');
+      row.className = 'spot';
+      row.innerHTML = '<div><div class="nm">' + nm + '</div>' + (nt ? '<div class="sub">' + nt + '</div>' : '') +
+        '</div><div class="rt">' + (hr ? hr + '<br>' : '') + '<a class="link" target="_blank" rel="noopener" href="' + url + '">지도 ↗</a></div>';
+      div.appendChild(row);
+    });
+    $('spots').appendChild(div);
+  });
+})();
+
+/* ═════════ P3 회화 ═════════ */
+(function(){
+  const dlg = $('bigDlg');
+  PHRASES.forEach((g, gi) => {
+    const j = document.createElement('button');
+    j.className = 'btn raise'; j.textContent = g.h;
+    j.onclick = () => $('p3').scrollTo({top: $('ph' + gi).offsetTop - 12, behavior:'smooth'});
+    $('phJump').appendChild(j);
+    const sec = document.createElement('section');
+    sec.id = 'ph' + gi;
+    sec.innerHTML = '<h2>' + g.h + '</h2>' + (g.p ? '<p class="lead">' + g.p + '</p>' : '') + '<div class="card"></div>';
+    const card = sec.querySelector('.card');
+    g.list.forEach(([ko, zh, yp, kr, en]) => {
+      const b = document.createElement('button');
+      b.className = 'phr';
+      b.innerHTML = '<span class="ko">' + esc(ko) + '</span><span class="zh" lang="vi">' + esc(zh) + '</span>' +
+        '<span class="en" lang="en">' + esc(en) + '</span><span class="yp">' + esc(kr) + '</span>';
+      b.onclick = () => {
+        $('bgZh').textContent = zh; $('bgYp').textContent = kr + (yp ? '  ·  ' + yp : '');
+        $('bgKo').textContent = ko; $('bgEn').textContent = en;
+        dlg.showModal();
+      };
+      card.appendChild(b);
+    });
+    $('phrases').appendChild(sec);
+  });
+  const tips = document.createElement('section');
+  tips.innerHTML = '<h2>알아두면 좋은 에티켓</h2><div class="card"><dl class="kv">' +
+    PHRASE_TIPS.map(([k, v]) => '<dt>' + k + '</dt><dd>' + v + '</dd>').join('') + '</dl></div>';
+  $('phrases').appendChild(tips);
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+})();
+
+
+/* ═════════ P4 쇼핑 ═════════ */
+function renderShopPrices(){
+  document.querySelectorAll('[data-krw]').forEach(el => {
+    el.textContent = '(' + el.dataset.krw.split('-').map(v => Math.round(v * rateNow() / FX_UNIT).toLocaleString('ko-KR')).join('~') + '원' + el.dataset.t + ')';
+  });
+  document.querySelectorAll('[data-vnd]').forEach(el => {
+    el.textContent = '≈ ' + el.dataset.vnd.split('-').map(v => Math.round(v * rateNow() / FX_UNIT).toLocaleString('ko-KR')).join('~') + '원';
+  });
+}
+(function(){
+  SHOP.forEach(g => {
+    const sec = document.createElement('section');
+    sec.innerHTML = '<h2>' + g.h + '</h2>' + (g.p ? '<p class="lead">' + g.p + '</p>' : '') + '<div class="sgrid"></div>';
+    const grid = sec.querySelector('.sgrid');
+    g.list.forEach(i => {
+      const c = document.createElement('div');
+      c.className = 'scard';
+      c.innerHTML = '<div class="simg"><img src="../img/' + i.id + '.jpg" alt="" loading="lazy" onerror="this.remove()"><span>' + esc(i.t) + '</span></div>' +
+        '<div class="sbody"><div class="st">' + i.t + '</div><div class="pr num">' + i.price +
+        (i.vnd ? ' <small data-vnd="' + i.vnd + '"></small>' : '') + '</div>' + (i.d ? '<div class="sd">' + i.d + '</div>' : '') + '</div>';
+      grid.appendChild(c);
+    });
+    $('shop').appendChild(sec);
+  });
+  SHOP_INFO.forEach(c => {
+    const sec = document.createElement('section');
+    sec.innerHTML = '<h2>' + c.h + '</h2><div class="card">' + c.html + '</div>';
+    $('shop').appendChild(sec);
+  });
+  renderShopPrices();
+})();
+</script>
+</body>
+</html>

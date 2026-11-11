@@ -878,7 +878,7 @@ plan(DAYS, {page:'p2', map:'map', mapSec:'mapSec', tabs:'tabs', days:'days', etc
   PHRASES.forEach((g, gi) => {
     const j = document.createElement('button');
     j.className = 'btn raise'; j.textContent = g.h;
-    j.onclick = () => $('p4').scrollTo({top: $('ph' + gi).offsetTop - 12, behavior:'smooth'});
+    j.onclick = () => $('p3').scrollTo({top: $('ph' + gi).offsetTop - 12, behavior:'smooth'});
     $('phJump').appendChild(j);
     const sec = document.createElement('section');
     sec.id = 'ph' + gi;
