@@ -13,7 +13,7 @@ const TRIPS = [  // 날짜순 정렬은 아래에서 자동
     const u = new URL(t.path, base).href;
     const cur = u === here;
     return '<a class="btn raise trip" href="' + u + '"' + (cur ? ' aria-current="page"' : '') + '>' +
-      '<b>' + t.name + (cur ? ' <span class="tag now">보는 중</span>' : '') + '</b><small>' + t.date + '</small></a>';
+      '<b>' + t.name + '</b><small>' + t.date + '</small>' + (cur ? '<span class="tag now">보는 중</span>' : '') + '</a>';
   }).join('');
   const dlg = document.getElementById('drawer');
   document.getElementById('menuBtn').addEventListener('click', () => dlg.showModal());
