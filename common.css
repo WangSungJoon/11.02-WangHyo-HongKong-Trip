@@ -92,6 +92,7 @@
   .drawer .trip small{font-size:var(--t-meta);color:var(--muted-fg);font-weight:500}
   .drawer .trip[aria-current]{background:var(--fg);color:var(--bg)}
   .drawer .trip[aria-current] small{color:var(--bg)}
+  .drawer .trip .now{background:var(--accent);border-color:var(--accent);color:#fff;margin-left:4px}
   @media (prefers-reduced-motion:reduce){dialog.drawer{transition:none}}
   .nav .btn[aria-selected="true"] b{color:var(--bg)}
 

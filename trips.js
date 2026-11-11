@@ -11,8 +11,9 @@ const TRIPS = [  // 날짜순 정렬은 아래에서 자동
   const here = location.origin + location.pathname.replace(/index\.html$/, '');
   document.getElementById('tripList').innerHTML = [...TRIPS].sort((a, b) => a.date.localeCompare(b.date)).map(t => {
     const u = new URL(t.path, base).href;
-    return '<a class="btn raise trip" href="' + u + '"' + (u === here ? ' aria-current="page"' : '') + '>' +
-      '<b>' + t.name + '</b><small>' + t.date + '</small></a>';
+    const cur = u === here;
+    return '<a class="btn raise trip" href="' + u + '"' + (cur ? ' aria-current="page"' : '') + '>' +
+      '<b>' + t.name + (cur ? ' <span class="tag now">보는 중</span>' : '') + '</b><small>' + t.date + '</small></a>';
   }).join('');
   const dlg = document.getElementById('drawer');
   document.getElementById('menuBtn').addEventListener('click', () => dlg.showModal());
