@@ -79,13 +79,12 @@
   .pages{flex:1;min-height:0;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
   .pages::-webkit-scrollbar{display:none}
   .page{flex:0 0 100%;min-width:0;scroll-snap-align:start;scroll-snap-stop:always;overflow-y:auto;overscroll-behavior-y:contain;position:relative;margin:0}
-  .wrap{max-width:880px;margin:0 auto;padding:20px var(--gut) 32px}
+  .wrap{max-width:880px;margin:0 auto;padding:20px var(--gut) calc(100px + env(safe-area-inset-bottom))}
 
   /* ── 하단 탭 (seg-item) ── */
-  .nav{flex:none;border-top:1.5px solid var(--line);background:var(--bg);padding:10px var(--gut);padding-bottom:max(10px,env(safe-area-inset-bottom))}
-  .nav-in{display:flex;max-width:880px;margin:0 auto;padding:5px 0 0 5px}
-  .nav .btn{flex:1;min-width:0;height:44px;font-size:var(--t-label);padding:0 4px}
-  .nav .btn:not(:first-child){margin-left:-1.5px}
+  .nav{position:fixed;left:0;right:0;bottom:0;z-index:1100;pointer-events:none;padding:10px var(--gut);padding-bottom:max(12px,env(safe-area-inset-bottom))}
+  .nav-in{display:flex;gap:8px;max-width:880px;margin:0 auto;padding:5px 0 0 5px}
+  .nav .btn{flex:1;min-width:0;height:44px;font-size:var(--t-label);padding:0 4px;pointer-events:auto}
   .nav .btn b{font-weight:800;margin-right:2px;color:var(--accent)}
   .nav .btn[aria-selected="true"] b{color:var(--bg)}
 
