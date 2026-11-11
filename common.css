@@ -76,12 +76,14 @@
   .nav [data-go]{margin-left:-1.5px}
   .nav .btn b{font-weight:800;margin-right:2px;color:var(--accent)}
   .nav #menuBtn{flex:none;width:44px;font-size:18px}
-  /* ── 좌측 drawer (여행 목록) — 패널 없이 버튼 뭉치만, 왼쪽 위에서 위→아래로 한 칸씩 ── */
-  dialog.drawer{margin:0;inset:0 auto auto 0;height:auto;max-height:100dvh;overflow-y:auto;width:min(75vw,260px);max-width:none;border:0;
-    background:none;color:var(--fg);padding:calc(20px + env(safe-area-inset-top)) 0 20px calc(var(--gut) + 5px);
-    transform:translateX(-100%);transition:transform 240ms var(--curve-out),overlay 240ms allow-discrete,display 240ms allow-discrete}
-  dialog.drawer[open]{transform:none}
-  @starting-style{dialog.drawer[open]{transform:translateX(-100%)}}
+  /* ── 여행 목록 — 화면 가운데 버튼 뭉치, 많아지면 상하 여백 유지한 채 세로 스크롤 ── */
+  dialog.drawer{margin:auto;inset:0;width:min(calc(100vw - 2 * var(--gut)),280px);max-width:none;height:fit-content;
+    max-height:calc(100dvh - 2 * (var(--gut) + 24px) - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    overflow:hidden auto;overscroll-behavior:contain;border:0;background:none;color:var(--fg);
+    padding:5px 0 0 5px;opacity:0;scale:.96;
+    transition:opacity 200ms var(--curve-out),scale 200ms var(--curve-out),overlay 200ms allow-discrete,display 200ms allow-discrete}
+  dialog.drawer[open]{opacity:1;scale:1}
+  @starting-style{dialog.drawer[open]{opacity:0;scale:.96}}
   dialog.drawer::backdrop{background:rgb(42 41 38 / .55)}
   #tripList{display:flex;flex-direction:column}
   .drawer .trip{width:100%;flex-direction:column;align-items:flex-start;gap:0;padding:10px 14px;white-space:normal}
