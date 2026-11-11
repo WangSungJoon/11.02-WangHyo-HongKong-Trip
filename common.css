@@ -76,22 +76,23 @@
   .nav [data-go]{margin-left:-1.5px}
   .nav .btn b{font-weight:800;margin-right:2px;color:var(--accent)}
   .nav #menuBtn{flex:none;width:44px;font-size:18px}
-  /* ── 좌측 drawer (여행 목록) ── */
-  dialog.drawer{margin:0;inset:0 auto 0 0;height:100dvh;max-height:none;width:min(80vw,300px);max-width:none;border:0;border-right:1.5px solid var(--line);
-    background:var(--bg);color:var(--fg);padding:calc(24px + env(safe-area-inset-top)) 20px 20px 25px;display:flex;flex-direction:column;gap:12px;
-    transform:translateX(-100%);transition:transform 240ms var(--curve-out),overlay 240ms allow-discrete,display 240ms allow-discrete}
+  /* ── 좌측 drawer (여행 목록) — 패널 없이 버튼만 쌓인 탑, ☰ 위로 솟음 ── */
+  dialog.drawer{margin:0;inset:0 auto 0 0;height:100dvh;max-height:none;width:min(75vw,260px);max-width:none;border:0;background:none;color:var(--fg);
+    padding:20px 0 calc(78px + env(safe-area-inset-bottom)) calc(var(--gut) + 5px);display:flex;flex-direction:column;justify-content:flex-end;
+    transform:translateX(-110%);transition:transform 240ms var(--curve-out),overlay 240ms allow-discrete,display 240ms allow-discrete}
   dialog.drawer:not([open]){display:none}
   dialog.drawer[open]{transform:none}
-  @starting-style{dialog.drawer[open]{transform:translateX(-100%)}}
+  @starting-style{dialog.drawer[open]{transform:translateX(-110%)}}
   dialog.drawer::backdrop{background:rgb(42 41 38 / .55)}
-  .drawer h2{margin:0 0 4px;font-size:var(--t-title)}
-  #tripList{display:flex;flex-direction:column;gap:10px}
+  #tripList{display:flex;flex-direction:column}
+  .drawer .btn{width:100%}
+  .drawer .btn + .btn, .drawer form{margin-top:-1.5px}
   .drawer .trip{flex-direction:column;align-items:flex-start;gap:0;padding:10px 14px;white-space:normal}
   .drawer .trip b{font-size:var(--t-section)}
   .drawer .trip small{font-size:var(--t-meta);color:var(--muted-fg);font-weight:500}
   .drawer .trip[aria-current]{background:var(--fg);color:var(--bg)}
   .drawer .trip[aria-current] small{color:var(--bg)}
-  .drawer form{margin-top:auto}
+  .drawer form .btn{height:44px}
   @media (prefers-reduced-motion:reduce){dialog.drawer{transition:none}}
   .nav .btn[aria-selected="true"] b{color:var(--bg)}
 
