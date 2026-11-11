@@ -564,6 +564,8 @@ const P = {
               addr:'99 Catchick St, 케네디타운 · 해변 산책로 바로 앞'},
   bourkes:   {n:'Bourke\'s (칵테일 바)', lat:22.2828, lng:114.1528, q:"Bourke's 46 Peel Street Central",
               addr:'G/F, 46 Peel St, 센트럴 소호', h:'17:00~ (요일별 마감 상이)'},
+  kwanlok:   {kind:'food', n:'Kwan Lok Restaurant (차찬텡)', lat:22.2827551, lng:114.1537162, q:'Kwan Lok Restaurant Central Hong Kong',
+              addr:'센트럴 · 핀은 구글맵 공유 위치 기준'},
   hotel:     {n:'숙소', lat:22.2871, lng:114.1478, q:'28 Des Voeux Road West Sheung Wan', home:true,
               addr:'28 Des Voeux Road West, Sheung Wan', h:'체크인 14:00 · 체크아웃 12:00'},
   harbour:   {n:'셩완 하버프론트 산책로', lat:22.2893, lng:114.1497, q:'Central and Western District Promenade Sheung Wan Section',
@@ -672,10 +674,10 @@ const DAYS = [
     ]},
   { id:4, label:'11/09 월', title:'체크아웃 · 차찬텡 · 출국', hex:'#5e5c56',
     sum:'실제 다녀온 동선 — 체크아웃하고 Kwan Lok에서 차찬텡 아침, 바로 공항으로. 성준 13:45 / 효진 16:45 · 부칠 짐 없음',
-    route:['hotel','airport'],
+    route:['hotel','kwanlok','airport'],
     items:[
       {t:'09:30', it:'짐 정리 & 체크아웃', p:'hotel'},
-      {t:'10:00', it:'Kwan Lok Restaurant — 차찬텡 아침', ds:'홍콩식 밀크티 · 토스트 · 차찬텡 아침 세트'},
+      {t:'10:00', it:'Kwan Lok Restaurant — 차찬텡 아침', p:'kwanlok', fix:true, ds:'홍콩식 밀크티 · 토스트 · 차찬텡 아침 세트'},
       {t:'11:00', it:'바로 공항으로 이동'},
       {t:'11:30', it:'성준 출국', p:'airport', noHours:true, ds:'TW638 13:45'},
       {t:'16:45', it:'효진 출국', ds:'CX0799 16:45'}
