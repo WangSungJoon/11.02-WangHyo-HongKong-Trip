@@ -630,9 +630,10 @@ const DAYS = [
       {t:'01:10', it:'체크인 & 씻고 자기', p:'hotel'}
     ]},
   { id:2, label:'11/07 토', title:'카우키 · 소호 벽화·에스컬레이터 · 몽콕 · 록예 딤섬 · 침사추이 야경', hex:'#e14d2a',
-    sum:'실제 다녀온 동선 — 카우키로 시작해 소호 골목(벽화·에스컬레이터·베이커리), 오후엔 몽콕 쇼핑, 저녁은 침사추이 딤섬과 해변 야경, 숙소에서 맥주로 마무리',
-    route:['hotel','kaukee','mural','escalator','vission','bakehouse','ladies','logye','avenue','hotel'],
+    sum:'실제 다녀온 동선 — 아침 하버프론트 러닝, 카우키로 이어서 소호 골목(벽화·에스컬레이터·베이커리), 오후엔 몽콕 쇼핑, 저녁은 침사추이 딤섬과 해변 야경, 숙소에서 맥주로 마무리',
+    route:['hotel','harbour','wheel','hotel','kaukee','mural','escalator','vission','bakehouse','ladies','logye','avenue','hotel'],
     items:[
+      {t:'10:00', it:'하버프론트 러닝 → 대관람차', ds:'숙소 앞 바닷가 산책로를 동쪽(오른쪽)으로 · 센트럴 부두 지나 홍콩 대관람차까지 약 2.5km, 왕복 5km', p:'harbour'},
       {t:'12:15', it:'카우키 — 소고기 국수', fix:true, ds:'안심 소육수 국수 · 도가니&안심 카레국수 (메뉴 4·14번)', p:'kaukee',
         move:'숙소에서 도보 약 15분', tip:'합석 기본 · 현금만'},
       {t:'13:15', it:'벽화거리 — 사진', p:'mural', ds:'그레이엄 스트리트 · 할리우드로드 일대 벽화', move:'카우키에서 도보 약 5분'},
@@ -648,7 +649,7 @@ const DAYS = [
       {t:'21:00', it:'숙소 — 맥주로 마무리', p:'hotel', move:'스타페리 → 센트럴 부두 → 택시 약 5분 · 또는 MTR 침사추이 → 셩완'}
     ]},
   { id:3, label:'11/08 일', title:'라떼 · 미슐랭 딤섬 · 구룡공원 · 케네디타운 노을 · 베이징덕', hex:'#2a2926',
-    sum:'실제 다녀온 동선 — 러닝은 쉬고 11시 출발. 구룡에서 딤섬·공원·LP샵, 해 질 녘 케네디타운, 저녁은 완차이, 마무리는 소호 칵테일',
+    sum:'실제 다녀온 동선 — 러닝은 쉬고 11시 출발. 구룡에서 딤섬·공원·LP샵, 해 질 녘 케네디타운, 저녁은 완차이, 소호 칵테일 후 숙소에서 맥주로 마무리',
     route:['hotel','winstons','yth','kowloonpark','listening','nook','fatj','bourkes','hotel'],
     items:[
       {t:'11:00', it:'Winstons Coffee — 라떼 한 잔', p:'winstons', fix:true, ds:'숙소에서 가장 가까운 카페 · 213 Queen\'s Rd W, 사이잉푼', move:'숙소에서 도보 약 5분'},
@@ -666,24 +667,18 @@ const DAYS = [
         ds:'發達叉燒은 대기가 너무 길어 패스 → 바로 앞 미슐랭 베이징덕집에서 베이징덕', move:'MTR 케네디타운 → 완차이 약 15분 · A3 출구 도보 5분'},
       {t:'21:30', it:'Bourke\'s — 칵테일 한 잔', p:'bourkes', fix:true,
         ds:'호주 감성 와인·칵테일 바 · G/F 46 Peel St, 소호', move:'완차이에서 택시 약 10분 · MTR 완차이 → 센트럴 후 도보 10분',
-        tip:'숙소까지 택시 약 5분 · 도보 약 15분'}
+        tip:'숙소까지 택시 약 5분 · 도보 약 15분'},
+      {t:'22:30', it:'숙소 — 맥주로 마무리', p:'hotel'}
     ]},
-  { id:4, label:'11/09 월', title:'아침 · 출국', hex:'#5e5c56',
-    sum:'한랭전선 통과 — 아침 한때 비, 낮부터 맑고 건조 20–26°C · 북풍 강함, 겉옷 챙기기. 성준 13:45 / 효진 16:45 — 부칠 짐 없음 · 둘이 같이 공항으로',
-    route:['hotel','hkstation','airport'], cand:['airport','citygate'], extra:['lanfong','lordstow','citysuper'],
+  { id:4, label:'11/09 월', title:'체크아웃 · 차찬텡 · 출국', hex:'#5e5c56',
+    sum:'실제 다녀온 동선 — 체크아웃하고 Kwan Lok에서 차찬텡 아침, 바로 공항으로. 성준 13:45 / 효진 16:45 · 부칠 짐 없음',
+    route:['hotel','airport'],
     items:[
-      {t:'08:00', it:'아침 — 차찬텡', ds:'Kwan Lok Restaurant (07:00–18:00)', picks:['lanfong'],
-        warn:'Kwan Lok은 조사에서 정확한 상호·주소 확인 실패 → 대안 Lan Fong Yuen(2 Gage St, 밀크티·돼지갈비 번 원조)'},
-      {t:'09:30', it:'짐 정리 & 체크아웃', p:'hotel', tip:'항공사 앱 온라인 체크인 미리'},
-      {t:'10:00', it:'홍콩역 (IFC)', p:'hkstation',
-        move:'숙소에서 택시 약 5분 (HK$30 안팎)', picks:['lordstow','citysuper'],
-        tip:'공항철도 타기 전 만다린 오리엔탈 케이크숍에서 마카오 로드 스토우즈 에그타르트 포장 (도보 5분) — 판매 여부·시간은 당일 확인 · IFC 시티슈퍼에서 SO COCO 코코넛 푸딩 (보냉 필요 → 공항 가기 직전에)'},
-      {t:'10:30', it:'공항철도 함께 → 공항', move:'약 24분', cost:'HK$120/인 · 아끼려면 A11 HK$41.9 (Macau Ferry 정류장, 45–60분)'},
-      {t:'11:00', it:'성준 체크인 · 출국', p:'airport', noHours:true,
-        ds:'TW638 13:45 · T1 체크인 추정(제주항공 등 일부는 T2로 이전) → 공항 안내판 확인 · 카운터 마감 약 12:45'},
-      {t:'11:30', it:'효진 남은 시간', p:'citygate', cand:true,
-        ds:'시티게이트 아울렛(퉁청, 공항에서 버스 약 10분) 또는 공항 안에서 간식 마지막 쇼핑',
-        warn:'CX0799 16:45 — 15:30쯤엔 보안검색 통과'}
+      {t:'09:30', it:'짐 정리 & 체크아웃', p:'hotel'},
+      {t:'10:00', it:'Kwan Lok Restaurant — 차찬텡 아침', ds:'홍콩식 밀크티 · 토스트 · 차찬텡 아침 세트'},
+      {t:'11:00', it:'바로 공항으로 이동'},
+      {t:'11:30', it:'성준 출국', p:'airport', noHours:true, ds:'TW638 13:45'},
+      {t:'16:45', it:'효진 출국', ds:'CX0799 16:45'}
     ]}
 ];
 const ETC = ['temple','choihung','hopewell','wheel','sky100','disney','kt'];
