@@ -21,13 +21,12 @@
     <label class="fx-box">
       <span class="fx-cur" id="fromCur">HK$</span>
       <input id="amt" type="number" inputmode="decimal" placeholder="홍콩달러 입력" aria-label="금액">
-      <span class="fx-eq num" id="out">= 0원</span>
     </label>
     <button class="btn raise fx-swap" id="swap" aria-label="HKD/원 방향 바꾸기">⇄</button>
   </div>
   <div class="fx-sub">
     <label class="fx-rate">1 HKD =<input id="rate" type="number" inputmode="decimal" value="175" aria-label="환율">원</label>
-    <div class="row-scroll" id="chips"></div>
+    <output class="fx-out num" id="out" for="amt rate" aria-live="polite">= 0원</output>
   </div>
 </div>
 
@@ -213,7 +212,6 @@ const gmapQ = q => 'https://www.google.com/maps/search/?api=1&query=' + encodeUR
 
 /* ═════════ 데이터 ═════════ */
 /* 조사 기준일 2026-11-04 — HKO 9일 예보·MTR·Citybus·The Peak·미슐랭 가이드·OpenRice 등 */
-const FX_CHIPS = [50,100,200,500,1000].map(v => ({v, l:'HK$' + v}));
 
 const CHECKLIST = [
   {id:'flight', t:'항공편 재확인', d:'7C6013·TW638 편명이 공개 검색에서 확인되지 않음 → e티켓 편명·시각 재확인 · 출국 체크인 터미널(T1/T2)은 항공사 앱으로'},
@@ -657,19 +655,9 @@ const fmtKRW = n => Math.round(n).toLocaleString('ko-KR') + '원';
     dir = dir === 'hkd' ? 'krw' : 'hkd';
     $('fromCur').textContent = dir === 'hkd' ? 'HK$' : '₩';
     amt.value = ''; amt.placeholder = dir === 'hkd' ? '홍콩달러 입력' : '원화 입력';
-    renderChips(); calc(); amt.focus();
+    calc(); amt.focus();
   });
-  function renderChips(){
-    const list = dir === 'hkd' ? FX_CHIPS : [10000,30000,50000,100000].map(v => ({v, l: v.toLocaleString('ko-KR') + '원'}));
-    $('chips').innerHTML = '';
-    list.forEach(c => {
-      const b = document.createElement('button');
-      b.className = 'btn raise'; b.textContent = c.l;
-      b.onclick = () => { amt.value = c.v; calc(); };
-      $('chips').appendChild(b);
-    });
-  }
-  renderChips(); calc();
+  calc();
 })();
 
 /* ═════════ P1 ═════════ */

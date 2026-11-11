@@ -21,13 +21,12 @@
     <label class="fx-box">
       <span class="fx-cur" id="fromCur">₫</span>
       <input id="amt" type="number" inputmode="decimal" placeholder="동 입력" aria-label="금액">
-      <span class="fx-eq num" id="out">= 0원</span>
     </label>
     <button class="btn raise fx-swap" id="swap" aria-label="동/원 방향 바꾸기">⇄</button>
   </div>
   <div class="fx-sub">
     <label class="fx-rate">1,000₫ =<input id="rate" type="number" inputmode="decimal" value="55" aria-label="환율">원</label>
-    <div class="row-scroll" id="chips"></div>
+    <output class="fx-out num" id="out" for="amt rate" aria-live="polite">= 0원</output>
   </div>
 </div>
 
@@ -215,7 +214,6 @@ const gmapQ = q => 'https://www.google.com/maps/search/?api=1&query=' + encodeUR
 /* ═════════ 데이터 ═════════ */
 /* 조사 기준일 2026-11-11 — Meliá 공식·Time Out·Michelin·Gowabi·Open-Meteo 기록 등. ₫ 가격은 대략 */
 const FX_UNIT = 1000;   /* 환율 입력 단위: 1,000₫ */
-const FX_CHIPS = [50000,100000,200000,500000,1000000].map(v => ({v, l:(v/10000) + '만₫'}));
 
 const CHECKLIST = [
   {id:'flight', t:'항공편 재확인', d:'아시아나 OZ735 (8/7 19:30 ICN→22:50 SGN) · OZ732 (8/11 12:05 SGN→19:25 ICN)'},
@@ -521,19 +519,9 @@ const fmtKRW = n => Math.round(n).toLocaleString('ko-KR') + '원';
     dir = dir === 'vnd' ? 'krw' : 'vnd';
     $('fromCur').textContent = dir === 'vnd' ? '₫' : '₩';
     amt.value = ''; amt.placeholder = dir === 'vnd' ? '동 입력' : '원화 입력';
-    renderChips(); calc(); amt.focus();
+    calc(); amt.focus();
   });
-  function renderChips(){
-    const list = dir === 'vnd' ? FX_CHIPS : [10000,30000,50000,100000].map(v => ({v, l: v.toLocaleString('ko-KR') + '원'}));
-    $('chips').innerHTML = '';
-    list.forEach(c => {
-      const b = document.createElement('button');
-      b.className = 'btn raise'; b.textContent = c.l;
-      b.onclick = () => { amt.value = c.v; calc(); };
-      $('chips').appendChild(b);
-    });
-  }
-  renderChips(); calc();
+  calc();
 })();
 
 /* ═════════ P1 ═════════ */
