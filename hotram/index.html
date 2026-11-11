@@ -62,7 +62,6 @@
       </div>
       <div class="card">
         <div class="who"><img class="mi" src="../img/m/doori_neutral.webp" alt="" aria-hidden="true">예약 정보</div>
-        <div class="sub">예약번호 FK••HY · 오쓰번호 0167••YS (공개 페이지라 일부 가림)</div>
         <div style="margin-top:10px;font-size:var(--t-label)"><span class="tag ok">완료</span> 떤선녓 공항 입국 패스트트랙</div>
         <div class="sub" style="margin-top:10px">효진은 호찌민 거주 — 집에서 합류</div>
       </div>
@@ -219,7 +218,7 @@ const FX_UNIT = 1000;   /* 환율 입력 단위: 1,000₫ */
 const FX_CHIPS = [50000,100000,200000,500000,1000000].map(v => ({v, l:(v/10000) + '만₫'}));
 
 const CHECKLIST = [
-  {id:'flight', t:'항공편 재확인', d:'아시아나 OZ735 (8/7 19:30 ICN→22:50 SGN) · OZ732 (8/11 12:05 SGN→19:25 ICN) · 예약번호 FK••HY'},
+  {id:'flight', t:'항공편 재확인', d:'아시아나 OZ735 (8/7 19:30 ICN→22:50 SGN) · OZ732 (8/11 12:05 SGN→19:25 ICN)'},
   {id:'fasttrack', t:'떤선녓 공항 패스트트랙', d:'예약 완료 — 입국 심사 줄 건너뛰기, 도착 게이트에서 이름 피켓 확인'},
   {id:'melia', t:'멜리아 호짬 예약', d:'8/8–8/10 2박 · 오션뷰 · 예약번호 2604••••55 — 완료'},
   {id:'pickup', t:'호짬 가는 차 예약', d:'8/8 14:00 효진집 픽업 → 멜리아 (약 2시간)'},
@@ -231,9 +230,9 @@ const CHECKLIST = [
 
 /* 준비물 — [id, 이름] */
 const PACKING = {
-  packCommon: [['sunglass','썬글라스'], ['flipflop','커플쪼리'], ['shortpin','커플숏핀'], ['swim','수영복 (리조트 수영)'], ['sunscreen','선크림'], ['umbrella','접이식 우산 (오후 스콜)'], ['mosquito','모기 기피제']],
-  packSj: [['speaker','블루투스 스피커'], ['passport','여권 / 트래블카드'], ['battery','보조배터리 / 충전기']],
-  packHj: [['work','출근 준비 (8/8 오전)']]
+  packCommon: [['sunglass','모자 / 썬글라스'], ['swim','수영복 (리조트 수영)'], ['sunscreen','선크림'], ['umbrella','접이식 우산 (오후 스콜)']],
+  packSj: [['shortpin','커플숏핀'], ['speaker','블루투스 스피커'], ['passport','여권 / 트래블카드'], ['battery','보조배터리 / 충전기']],
+  packHj: [['mosquito','모기 기피제']]
 };
 
 const BASICS = [
